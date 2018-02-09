@@ -114,5 +114,6 @@ def print_tree(node, depth = 0):
         print('%s[%s]' % ((depth*'  ', node)))
 
 tree = build_tree(dataset, 3, 1)
+
 print(tree)
 print_tree(tree)

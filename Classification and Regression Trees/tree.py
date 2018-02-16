@@ -75,10 +75,12 @@ def to_terminal(group):
 def split(node, max_depth, min_size, depth):
     left, right = node['groups']
     del(node['groups'])
+    print("left is ----")
     print(left)
-    print("----")
+    print("right is ----")
     print(right)
     if not left or not right:
+        print("no left or no right")
         node['left'] = node['right'] = to_terminal(left + right)
         return
     
@@ -117,3 +119,15 @@ tree = build_tree(dataset, 3, 1)
 
 print(tree)
 print_tree(tree)
+
+
+x = [[2.771244718, 1.784783929, 0], [1.728571309, 1.169761413, 1], [3.678319846, 2.81281357, 0], [3.961043357, 2.61995032, 1]]
+
+def to_terminal_research(group):
+    outcomes = [row[-1] for row in group]
+    print(outcomes)
+    print(outcomes.count)
+    print(set(outcomes))
+    return max(set(outcomes), key=outcomes.count)
+
+print(to_terminal_research(x))

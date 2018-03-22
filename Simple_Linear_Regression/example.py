@@ -31,7 +31,7 @@ b0, b1 = coefficients(d)
 print('b0={0}, b1={1}'.format(b0, b1))
 
 # example 2
-f = '../data/insurance.csv'
+f = '../Data/insurance.csv'
 d = pd.read_csv(f, header=None)
 train, test = train_test_split(d, test_size=0.4)
 train, test = train.values.tolist(), test.values.tolist()

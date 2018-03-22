@@ -8,8 +8,8 @@ Machine learning algorithms without library in Python3.
 
 ## Linear
 * [Simple Linear Regression](./Simple_Linear_Regression/)
-* [Classification and Regression Trees](./Classification_and_Regression_Trees/)
 
 ## Nonlinear
+* [Classification and Regression Trees](./Classification_and_Regression_Trees/)
 
 ## Ensemble

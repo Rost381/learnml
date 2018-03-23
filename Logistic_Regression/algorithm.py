@@ -7,7 +7,7 @@ def predict(row, coefficients):
         yhat += coefficients[i + 1] * row[i]
     return 1.0 / (1.0 + exp(-yhat))
 
-# sgd
+# stochastic gradient descent
 def sgd(train, l_rate, n_epoch):
     coef = [0.0 for i in range(len(train[0]))]
     for epoch in range(n_epoch):

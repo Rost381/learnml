@@ -3,7 +3,7 @@ import os
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
-
+from sklearn.preprocessing import LabelEncoder
 from algorithm import *
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))

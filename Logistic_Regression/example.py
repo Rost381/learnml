@@ -1,3 +1,4 @@
+import math
 import os
 
 import numpy as np
@@ -50,6 +51,19 @@ for row in d.values.tolist():
     yhat = predict(row, coef)
     if row[-1] == round(yhat):
         i += 1
-    #print("Expected=%3f, Predicted=%3f [%d]" % (row[-1], yhat, round(yhat)))
-
 print(i)
+
+a = [row[-1] for row in dl]
+p = [predict(row, coef) for row in dl]
+
+
+def rmse(actual, predicted):
+    sum_error = 0.0
+    for i in range(len(actual)):
+        prediction_error = predicted[i] - actual[i]
+        sum_error += (prediction_error**2)
+        mean_error = sum_error / float(len(actual))
+    return math.sqrt(mean_error)
+
+
+print(rmse(a, p))

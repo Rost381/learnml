@@ -13,5 +13,6 @@ Machine learning algorithms without library in Python3.
 ## Nonlinear
 * [Classification and Regression Trees](./Classification_and_Regression_Trees/)
 * [Naive Bayes](./Naive_Bayes)
+* [k Nearest Neighbors](./k_Nearest_Neighbors)
 
 ## Ensemble

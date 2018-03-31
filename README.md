@@ -4,6 +4,9 @@
 
 Machine learning algorithms without library in Python3.
 
+## Pilot
+* [Pilot](./Pilot/)
+* 
 ## Linear
 * [Simple Linear Regression](./Simple_Linear_Regression/)
 * [Multivariate Linear Regression](./Multivariate_Linear_Regression)

@@ -1,5 +1,6 @@
 from algorithm import *
 
+# example 1
 dataset = [[2.7810836, 2.550537003, 0],
            [1.465489372, 2.362125076, 0],
            [3.396561688, 4.400293529, 0],
@@ -16,3 +17,13 @@ test_row = dataset[0]
 r = bmu(dataset, test_row)
 
 print(r)
+
+print(random_codebook(dataset))
+
+n_codebooks = 2
+lrate = 0.3
+epochs = 10
+
+codebooks = train_codebooks(dataset, n_codebooks, lrate, epochs)
+
+print('Codebooks: %s' % codebooks)

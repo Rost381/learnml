@@ -27,3 +27,6 @@ epochs = 10
 codebooks = train_codebooks(dataset, n_codebooks, lrate, epochs)
 
 print('Codebooks: %s' % codebooks)
+
+for i in dataset:
+    print(predict(codebooks, i))

@@ -39,12 +39,14 @@ def train_codebooks(train, n_codebooks, lrate, epochs):
 
     # count(n_codebooks) of date
     codebooks = [random_codebook(train) for i in range(n_codebooks)]
-    print(codebooks)
+
     for epoch in range(epochs):
         rate = lrate * (1.0 - (epoch / float(epochs)))
         sum_error = 0.0
+
         for row in train:
             bmu_value = bmu(codebooks, row)
+
             for i in range(len(row) - 1):
                 error = row[i] - bmu_value[i]
                 sum_error += error**2
@@ -52,8 +54,12 @@ def train_codebooks(train, n_codebooks, lrate, epochs):
                     bmu_value[i] += rate * error
                 else:
                     bmu_value[i] -= rate * error
+                
 
         print('> epoch=%d, rate=%.3f, sum error=%.3f' % (epoch, rate, sum_error))
-        print(codebooks)
-
+        
     return codebooks
+
+def predict(codebooks, test_row):
+    bmu_value = bmu(codebooks, test_row)
+    return bmu_value[-1]

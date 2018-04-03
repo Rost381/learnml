@@ -1,4 +1,13 @@
+import os
+
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+
 from algorithm import *
+
+os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 # example 1
 dataset = [[2.7810836, 2.550537003, 0],
@@ -30,3 +39,29 @@ print('Codebooks: %s' % codebooks)
 
 for i in dataset:
     print(predict(codebooks, i))
+
+# example 2
+f = '../Data/ionosphere.csv'
+d = pd.read_csv(f, header=None)
+df = d.replace(['g', 'b'], [0, 1])
+train, test = train_test_split(df, test_size=0.5)
+total = test.shape[0]
+train, test = train.values.tolist(), test.values.tolist()
+
+n_codebooks = 20
+lrate = 0.3
+epochs = 50
+n_folds = 5
+
+codebooks = train_codebooks(train, n_codebooks, lrate, epochs)
+
+n = 0
+
+for i in test:
+    p = predict(codebooks, i)
+    a = i[-1]
+    if p == a:
+        n += 1
+    #print('predict={0}, actual={1}'.format(p, a))
+
+print('{:.2%}'.format(float(n / total)))

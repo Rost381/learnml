@@ -18,5 +18,6 @@ Machine learning algorithms without library in Python3.
 * [Naive Bayes](./Naive_Bayes)
 * [k Nearest Neighbors](./k_Nearest_Neighbors)
 * [Learning Vector Quantization](./Learning_Vector_Quantization)
+* [Back Propagation](./Back_Propagation)
 
 ## Ensemble

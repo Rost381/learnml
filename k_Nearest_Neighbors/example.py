@@ -34,7 +34,7 @@ print(prediction)
 
 # example 2
 f = '../Data/abalone.csv'
-d = pd.read_csv(f, header=None)
+d = pd.read_csv(f, header=True)
 
 df = d.replace(['F', 'I', 'M'], [0, 1, 2])
 

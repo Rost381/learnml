@@ -25,3 +25,12 @@ dataset = [
 dataset.sort(key=lambda x: x[1])
 # [['a', 0], ['c', 26], ['b', 100]]
 ```
+
+## Get index of max value in list
+```python
+x = [0.1, 0.9]
+print(x.index(max(x))) # 1
+
+y = [0.9, 0.1]
+print(y.index(max(y))) # 0
+```

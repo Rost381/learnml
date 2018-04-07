@@ -35,11 +35,14 @@ def forward_propagate(network, row):
         new_inputs = []
         for neuron in layer:
             activation = activate(neuron['weights'], inputs)
-            # print('activation:{0}'.format(activation))
-            #print('-' * 10)
             neuron['output'] = transfer(activation)
             new_inputs.append(neuron['output'])
+
+            #print('activation:{0}'.format(activation))
+            #print('neuron[\'output\']:{0}'.format(neuron['output']))
+            #print('-' * 10)
         inputs = new_inputs
+        print('inputs:{0}'.format(inputs))
     return inputs
 
 
@@ -73,6 +76,7 @@ def update_weights(network, row, lrate):
         inputs = row[:-1]
         if i != 0:
             inputs = [neuron['output'] for neuron in network[i - 1]]
+        
         for neuron in network[i]:
             for j in range(len(inputs)):
                 # weight = weight + learning rate * error * input
@@ -84,18 +88,23 @@ def update_weights(network, row, lrate):
 def train_network(network, train, lrate, nepoch, noutputs):
     for epoch in range(nepoch):
         sum_error = 0
+        
         for row in train:
             outputs = forward_propagate(network, row)
+            print('output:{0}'.format(outputs))
             expected = [0 for i in range(noutputs)]
-
+            
             expected[row[-1]] = 1
-
+            print('expected:{0}'.format(expected))
+            
             sum_error += sum([(expected[i] - outputs[i]) **
                               2 for i in range(len(expected))])
 
             backward_propagate_error(network, expected)
 
             update_weights(network, row, lrate)
+
+            print('network:{0}'.format(network))
 
         print('>epoch=%d, lrate=%.3f, error=%.3f' % (epoch, lrate, sum_error))
 

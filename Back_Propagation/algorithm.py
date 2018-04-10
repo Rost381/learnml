@@ -42,7 +42,7 @@ def forward_propagate(network, row):
             #print('neuron[\'output\']:{0}'.format(neuron['output']))
             #print('-' * 10)
         inputs = new_inputs
-        print('inputs:{0}'.format(inputs))
+        #print('inputs:{0}'.format(inputs))
     return inputs
 
 
@@ -60,15 +60,26 @@ def backward_propagate_error(network, expected):
                 error = 0.0
                 for neuron in network[i + 1]:
                     error += (neuron['weights'][j] * neuron['delta'])
+                    '''
+                    print('neuron[\'weights\'][j]:{0}'.format(neuron['weights'][j]))
+                    print('neuron[\'delta\']:{0}'.format(neuron['delta']))
+                    print('error:{0}'.format(error))'''
                 errors.append(error)
         else:
             for j in range(len(layer)):
                 neuron = layer[j]
                 errors.append(expected[j] - neuron['output'])
+                #print('errors:{0}'.format(errors))
 
         for j in range(len(layer)):
             neuron = layer[j]
             neuron['delta'] = errors[j] * transfer_derivative(neuron['output'])
+            '''
+            print('----')
+            print(errors)
+            print(errors[j])
+            
+            print('neuron[\'delta\']:{0}'.format(neuron['delta']))'''
 
 
 def update_weights(network, row, lrate):
@@ -91,11 +102,12 @@ def train_network(network, train, lrate, nepoch, noutputs):
         
         for row in train:
             outputs = forward_propagate(network, row)
-            print('output:{0}'.format(outputs))
+            #print('output:{0}'.format(outputs))
+            
             expected = [0 for i in range(noutputs)]
             
             expected[row[-1]] = 1
-            print('expected:{0}'.format(expected))
+            #print('expected:{0}'.format(expected))
             
             sum_error += sum([(expected[i] - outputs[i]) **
                               2 for i in range(len(expected))])
@@ -103,8 +115,7 @@ def train_network(network, train, lrate, nepoch, noutputs):
             backward_propagate_error(network, expected)
 
             update_weights(network, row, lrate)
-
-            print('network:{0}'.format(network))
+            #print('network:{0}'.format(network))
 
         print('>epoch=%d, lrate=%.3f, error=%.3f' % (epoch, lrate, sum_error))
 

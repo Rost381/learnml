@@ -17,26 +17,7 @@ n_outputs = len(set([row[-1] for row in dataset]))  # 2 (0, 1)
 
 network = init_network(n_inputs, 2, n_outputs)
 print(network)
-"""
-[
-[
-    {
-        'weights': [0.43844995020313093, 0.21283605725358978, 0.5898806150273994]
-    }, 
-    {
-        'weights': [0.42606982633327817, 0.7224257757364141, 0.7241244504318621]
-    }
-], 
-[
-    {
-        'weights': [0.8568730343561543, 0.6703067501329243, 0.4865214956877104]
-    }, 
-    {
-        'weights': [0.010225331085835343, 0.75280008852522, 0.7842335210917772]
-    }
-]
-]
-"""
+
 train_network(network, dataset, 0.5, 20, n_outputs)
 
 for layer in network:

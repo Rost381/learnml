@@ -102,20 +102,20 @@ def train_network(network, train, lrate, nepoch, noutputs):
         
         for row in train:
             outputs = forward_propagate(network, row) # cal output
-            print('output:{0}'.format(outputs))
+            #print('output:{0}'.format(outputs))
             
             expected = [0 for i in range(noutputs)]
 
             expected[row[-1]] = 1
-            print('expected:{0}'.format(expected))
+            #print('expected:{0}'.format(expected))
             
             sum_error += sum([(expected[i] - outputs[i]) **
                               2 for i in range(len(expected))])
 
             backward_propagate_error(network, expected) # get delta
             
-            print('row:{0}'.format(row))
-            print('network:{0}'.format(network))
+            #print('row:{0}'.format(row))
+            #print('network:{0}'.format(network))
             update_weights(network, row, lrate)
             #
 

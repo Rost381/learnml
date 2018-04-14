@@ -2,6 +2,17 @@ from random import random, seed
 import math
 
 
+def str_column_to_int(dataset, column):
+    class_values = [row[column] for row in dataset]
+    unique = set(class_values)
+    lookup = dict()
+    for i, value in enumerate(unique):
+        lookup[value] = i
+    for row in dataset:
+        row[column] = lookup[row[column]]
+    return lookup
+
+
 def init_network(n_inputs, n_hidden, n_outputs):
     network = list()
     # hidden layer has [hidden] neuron with [inputs + 1] input weights plus the bias.
@@ -38,11 +49,11 @@ def forward_propagate(network, row):
             neuron['output'] = transfer(activation)
             new_inputs.append(neuron['output'])
 
-            #print('activation:{0}'.format(activation))
-            #print('neuron[\'output\']:{0}'.format(neuron['output']))
+            # print('activation:{0}'.format(activation))
+            # print('neuron[\'output\']:{0}'.format(neuron['output']))
             #print('-' * 10)
         inputs = new_inputs
-        #print('inputs:{0}'.format(inputs))
+        # print('inputs:{0}'.format(inputs))
     return inputs
 
 
@@ -69,7 +80,7 @@ def backward_propagate_error(network, expected):
             for j in range(len(layer)):
                 neuron = layer[j]
                 errors.append(expected[j] - neuron['output'])
-                #print('errors:{0}'.format(errors))
+                # print('errors:{0}'.format(errors))
 
         for j in range(len(layer)):
             neuron = layer[j]
@@ -87,7 +98,7 @@ def update_weights(network, row, lrate):
         inputs = row[:-1]
         if i != 0:
             inputs = [neuron['output'] for neuron in network[i - 1]]
-        
+
         for neuron in network[i]:
             for j in range(len(inputs)):
                 # weight = weight + learning rate * error * input
@@ -99,23 +110,23 @@ def update_weights(network, row, lrate):
 def train_network(network, train, lrate, nepoch, noutputs):
     for epoch in range(nepoch):
         sum_error = 0
-        
+
         for row in train:
-            outputs = forward_propagate(network, row) # cal output
-            #print('output:{0}'.format(outputs))
-            
+            outputs = forward_propagate(network, row)  # cal output
+            # print('output:{0}'.format(outputs))
+
             expected = [0 for i in range(noutputs)]
 
             expected[row[-1]] = 1
-            #print('expected:{0}'.format(expected))
-            
+            # print('expected:{0}'.format(expected))
+
             sum_error += sum([(expected[i] - outputs[i]) **
                               2 for i in range(len(expected))])
 
-            backward_propagate_error(network, expected) # get delta
-            
-            #print('row:{0}'.format(row))
-            #print('network:{0}'.format(network))
+            backward_propagate_error(network, expected)  # get delta
+
+            # print('row:{0}'.format(row))
+            # print('network:{0}'.format(network))
             update_weights(network, row, lrate)
             #
 

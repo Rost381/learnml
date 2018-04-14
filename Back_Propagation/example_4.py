@@ -2,31 +2,17 @@ import os
 
 import numpy as np
 import pandas as pd
+from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
 
 from algorithm import *
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 # example 4
-
-
-def str_column_to_int(dataset, column):
-    class_values = [row[column] for row in dataset]
-    unique = set(class_values)
-    lookup = dict()
-    for i, value in enumerate(unique):
-        lookup[value] = i
-    for row in dataset:
-        row[column] = lookup[row[column]]
-    return lookup
-
-
 f = '../Data/seeds.csv'
 d = pd.read_csv(f, header=None)
 
-from sklearn import preprocessing
 
 min_max_scaler = preprocessing.MinMaxScaler()
 df = min_max_scaler.fit_transform(d)
@@ -36,7 +22,7 @@ str_column_to_int(df, len(df[0]) - 1)
 train, test = train_test_split(df, test_size=0.5)
 
 train, test = train.tolist(), test.tolist()
-print(train)
+
 str_column_to_int(train, len(train[0]) - 1)
 str_column_to_int(test, len(test[0]) - 1)
 

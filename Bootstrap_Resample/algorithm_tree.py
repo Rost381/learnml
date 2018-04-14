@@ -57,12 +57,12 @@ def tree_to_terminal(group):
 def tree_split(node, max_depth, min_size, depth):
     left, right = node['groups']
     del(node['groups'])
-    print("left is ----")
-    print(left)
-    print("right is ----")
-    print(right)
+    #print("left is ----")
+    #print(left)
+    #print("right is ----")
+    #print(right)
     if not left or not right:
-        print("no left or no right")
+        #print("no left or no right")
         node['left'] = node['right'] = tree_to_terminal(left + right)
         return
 
@@ -96,7 +96,7 @@ def tree_print(node, depth=0):
     if isinstance(node, dict):
         print('%s[X%d < %.3f]' %
               ((depth * '  ', (node['index'] + 1), node['value'])))
-        tree_print(node['left'], depth + 1)
-        tree_print(node['right'], depth + 1)
+        #tree_print(node['left'], depth + 1)
+        #tree_print(node['right'], depth + 1)
     else:
         print('%s[%s]' % ((depth * '  ', node)))

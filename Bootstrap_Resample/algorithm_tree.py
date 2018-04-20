@@ -54,7 +54,7 @@ def tree_to_terminal(group):
     return max(set(outcomes), key=outcomes.count)
 
 
-def tree_split(node, max_depth, min_size, depth):
+def tree_split2(node, max_depth, min_size, depth):
     left, right = node['groups']
     del(node['groups'])
     #print("left is ----")
@@ -85,6 +85,30 @@ def tree_split(node, max_depth, min_size, depth):
         node['right'] = split_dataset(right)
         tree_split(node['right'], max_depth, min_size, depth + 1)
 
+    
+def tree_split(node, max_depth, min_size, depth):
+    left, right = node['groups']
+    del(node['groups'])
+    # check for a no split
+    if not left or not right:
+        node['left'] = node['right'] = tree_to_terminal(left + right)
+        return
+    # check for max depth
+    if depth >= max_depth:
+        node['left'], node['right'] = tree_to_terminal(left), tree_to_terminal(right)
+        return
+    # process left child
+    if len(left) <= min_size:
+        node['left'] = tree_to_terminal(left)
+    else:
+        node['left'] = split_dataset(left)
+        tree_split(node['left'], max_depth, min_size, depth + 1)
+    # process right child
+    if len(right) <= min_size:
+        node['right'] = tree_to_terminal(right)
+    else:
+        node['right'] = split_dataset(right)
+        tree_split(node['right'], max_depth, min_size, depth + 1)
 
 def tree_build(train, max_depth, min_size):
     root = split_dataset(train)

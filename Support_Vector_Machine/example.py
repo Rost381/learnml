@@ -13,18 +13,14 @@ from algorithm import *
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
+f = '../Data/svm.csv'
+d = pd.read_csv(f, header=None)
 
-def loadDataSet(fileName):
-    dataMat = []
-    labelMat = []
-    fr = open(fileName)
-    for line in fr.readlines():
-        lineArr = line.strip().split('\t')
-        dataMat.append([float(lineArr[0]), float(lineArr[1])])
-        labelMat.append(float(lineArr[2]))
-    return dataMat, labelMat
+train = d[d.columns[:-1]]
 
+label = d[d.columns[-1]]
 
-dataArr, labelArr = loadDataSet('testSet.txt')
+b, alphas = smoSimple(train, label, 0.6, 0.001, 40)
 
-b, alphas = smoSimple(dataArr, labelArr, 0.6, 0.001, 40)
+print(b)
+print(alphas[alphas > 0])

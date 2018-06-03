@@ -12,6 +12,7 @@ Machine learning algorithms without library in Python3.
 * [Multivariate Linear Regression](./Multivariate_Linear_Regression)
 * [Logistic Regression](./Logistic_Regression/)
 * [Perceptron](./Perceptron/)
+* [Support Vector Machine](./Support_Vector_Machine)
 
 ## Nonlinear
 * [Classification and Regression Trees](./Classification_and_Regression_Trees/)

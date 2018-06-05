@@ -37,17 +37,17 @@ def simpleSMO(dataMatIn, classLabels, C, toler, maxIter):
             '''
             
             # if checks if an example violates KKT conditions
-            Ei = fXi - float(labelMat[i])
+            Ei = fXi - float(labelMat[i]) # 7.104
             if ((labelMat[i] * Ei < -toler) and (alphas[i] < C)) or ((labelMat[i] * Ei > toler) and (alphas[i] > 0)):
                 
                 # random select the second alphas[j]
                 j = selectJrand(i, m)
-                fXj = float(multiply(alphas, labelMat).T * (dataMatrix * dataMatrix[j, :].T)) + b
-                Ej = fXj - float(labelMat[j])
+                fXj = float(multiply(alphas, labelMat).T * (dataMatrix * dataMatrix[j, :].T)) + b 
+                Ej = fXj - float(labelMat[j]) # 7.104
                 alphaIold = alphas[i].copy()
                 alphaJold = alphas[j].copy()
 
-                # make sure alpha is between 0 and C
+                # make sure alpha is between 0 and C page 126
                 if (labelMat[i] != labelMat[j]):
                     L = max(0, alphas[j] - alphas[i])
                     H = min(C, C + alphas[j] - alphas[i])
@@ -59,17 +59,17 @@ def simpleSMO(dataMatIn, classLabels, C, toler, maxIter):
                     print("L==H")
                     continue
                 
-                eta = 2.0 * dataMatrix[i, :] * dataMatrix[j, :].T - dataMatrix[i, :] * dataMatrix[i, :].T - dataMatrix[j, :] * dataMatrix[j, :].T
+                eta = dataMatrix[i, :] * dataMatrix[i, :].T + dataMatrix[j, :] * dataMatrix[j, :].T - 2.0 * dataMatrix[i, :] * dataMatrix[j, :].T # 7.106
 
                 print('eta:{0}'.format(eta))
 
                 # if eta >= 0, continue
-                if eta >= 0:
+                if eta < 0:
                     print("eta>=0")
                     continue
                 
                 # update alhpas[j]
-                alphas[j] -= labelMat[j] * (Ei - Ej) / eta
+                alphas[j] += labelMat[j] * (Ei - Ej) / eta # 7.106
                 alphas[j] = clipAlpha(alphas[j], H, L)
 
                 if (abs(alphas[j] - alphaJold) < 0.00001):
@@ -77,13 +77,13 @@ def simpleSMO(dataMatIn, classLabels, C, toler, maxIter):
                     continue
                 
                 # update i by the same amount as j
-                alphas[i] += labelMat[j] * labelMat[i] * (alphaJold - alphas[j])
+                alphas[i] += labelMat[j] * labelMat[i] * (alphaJold - alphas[j]) # 7.109
                 
                 # the update is in the oppostie direction
-                b1 = b - Ei - labelMat[i] * (alphas[i] - alphaIold) * dataMatrix[i, :] * \
-                dataMatrix[i, :].T - labelMat[j] * (alphas[j] - alphaJold) * dataMatrix[i, :] * dataMatrix[j, :].T
-                b2 = b - Ej - labelMat[i] * (alphas[i] - alphaIold) * dataMatrix[i, :] * \
-                dataMatrix[j, :].T - labelMat[j] * (alphas[j] - alphaJold) * dataMatrix[j, :] * dataMatrix[j, :].T
+                b1 = b - Ei - labelMat[i] * (alphas[i] - alphaIold) * dataMatrix[i, :] * dataMatrix[i, :].T \
+                - labelMat[j] * (alphas[j] - alphaJold) * dataMatrix[i, :] * dataMatrix[j, :].T # 7.115
+                b2 = b - Ej - labelMat[i] * (alphas[i] - alphaIold) * dataMatrix[i, :] * dataMatrix[j, :].T \
+                - labelMat[j] * (alphas[j] - alphaJold) * dataMatrix[j, :] * dataMatrix[j, :].T # 7.116
                 
                 if (0 < alphas[i]) and (C > alphas[i]):
                     b = b1

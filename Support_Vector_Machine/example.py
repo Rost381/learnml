@@ -16,7 +16,7 @@ label = [1, 1, -1]
 b, alphas = simpleSMO(train, label, 0.6, 0.001, 1)
 
 print(b)
-print(alphas[alphas > 0])
+print(alphas)
 
 # example 2
 f = '../Data/svm.csv'
@@ -29,4 +29,4 @@ label = d[d.columns[-1]]
 b, alphas = simpleSMO(train, label, 0.6, 0.001, 1)
 
 print(b)
-print(alphas[alphas > 0])
+print(alphas)

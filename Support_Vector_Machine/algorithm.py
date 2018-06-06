@@ -102,4 +102,4 @@ def simpleSMO(dataMatIn, classLabels, C, toler, maxIter):
         
         print("iteration number: %d" % iter)
         
-    return b, alphas
+    return b, alphas[alphas > 0]

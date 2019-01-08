@@ -2,11 +2,10 @@
 
 ![Language](https://img.shields.io/badge/language-Python3-blue.svg?style=flat)
 
-Machine learning algorithms without library in Python3.
-
 ## Getting Started
 
 ## Installing
+Put all files in any folder and run.
 
 ## Algorithms
 ### Pilot
@@ -27,4 +26,7 @@ Machine learning algorithms without library in Python3.
 * [Back Propagation](./Back_Propagation)
 
 ### Supervised Learning
-* [Linear Discriminant Analysis](./ml/linear_discriminant_analysis/) || [Example](./examples/example_lda.py)
+* [Principal Component Analysis](./ml/linear_discriminant_analysis/linear_discriminant_analysis.py) | [Example](./examples/example_lda.py)
+
+### Unsupervised Learning
+* [Linear Discriminant Analysis](./ml/principal_component_analysis/principal_component_analysis.py) | [Example](./examples/example_pca.py)

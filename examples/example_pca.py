@@ -7,7 +7,7 @@ import pandas as pd
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from ml.linear_discriminant_analysis import linear_discriminant_analysis
+from ml.principal_component_analysis import principal_component_analysis
 from ml.math_tools import mt
 
 from sklearn import datasets
@@ -25,8 +25,8 @@ def main():
                                                 'virginica', 'versicolor'], value=[0, 1, 2])
     y = np.array(y_)
 
-    lda = linear_discriminant_analysis.LDA()
-    lda.plot_lda(X, y, 'example_lda.png')
+    pca = principal_component_analysis.PCA()
+    pca.plot_pca(X, y, 'example_pca.png')
 
 
 if __name__ == "__main__":

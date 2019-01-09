@@ -32,3 +32,6 @@ Put all files in any folder and run.
 
 ### Unsupervised Learning
 * [Linear Discriminant Analysis](./ml/principal_component_analysis/principal_component_analysis.py) | [Example](./examples/example_pca.py)
+
+## Map
+![](./images/ml_map.png)

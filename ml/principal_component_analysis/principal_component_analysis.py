@@ -16,7 +16,7 @@ class PCA():
 
         idx = eigenvalues.argsort()[::-1]
         eigenvalues = eigenvalues[idx][:n_components]
-        eigenvectors = np.atleast_1d(eigenvectors[:, idx])[:, :n_components]
+        eigenvectors = eigenvectors[:, idx][:, :n_components]
 
         X_transformed = X.dot(eigenvectors)
 
@@ -37,7 +37,7 @@ class PCA():
             _x2 = x2[y == l]
             _y = y[y == l]
             class_distr.append(plt.scatter(_x1, _x2, color=colors[i]))
-        
+
         plt.xlabel('Principal Component 1')
         plt.ylabel('Principal Component 2')
         # plt.show()

@@ -4,9 +4,8 @@
 
 ## Getting Started
 Step by Step implementation of Machine Learning Algorithms in Python3.
-
-## Installing
-Put all files in any folder and run.
+Put all files in any folder and run exmaple_*.py.
+Project in progress...
 
 ## Algorithms
 ### Pilot
@@ -32,6 +31,12 @@ Put all files in any folder and run.
 
 ### Unsupervised Learning
 * [Linear Discriminant Analysis](./ml/principal_component_analysis/principal_component_analysis.py) | [Example](./examples/example_pca.py)
+
+### Reinforcement Learning
+* in progress...
+
+### Deep Learning
+* in progress...
 
 ## Map
 ![](./images/ml_map.png)

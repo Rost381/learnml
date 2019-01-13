@@ -3,9 +3,9 @@
 ![Language](https://img.shields.io/badge/language-Python3-blue.svg?style=flat)
 
 ## Getting Started
-Step by Step implementation of Machine Learning Algorithms in Python3.
-Put all files in any folder and run exmaple_*.py.
-Project in progress...
+* Step by Step implementation of Machine Learning Algorithms in Python3.
+* Put all files in any folder and run exmaple_*.py.
+* Project in progress...
 
 ## Algorithms
 ### Pilot
@@ -36,7 +36,7 @@ Project in progress...
 * in progress...
 
 ### Deep Learning
-* in progress...
+* [Back Propagation](./ml/back_propagation/back_propagation.py) | [Example](./examples/example_bp.py)
 
 ## Map
 ![](./images/ml_map.png)

@@ -55,6 +55,9 @@ class BP():
                 activation = self.activate(neuron['weights'], inputs)
                 neuron['output'] = self.transfer(activation)
                 new_inputs.append(neuron['output'])
+            """
+            * inputs = new_inputs, which is the last step value
+            """
             inputs = new_inputs
         return inputs
 
@@ -89,7 +92,7 @@ class BP():
                 neuron = layer[j]
 
                 """
-                no output
+                * no output
                 """
                 neuron['delta'] = errors[j] * \
                     self.transfer_derivative(neuron['output'])
@@ -107,7 +110,7 @@ class BP():
             for neuron in network[i]:
                 for j in range(len(inputs)):
                     """
-                    update weight
+                    * update weight
                     weight = weight + learning rate * error
                     because input = output, so use input here
                     """

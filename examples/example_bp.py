@@ -26,14 +26,11 @@ def main():
 
     bp = back_propagation.BP()
 
-    n_inputs = len(dataset[0]) - 1  # 2
-    n_outputs = len(set([row[-1] for row in dataset]))  # 2
+    n_inputs = len(dataset[0]) - 1
+    n_outputs = len(set([row[-1] for row in dataset]))
 
     network = bp.init_network(n_inputs, 2, n_outputs)
-    print(network)
     bp.train_network(network, dataset, 0.5, 50, n_outputs)
-
-    print(network)
 
     for row in dataset:
         prediction = bp.predict(network, row)

@@ -23,7 +23,7 @@ class KNN():
         for train_row in train:
             d = self.edistance(train_row, test_row)
             r.append((train_row, d))
-
+            
         r.sort(key=lambda x: x[1])
 
         n = list()

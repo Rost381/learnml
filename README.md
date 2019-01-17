@@ -20,11 +20,11 @@
 ### Nonlinear
 * [Classification and Regression Trees](./Classification_and_Regression_Trees/)
 * [Naive Bayes](./Naive_Bayes)
-* [k Nearest Neighbors](./k_Nearest_Neighbors)
 * [Learning Vector Quantization](./Learning_Vector_Quantization)
 
 ### Supervised Learning
 * [Linear Regression](./ml/linear_regression/linear_regression.py) | [Example](./examples/example_lr.py)
+* [Logistic Regression](./ml/logistic_regression/logistic_regression.py) | [Example](./examples/example_logit.py)
 * [k Nearest Neighbors](./ml/k_nearest_neighbors/k_nearest_neighbors.py) | [Example](./examples/example_knn.py)
 * [Principal Component Analysis](./ml/linear_discriminant_analysis/linear_discriminant_analysis.py) | [Example](./examples/example_lda.py)
 

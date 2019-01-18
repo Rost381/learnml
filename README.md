@@ -15,7 +15,6 @@
 * [Multivariate Linear Regression](./Multivariate_Linear_Regression)
 * [Logistic Regression](./Logistic_Regression/)
 * [Perceptron](./Perceptron/)
-* [Support Vector Machine](./Support_Vector_Machine)
 
 ### Nonlinear
 * [Classification and Regression Trees](./Classification_and_Regression_Trees/)
@@ -27,6 +26,7 @@
 * [Logistic Regression](./ml/logistic_regression/logistic_regression.py) | [Example](./examples/example_logit.py)
 * [k Nearest Neighbors](./ml/k_nearest_neighbors/k_nearest_neighbors.py) | [Example](./examples/example_knn.py)
 * [Principal Component Analysis](./ml/linear_discriminant_analysis/linear_discriminant_analysis.py) | [Example](./examples/example_lda.py)
+* [Support Vector Machine](./ml/support_vector_machine/support_vector_machine.py) | [Example](./examples/example_svm.py)
 
 ### Unsupervised Learning
 * [Linear Discriminant Analysis](./ml/principal_component_analysis/principal_component_analysis.py) | [Example](./examples/example_pca.py)

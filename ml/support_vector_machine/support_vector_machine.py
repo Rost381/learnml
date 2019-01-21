@@ -46,7 +46,7 @@ class SVM():
                 '''
 
                 # if checks if an example violates KKT conditions
-                Ei = fXi - float(labelMat[i])  # 7.104
+                Ei = fXi - float(labelMat[i])  # 7.105
                 if ((labelMat[i] * Ei < -toler) and (alphas[i] < C)) or ((labelMat[i] * Ei > toler) and (alphas[i] > 0)):
 
                     # random select the second alphas[j]
@@ -116,6 +116,6 @@ class SVM():
             else:
                 iter = 0
 
-            print("iteration number: %d" % iter)
+            #print("iteration number: %d" % iter)
 
         return b, alphas[alphas > 0]

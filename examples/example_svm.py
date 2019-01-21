@@ -18,7 +18,7 @@ def main():
     label = [1, 1, -1]
 
     svm = support_vector_machine.SVM()
-    b, alphas = svm.simpleSMO(train, label, 0.6, 0.001, 1)
+    b, alphas = svm.simpleSMO(train, label, 1, 0.001, 10000)
 
     print(b)
     print(alphas)

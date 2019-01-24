@@ -11,112 +11,152 @@ from ml.math_tools import mt
 
 
 class SVM():
-
-    def __init__(self, max_iter=10000, kernel_type='linear', C=1.0, epsilon=0.001):
-        self.kernels = {
-            'linear': self.kernel_linear,
-            'quadratic': self.kernel_quadratic
-        }
+    def __init__(self, max_iter=100, kernel='linear'):
         self.max_iter = max_iter
-        self.kernel_type = kernel_type
-        self.C = C
-        self.epsilon = epsilon
+        self._kernel = kernel
 
-    def fit(self, X, y):
-        n, d = X.shape[0], X.shape[1]
-        alpha = np.zeros((n))
-        kernel = self.kernels[self.kernel_type]
-        count = 0
-        while True:
-            count += 1
-            alpha_prev = np.copy(alpha)
-            for j in range(0, n):
-                i = self.get_rnd_int(0, n - 1, j)  # Get random int i~=j
-                x_i, x_j, y_i, y_j = X[i, :], X[j, :], y[i], y[j]
-                k_ij = kernel(x_i, x_i) + kernel(x_j, x_j) - \
-                    2 * kernel(x_i, x_j)
-                if k_ij == 0:
-                    continue
-                alpha_prime_j, alpha_prime_i = alpha[j], alpha[i]
-                (L, H) = self.compute_L_H(
-                    self.C, alpha_prime_j, alpha_prime_i, y_j, y_i)
+    def init_args(self, features, labels):
+        self.m, self.n = features.shape
+        self.X = features
+        self.Y = labels
+        self.b = 0.0
 
-                # Compute model parameters
-                self.w = self.calc_w(alpha, y, X)
-                self.b = self.calc_b(X, y, self.w)
+        # 将Ei保存在一个列表里
+        self.alpha = np.ones(self.m)
+        self.E = [self._E(i) for i in range(self.m)]
+        # 松弛变量
+        self.C = 1.0
 
-                # Compute E_i, E_j
-                E_i = self.E(x_i, y_i, self.w, self.b)
-                E_j = self.E(x_j, y_j, self.w, self.b)
-
-                # Set new alpha values
-                alpha[j] = alpha_prime_j + float(y_j * (E_i - E_j)) / k_ij
-                alpha[j] = max(alpha[j], L)
-                alpha[j] = min(alpha[j], H)
-
-                alpha[i] = alpha_prime_i + y_i * \
-                    y_j * (alpha_prime_j - alpha[j])
-
-            # Check convergence
-            diff = np.linalg.norm(alpha - alpha_prev)
-            if diff < self.epsilon:
-                break
-
-            if count >= self.max_iter:
-                print("Iteration number exceeded the max of %d iterations" %
-                      (self.max_iter))
-                return
-        # Compute final model parameters
-        self.b = self.calc_b(X, y, self.w)
-        if self.kernel_type == 'linear':
-            self.w = self.calc_w(alpha, y, X)
-        # Get support vectors
-        alpha_idx = np.where(alpha > 0)[0]
-        support_vectors = X[alpha_idx, :]
-        return support_vectors, count
-
-    def predict(self, X):
-        return self.h(X, self.w, self.b)
-
-    def calc_b(self, X, y, w):
-        b_tmp = y - np.dot(w.T, X.T)
-        return np.mean(b_tmp)
-
-    def calc_w(self, alpha, y, X):
-        return np.dot(X.T, np.multiply(alpha, y))
-    # Prediction
-
-    def h(self, X, w, b):
-        return np.sign(np.dot(w.T, X.T) + b).astype(int)
-    # Prediction error
-
-    def E(self, x_k, y_k, w, b):
-        return self.h(x_k, w, b) - y_k
-
-    def compute_L_H(self, C, alpha_prime_j, alpha_prime_i, y_j, y_i):
-        if(y_i != y_j):
-            return (max(0, alpha_prime_j - alpha_prime_i), min(C, C - alpha_prime_i + alpha_prime_j))
+    def _KKT(self, i):
+        y_g = self._g(i) * self.Y[i]
+        if self.alpha[i] == 0:
+            return y_g >= 1
+        elif 0 < self.alpha[i] < self.C:
+            return y_g == 1
         else:
-            return (max(0, alpha_prime_i + alpha_prime_j - C), min(C, alpha_prime_i + alpha_prime_j))
+            return y_g <= 1
 
-    def get_rnd_int(self, a, b, z):
-        i = z
-        cnt = 0
-        while i == z and cnt < 1000:
-            i = random.randint(a, b)
-            cnt = cnt + 1
-        return i
-    # Define kernels
+    # g(x)预测值，输入xi（X[i]）
+    def _g(self, i):
+        r = self.b
+        for j in range(self.m):
+            r += self.alpha[j] * self.Y[j] * self.kernel(self.X[i], self.X[j])
+        return r
 
-    def kernel_linear(self, x1, x2):
-        return np.dot(x1, x2.T)
+    # 核函数
+    def kernel(self, x1, x2):
+        if self._kernel == 'linear':
+            # return sum([x1[k] * x2[k] for k in range(self.n)])
+            return np.dot(x1, x2.T)
+        elif self._kernel == 'poly':
+            # return (sum([x1[k] * x2[k] for k in range(self.n)]) + 1)**2
+            return (np.dot(x1, x2.T) ** 2)
 
-    def kernel_quadratic(self, x1, x2):
-        return (np.dot(x1, x2.T) ** 2)
+        return 0
 
-    def calc_acc(self, y, y_hat):
-        idx = np.where(y_hat == 1)
-        TP = np.sum(y_hat[idx] == y[idx])
-        idx = np.where(y_hat == -1)
-        TN = np.sum(y_hat[idx] == y[idx])
-        return float(TP + TN) / len(y)
+    # E（x）为g(x)对输入x的预测值和y的差
+    def _E(self, i):
+        return self._g(i) - self.Y[i]
+
+    def _init_alpha(self):
+        # 外层循环首先遍历所有满足0<a<C的样本点，检验是否满足KKT
+        index_list = [i for i in range(self.m) if 0 < self.alpha[i] < self.C]
+        # 否则遍历整个训练集
+        non_satisfy_list = [i for i in range(self.m) if i not in index_list]
+        index_list.extend(non_satisfy_list)
+
+        for i in index_list:
+            if self._KKT(i):
+                continue
+
+            E1 = self.E[i]
+            # 如果E2是+，选择最小的；如果E2是负的，选择最大的
+            if E1 >= 0:
+                j = min(range(self.m), key=lambda x: self.E[x])
+            else:
+                j = max(range(self.m), key=lambda x: self.E[x])
+            return i, j
+
+    def _compare(self, _alpha, L, H):
+        if _alpha > H:
+            return H
+        elif _alpha < L:
+            return L
+        else:
+            return _alpha
+
+    def fit(self, features, labels):
+        self.init_args(features, labels)
+
+        for t in range(self.max_iter):
+            # train
+            i1, i2 = self._init_alpha()
+
+            # 边界
+            if self.Y[i1] == self.Y[i2]:
+                L = max(0, self.alpha[i1] + self.alpha[i2] - self.C)
+                H = min(self.C, self.alpha[i1] + self.alpha[i2])
+            else:
+                L = max(0, self.alpha[i2] - self.alpha[i1])
+                H = min(self.C, self.C + self.alpha[i2] - self.alpha[i1])
+
+            E1 = self.E[i1]
+            E2 = self.E[i2]
+            # eta=K11+K22-2K12
+            eta = self.kernel(self.X[i1], self.X[i1]) + self.kernel(
+                self.X[i2], self.X[i2]) - 2 * self.kernel(self.X[i1], self.X[i2])
+            if eta <= 0:
+                # print('eta <= 0')
+                continue
+
+            # 此处有修改，根据书上应该是E1 - E2，书上130-131页
+            alpha2_new_unc = self.alpha[i2] + self.Y[i2] * (E1 - E2) / eta
+            alpha2_new = self._compare(alpha2_new_unc, L, H)
+
+            alpha1_new = self.alpha[i1] + self.Y[i1] * \
+                self.Y[i2] * (self.alpha[i2] - alpha2_new)
+
+            b1_new = -E1 - self.Y[i1] * self.kernel(self.X[i1], self.X[i1]) * (alpha1_new - self.alpha[i1]) - \
+                self.Y[i2] * self.kernel(self.X[i2], self.X[i1]) * \
+                (alpha2_new - self.alpha[i2]) + self.b
+            b2_new = -E2 - self.Y[i1] * self.kernel(self.X[i1], self.X[i2]) * (alpha1_new - self.alpha[i1]) - \
+                self.Y[i2] * self.kernel(self.X[i2], self.X[i2]) * \
+                (alpha2_new - self.alpha[i2]) + self.b
+
+            if 0 < alpha1_new < self.C:
+                b_new = b1_new
+            elif 0 < alpha2_new < self.C:
+                b_new = b2_new
+            else:
+                # 选择中点
+                b_new = (b1_new + b2_new) / 2
+
+            # 更新参数
+            self.alpha[i1] = alpha1_new
+            self.alpha[i2] = alpha2_new
+            self.b = b_new
+
+            self.E[i1] = self._E(i1)
+            self.E[i2] = self._E(i2)
+        return 'train done!'
+
+    def predict(self, data):
+        r = self.b
+        for i in range(self.m):
+            r += self.alpha[i] * self.Y[i] * self.kernel(data, self.X[i])
+
+        return 1 if r > 0 else -1
+
+    def score(self, X_test, y_test):
+        right_count = 0
+        for i in range(len(X_test)):
+            result = self.predict(X_test[i])
+            if result == y_test[i]:
+                right_count += 1
+        return right_count / len(X_test)
+
+    def _weight(self):
+        # linear model
+        yx = self.Y.reshape(-1, 1) * self.X
+        self.w = np.dot(yx.T, self.alpha)
+        return self.w

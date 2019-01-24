@@ -18,16 +18,9 @@ def main():
     data = np.array(data)
     X, y = data[:, 0:-1], data[:, -1].astype(int)
 
-    svm = support_vector_machine.SVM()
-
-    support_vectors, iterations = svm.fit(X, y)
-
-    sv_count = support_vectors.shape[0]
-    print(sv_count)
-
-    y_hat = svm.predict(X)
-
-    print(svm.calc_acc(y, y_hat))
+    svm = support_vector_machine.SVM(max_iter=1000)
+    svm.fit(X, y)
+    print(svm.score(X, y))
 
 
 if __name__ == "__main__":

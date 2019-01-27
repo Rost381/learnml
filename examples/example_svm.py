@@ -14,12 +14,12 @@ from ml.math_tools import mt
 def main():
 
     data = pd.read_csv('data/svm.csv', header=None)
-
     data = np.array(data)
     X, y = data[:, 0:-1], data[:, -1].astype(int)
 
-    svm = support_vector_machine.SVM(max_iter=1000)
+    svm = support_vector_machine.SVM(max_iter=1000, kernel='poly')
     svm.fit(X, y)
+
     print(svm.score(X, y))
 
 

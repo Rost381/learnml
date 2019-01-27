@@ -106,10 +106,11 @@ class SVM():
         self.init_args(features, labels)
 
         for each_iter in range(self.max_iter):
-            # train
             i1, i2 = self._init_alpha()
 
-            # 边界
+            """
+            get L, H
+            """
             if self.Y[i1] == self.Y[i2]:
                 L = max(0, self.alpha[i1] + self.alpha[i2] - self.C)
                 H = min(self.C, self.alpha[i1] + self.alpha[i2])
@@ -120,7 +121,10 @@ class SVM():
             E1 = self.E[i1]
             E2 = self.E[i2]
 
-            # eta = K11 + K22 - 2 * K12
+            """
+            get eta
+            eta = K11 + K22 - 2 * K12
+            """
             eta = self.kernel(self.X[i1], self.X[i1]) + self.kernel(
                 self.X[i2], self.X[i2]) - 2 * self.kernel(self.X[i1], self.X[i2])
             if eta <= 0:
@@ -145,6 +149,9 @@ class SVM():
                 self.Y[i2] * self.kernel(self.X[i2], self.X[i2]) * \
                 (alpha2_new - self.alpha[i2]) + self.b
 
+            """
+            get new b
+            """
             if 0 < alpha1_new < self.C:
                 b_new = b1_new
             elif 0 < alpha2_new < self.C:
@@ -154,7 +161,7 @@ class SVM():
                 b_new = (b1_new + b2_new) / 2
 
             """
-            update alpha1, alpha2
+            update alpha1, alpha2, b
             """
             self.alpha[i1] = alpha1_new
             self.alpha[i2] = alpha2_new

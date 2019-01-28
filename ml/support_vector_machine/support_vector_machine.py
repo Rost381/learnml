@@ -118,6 +118,9 @@ class SVM():
                 L = max(0, self.alpha[i2] - self.alpha[i1])
                 H = min(self.C, self.C + self.alpha[i2] - self.alpha[i1])
 
+            """
+            get E1, E2
+            """
             E1 = self.E[i1]
             E2 = self.E[i2]
 
@@ -157,7 +160,6 @@ class SVM():
             elif 0 < alpha2_new < self.C:
                 b_new = b2_new
             else:
-                # choose middle
                 b_new = (b1_new + b2_new) / 2
 
             """

@@ -1,4 +1,4 @@
-# Machine learning algorithms in practice
+# Machine learning algorithms step by step
 
 ![Language](https://img.shields.io/badge/language-Python3-blue.svg?style=flat)
 
@@ -36,6 +36,3 @@
 
 ### Deep Learning
 * [Back Propagation](./ml/back_propagation/back_propagation.py) | [Example](./examples/example_bp.py)
-
-## Map
-![](./images/ml_map.png)

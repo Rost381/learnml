@@ -28,7 +28,7 @@ class SVM():
 
     def kernel(self, x1, x2):
         """
-        kernel 核函数
+        kernel
         """
         if self._kernel == 'linear':
             # return sum([x1[k] * x2[k] for k in range(self.n)])
@@ -67,7 +67,7 @@ class SVM():
         """
         return self._g(i) - self.Y[i]
 
-    def _init_alpha(self):
+    def _alpha_init(self):
         """
         find alpha1, alpha2
         """
@@ -91,7 +91,7 @@ class SVM():
                 j = max(range(self.m), key=lambda x: self.E[x])
             return i, j
 
-    def _compare(self, _alpha, L, H):
+    def _alpha_L_H(self, _alpha, L, H):
         """
         get alpha2_new
         """
@@ -106,7 +106,7 @@ class SVM():
         self.init_args(features, labels)
 
         for each_iter in range(self.max_iter):
-            i1, i2 = self._init_alpha()
+            i1, i2 = self._alpha_init()
 
             """
             get L, H
@@ -137,7 +137,7 @@ class SVM():
             get new alpha1, alpha2
             """
             alpha2_new_unc = self.alpha[i2] + self.Y[i2] * (E1 - E2) / eta
-            alpha2_new = self._compare(alpha2_new_unc, L, H)
+            alpha2_new = self._alpha_L_H(alpha2_new_unc, L, H)
 
             alpha1_new = self.alpha[i1] + self.Y[i1] * \
                 self.Y[i2] * (self.alpha[i2] - alpha2_new)

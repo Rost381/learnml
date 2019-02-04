@@ -25,13 +25,13 @@ def main():
     total = test.shape[0]
     train, test = train.values.tolist(), test.values.tolist()
 
-    right_count = 0
+    correct_count = 0
     for test_row in test:
         predict_value = knn.predict(train, test_row, 5)
         actual_value = test_row[-1]
         if predict_value == actual_value:
-            right_count += 1
-    print('{:.2%}'.format(float(right_count / total)))
+            correct_count += 1
+    print('{:.2%}'.format(float(correct_count / total)))
 
 
 if __name__ == "__main__":

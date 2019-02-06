@@ -13,7 +13,6 @@ from ml.math_tools import mt
 
 
 def main():
-    logit = logistic_regression.LOGIT()
 
     dataset = [[2.7810836, 2.550537003, 0],
                [1.465489372, 2.362125076, 0],
@@ -28,15 +27,22 @@ def main():
 
     l_rate = 0.3
     n_epoch = 100
-
     train, test = train_test_split(dataset, test_size=0.4)
 
+    logit = logistic_regression.LOGIT()
     coef = logit.sgd(train, l_rate, n_epoch)
     print(coef)
 
+    correct_count = 0
+    test_total = len(test)
     for row in test:
-        yhat = logit.predict(row, coef)
-        print(round(yhat), row[-1])
+        y_pred = round(logit.predict(row, coef))
+        y_test = row[-1]
+        if y_pred == y_test:
+            correct_count += 1
+        print('Actual=%d, Predict=%d' % (y_test, y_pred))
+
+    print('Accuracy Score: {:.2%}'.format(float(correct_count / test_total)))
 
 
 if __name__ == "__main__":

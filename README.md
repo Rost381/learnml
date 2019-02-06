@@ -14,7 +14,9 @@
 * [k Nearest Neighbors](./ml/k_nearest_neighbors/k_nearest_neighbors.py) | [Example](./examples/example_knn.py)
 * [Principal Component Analysis](./ml/linear_discriminant_analysis/linear_discriminant_analysis.py) | [Example](./examples/example_lda.py)
 * [Support Vector Machine](./ml/support_vector_machine/support_vector_machine.py) | [Example](./examples/example_svm.py)
-* [Decision Trees](./ml/decision_tree/decision_tree.py) | [Example](./examples/example_dt.py)
+* [Decision Trees](./ml/decision_tree/decision_tree.py) |
+  * [Example (Classification Tree)](./examples/example_ct.py) 
+  * [Example (Regression Tree)](./examples/example_rt.py)
 
 ### Unsupervised Learning
 * [Linear Discriminant Analysis](./ml/principal_component_analysis/principal_component_analysis.py) | [Example](./examples/example_pca.py)

@@ -15,23 +15,23 @@ from ml.math_tools import mt
 def main():
     knn = k_nearest_neighbors.KNN()
 
-    df_ = pd.read_csv("data/abalone.csv", header=None)
-    df = df_.replace(['F', 'I', 'M'], [0, 1, 2])
-    cols = df.columns.tolist()
+    df = pd.read_csv("data/abalone.csv", header=None)
+    df_ = df.replace(['F', 'I', 'M'], [0, 1, 2])
+    cols = df_.columns.tolist()
     cols = cols[1:] + cols[:1]
-    df = df[cols]
+    df = df_[cols]
 
     train, test = train_test_split(df, test_size=0.4)
     total = test.shape[0]
     train, test = train.values.tolist(), test.values.tolist()
 
-    correct_count = 0
-    for test_row in test:
-        predict_value = knn.predict(train, test_row, 5)
-        actual_value = test_row[-1]
-        if predict_value == actual_value:
-            correct_count += 1
-    print('{:.2%}'.format(float(correct_count / total)))
+    y_pred = []
+    y_test = []
+    for row in test:
+        y_pred.append(knn.predict(train, row, 5))
+        y_test.append(row[-1])
+
+    mt.accuracy_score(np.array(y_test), y_pred)
 
 
 if __name__ == "__main__":

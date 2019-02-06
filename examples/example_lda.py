@@ -16,14 +16,13 @@ from sklearn import datasets
 def main():
     df = pd.read_csv("data/iris.csv")
 
-    """X"""
-    X_ = df[df.columns[:-1]]
-    X = mt.normalize(np.array(X_))
+    X = df.iloc[:, :-1].values
+    X = mt.normalize(np.array(X))
 
-    """labels"""
-    y_ = df[df.columns[-1]].replace(to_replace=['setosa',
-                                                'virginica', 'versicolor'], value=[0, 1, 2])
-    y = np.array(y_)
+    y = df.iloc[:, -1]
+    y = y.replace(to_replace=['setosa', 'virginica',
+                              'versicolor'], value=[0, 1, 2])
+    y = y.values
 
     lda = linear_discriminant_analysis.LDA()
     lda.plot_lda(X, y, 'example_lda.png')

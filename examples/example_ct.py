@@ -13,21 +13,22 @@ from ml.math_tools import mt
 
 
 def main():
-
+    """
+    Classification Tree
+    """
     df = pd.read_csv("data/banknote.csv", header=None)
-    train, test, test_total = mt.data_train_test(df)
 
-    dt = decision_tree.DT()
-    tree = dt.build_tree(train, 5, 1)
+    y = df.iloc[:, -1].values
+    X = df.iloc[:, :-1].values
+    X_train, X_test, y_train, y_test = mt.data_train_test_split(
+        X, y, test_size=0.4)
 
-    correct_count = 0
-    for row in test:
-        prediction = dt.predict(tree, row)
-        if row[-1] == prediction:
-            correct_count += 1
-        print('Actual=%d, Predict=%d' % (row[-1], prediction))
+    clf = decision_tree.CT()
+    clf.fit(X_train, y_train)
+    clf.print_tree()
 
-    print('{:.2%}'.format(float(correct_count / test_total)))
+    y_pred = clf.predict(X_test)
+    mt.accuracy_score(y_test, y_pred)
 
 
 if __name__ == "__main__":

@@ -20,13 +20,13 @@ def main():
     train, test = train.values.tolist(), test.values.tolist()
 
     lr = linear_regression.LR()
-    b0, b1 = lr.coefficients(train)
+    b0, b1 = lr.fit(train)
 
     y_pred = lr.predict(train, test)
-    y_test = [row[-1] for row in test]
+    y_test = np.array([row[-1] for row in test])
 
-    mse = lr.mse(y_test, y_pred)
-    print('b0={0}, b1={1}, MSE={2}'.format(b0, b1, mse))
+    print('b0={0}, b1={1}'.format(b0, b1))
+    mt.mean_squared_error(y_test, y_pred)
 
 
 if __name__ == "__main__":

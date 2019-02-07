@@ -10,34 +10,47 @@ from ml.math_tools import mt
 
 
 class LR():
-
-    # mean
-    def mean(self, values):
+    def _mean(self, values):
+        """
+        mean
+        """
         return sum(values) / float(len(values))
 
-    # variance
-    def variance(self, values, mean):
+    def _variance(self, values, mean):
+        """
+        variance
+        """
         return sum([(x - mean)**2 for x in values])
 
-    # covariance
-    def covariance(self, x, mean_x, y, mean_y):
+    def _covariance(self, x, mean_x, y, mean_y):
+        """
+        covariance
+        """
         covar = 0.0
         for i in range(len(x)):
             covar += (x[i] - mean_x) * (y[i] - mean_y)
         return covar
 
-    # coefficients
+    def fit(self, dataset):
+        r = self.coefficients(dataset)
+        return r
+
     def coefficients(self, dataset):
+        """
+        coefficients
+        """
         x = [row[0] for row in dataset]
         y = [row[1] for row in dataset]
-        x_mean, y_mean = self.mean(x), self.mean(y)
+        x_mean, y_mean = self._mean(x), self._mean(y)
 
-        b1 = self.covariance(x, x_mean, y, y_mean) / self.variance(x, x_mean)
+        b1 = self._covariance(x, x_mean, y, y_mean) / self._variance(x, x_mean)
         b0 = y_mean - b1 * x_mean
         return [b0, b1]
 
-    # predict
     def predict(self, train, test):
+        """
+        predict
+        """
         predctions = list()
         b0, b1 = self.coefficients(train)
 
@@ -47,12 +60,16 @@ class LR():
 
         return predctions
 
-    # Mean Squared Error
+    '''
     def mse(self, actual, predicted):
+        """
+        Mean Squared Error
+        """
         sum_error = 0.0
-        
+
         for i in range(len(actual)):
             prediction_error = predicted[i] - actual[i]
             sum_error += (prediction_error ** 2)
             mean_error = sum_error / float(len(actual))
         return mean_error
+    '''

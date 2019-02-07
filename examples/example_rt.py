@@ -17,6 +17,7 @@ def main():
     Regression Tree
     """
     df = pd.read_csv("data/tempature.csv")
+
     X = np.atleast_2d(df["time"].as_matrix()).T
     y = np.atleast_2d(df["temp"].as_matrix()).T
     X = mt.standardize(X)
@@ -24,10 +25,10 @@ def main():
 
     X_train, X_test, y_train, y_test = mt.data_train_test_split(
         X, y, test_size=0.4)
-    clf = decision_tree.RT()
-    clf.fit(X_train, y_train)
+    rt = decision_tree.RT()
+    rt.fit(X_train, y_train)
 
-    y_pred = clf.predict(X_test)
+    y_pred = rt.predict(X_test)
     mt.mean_squared_error(y_test, y_pred)
 
 

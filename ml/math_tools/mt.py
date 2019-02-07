@@ -45,21 +45,13 @@ def normalize(X, axis=-1, order=2):
 
 def mean_squared_error(y_true, y_pred):
     """
+    y_true:numpy.ndarray
+    y_pred:list
     Returns the mean squared error between y_true and y_pred
     """
     mse = np.mean(np.power(y_true - y_pred, 2))
     print("MSE: {0}".format(mse))
     return mse
-
-
-def data_train_test(df, test_size=0.4):
-    """
-    split data into train and test
-    """
-    train, test = train_test_split(df, test_size=test_size)
-    test_total = test.shape[0]
-    train, test = train.values.tolist(), test.values.tolist()
-    return train, test, test_total
 
 
 def data_train_test_split(X, y, test_size=0.5, shuffle=True, seed=None):
@@ -68,8 +60,6 @@ def data_train_test_split(X, y, test_size=0.5, shuffle=True, seed=None):
     """
     if shuffle:
         X, y = shuffle_data(X, y, seed)
-    # Split the training data from test data in the ratio specified in
-    # test_size
     split_i = len(y) - int(len(y) // (1 / test_size))
     X_train, X_test = X[:split_i], X[split_i:]
     y_train, y_test = y[:split_i], y[split_i:]
@@ -90,8 +80,8 @@ def shuffle_data(X, y, seed=None):
 
 def divide_on_feature(X, feature_i, threshold):
     """
-    Divide dataset based on if sample value on feature index is larger than
-        the given threshold
+    Divide dataset based on if sample value on 
+    feature index is larger than the given threshold
     """
     split_func = None
     if isinstance(threshold, int) or isinstance(threshold, float):

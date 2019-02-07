@@ -10,7 +10,7 @@ import math
 from ml.math_tools import mt
 
 
-class DecisionNode():
+class Node():
     def __init__(self, feature_i=None, threshold=None,
                  value=None, true_branch=None, false_branch=None):
         self.feature_i = feature_i  # Index for the feature that is tested
@@ -42,14 +42,18 @@ class DT():
         self.loss = loss
 
     def fit(self, X, y, loss=None):
-        """ Build decision tree """
+        """
+        Build decision tree
+        """
         self.one_dim = len(np.shape(y)) == 1
         self.root = self._build_tree(X, y)
         self.loss = None
 
     def _build_tree(self, X, y, current_depth=0):
-        """ Recursive method which builds out the decision tree and splits X and respective y
-        on the feature of X which (based on impurity) best separates the data"""
+        """
+        Recursive method which builds out the decision tree and splits X and respective y
+        on the feature of X which (based on impurity) best separates the data
+        """
         largest_impurity = 0
         best_criteria = None  # Feature index and threshold
         best_sets = None  # Subsets of the data
@@ -58,18 +62,29 @@ class DT():
         if len(np.shape(y)) == 1:
             y = np.expand_dims(y, axis=1)
 
-        # Add y as last column of X
+        """
+        train data
+        """
         Xy = np.concatenate((X, y), axis=1)
 
+        """
+        returns the shape of X as tuple
+        n_samples: rows
+        n_features: columns
+        """
         n_samples, n_features = np.shape(X)
 
+        """
+        run when:
+        1. n_samples >= 2
+        2. current_depth <= float("inf"), unbounded upper value
+        """
         if n_samples >= self.min_samples_split and current_depth <= self.max_depth:
             # Calculate the impurity for each feature
             for feature_i in range(n_features):
                 # All values of feature_i
                 feature_values = np.expand_dims(X[:, feature_i], axis=1)
                 unique_values = np.unique(feature_values)
-
                 # Iterate through all unique values of feature column i and
                 # calculate the impurity
                 for threshold in unique_values:
@@ -82,12 +97,17 @@ class DT():
                         y1 = Xy1[:, n_features:]
                         y2 = Xy2[:, n_features:]
 
-                        # Calculate impurity
+                        """
+                        Calculate impurity
+                        if classification tree, use information gain
+                        if regression tree, use variance reduction
+                        """
                         impurity = self._impurity_calculation(y, y1, y2)
 
-                        # If this threshold resulted in a higher information gain than previously
-                        # recorded save the threshold value and the feature
-                        # index
+                        """
+                        If this threshold information gain bigger than previous
+                        save the threshold value and the feature index
+                        """
                         if impurity > largest_impurity:
                             largest_impurity = impurity
                             best_criteria = {
@@ -109,16 +129,18 @@ class DT():
                 best_sets["leftX"], best_sets["lefty"], current_depth + 1)
             false_branch = self._build_tree(
                 best_sets["rightX"], best_sets["righty"], current_depth + 1)
-            return DecisionNode(feature_i=best_criteria["feature_i"], threshold=best_criteria[
+            return Node(feature_i=best_criteria["feature_i"], threshold=best_criteria[
                 "threshold"], true_branch=true_branch, false_branch=false_branch)
 
         # We're at leaf => determine value
         leaf_value = self._leaf_value_calculation(y)
-        return DecisionNode(value=leaf_value)
+        return Node(value=leaf_value)
 
     def predict_value(self, x, tree=None):
-        """ Do a recursive search down the tree and make a prediction of the data sample by the
-            value of the leaf that we end up at """
+        """
+        Do a recursive search down the tree and make a prediction of the data sample by the
+            value of the leaf that we end up at
+        """
 
         if tree is None:
             tree = self.root
@@ -142,14 +164,18 @@ class DT():
         return self.predict_value(x, branch)
 
     def predict(self, X):
-        """ Classify samples one by one and return the set of labels """
+        """
+        Classify samples one by one and return the set of labels
+        """
         y_pred = []
         for x in X:
             y_pred.append(self.predict_value(x))
         return y_pred
 
     def print_tree(self, tree=None, indent=" "):
-        """ Recursively print the decision tree """
+        """
+        Recursively print the decision tree
+        """
         if not tree:
             tree = self.root
 
@@ -169,17 +195,25 @@ class DT():
 
 
 class CT(DT):
+    """
+    Classification Tree
+    """
+
     def _calculate_information_gain(self, y, y1, y2):
-        # Calculate information gain
+        """
+        切割树的标准，这里使用的是交叉熵
+        """
         p = len(y1) / len(y)
         entropy = mt.calculate_entropy(y)
         info_gain = entropy - p * \
             mt.calculate_entropy(y1) - (1 - p) * \
             mt.calculate_entropy(y2)
-        # print("info_gain",info_gain)
         return info_gain
 
     def _majority_vote(self, y):
+        """
+        计算子节点值的方法，这里使用的是选取数据集中出现最多的种类
+        """
         most_common = None
         max_count = 0
         for label in np.unique(y):
@@ -188,7 +222,6 @@ class CT(DT):
             if count > max_count:
                 most_common = label
                 max_count = count
-        # print("most_common :",most_common)
         return most_common
 
     def fit(self, X, y):
@@ -198,7 +231,14 @@ class CT(DT):
 
 
 class RT(DT):
+    """
+    Regression Tree
+    """
+
     def _calculate_variance_reduction(self, y, y1, y2):
+        """
+        切割树的标准，这里使用的是平方残差
+        """
         var_tot = mt.calculate_variance(y)
         var_1 = mt.calculate_variance(y1)
         var_2 = mt.calculate_variance(y2)
@@ -211,6 +251,9 @@ class RT(DT):
         return sum(variance_reduction)
 
     def _mean_of_y(self, y):
+        """
+        计算子节点值的方法，这里使用的是取数据集中的平均值
+        """
         value = np.mean(y, axis=0)
         return value if len(value) > 1 else value[0]
 

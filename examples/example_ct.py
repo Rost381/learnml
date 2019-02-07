@@ -23,11 +23,11 @@ def main():
     X_train, X_test, y_train, y_test = mt.data_train_test_split(
         X, y, test_size=0.4)
 
-    clf = decision_tree.CT()
-    clf.fit(X_train, y_train)
-    clf.print_tree()
+    ct = decision_tree.CT()
+    ct.fit(X_train, y_train)
+    ct.print_tree()
 
-    y_pred = clf.predict(X_test)
+    y_pred = ct.predict(X_test)
     mt.accuracy_score(y_test, y_pred)
 
 

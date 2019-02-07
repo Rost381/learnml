@@ -22,7 +22,8 @@ def main():
     svm = support_vector_machine.SVM(max_iter=1000, kernel='poly')
     svm.fit(X_train, y_train)
 
-    print(svm.score(X_test, y_test))
+    accuracy = svm.score(X_test, y_test)
+    print("Accuracy Score: {:.2%}".format(accuracy))
 
 
 if __name__ == "__main__":

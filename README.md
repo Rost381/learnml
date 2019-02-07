@@ -1,11 +1,12 @@
-# Machine learning algorithms step by step
+# Machine learning algorithms
 
 ![Language](https://img.shields.io/badge/language-Python3-blue.svg?style=flat)
 
 ## Getting Started
-* Step by Step implementation of Machine Learning Algorithms
-* Run exmaple_*.py under examples folder
-* Project in progress...
+Implementation of Machine Learning Algorithms Step by Step 
+
+## How to use
+Run exmaple_*.py under examples folder
 
 ## Algorithms
 ### Supervised Learning
@@ -14,7 +15,7 @@
 * [k Nearest Neighbors](./ml/k_nearest_neighbors/k_nearest_neighbors.py) | [Example](./examples/example_knn.py)
 * [Principal Component Analysis](./ml/linear_discriminant_analysis/linear_discriminant_analysis.py) | [Example](./examples/example_lda.py)
 * [Support Vector Machine](./ml/support_vector_machine/support_vector_machine.py) | [Example](./examples/example_svm.py)
-* [Decision Trees](./ml/decision_tree/decision_tree.py) |
+* [Decision Trees](./ml/decision_tree/decision_tree.py)
   * [Example (Classification Tree)](./examples/example_ct.py) 
   * [Example (Regression Tree)](./examples/example_rt.py)
 

@@ -15,7 +15,7 @@ class SVM():
         self.max_iter = max_iter
         self._kernel = kernel
 
-    def init_args(self, features, labels):
+    def _init_args(self, features, labels):
         self.m, self.n = features.shape
         self.X = features
         self.Y = labels
@@ -63,7 +63,6 @@ class SVM():
     def _E(self, i):
         """
         E(i) = g(x_i) - y_i
-        g(x_i)对输入x_i的预测值和y_i的差
         """
         return self._g(i) - self.Y[i]
 
@@ -103,7 +102,7 @@ class SVM():
             return _alpha
 
     def fit(self, features, labels):
-        self.init_args(features, labels)
+        self._init_args(features, labels)
 
         for each_iter in range(self.max_iter):
             i1, i2 = self._alpha_init()

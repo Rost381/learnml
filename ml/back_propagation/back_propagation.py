@@ -12,23 +12,20 @@ from ml.math_tools import mt
 
 
 class BP():
-    def str_column_to_int(self, dataset, column):
-        class_values = [row[column] for row in dataset]
-        unique = set(class_values)
-        lookup = dict()
-        for i, value in enumerate(unique):
-            lookup[value] = i
-        for row in dataset:
-            row[column] = lookup[row[column]]
-        return lookup
-
     def init_network(self, n_inputs, n_hidden, n_outputs):
         network = list()
-        # hidden layer has [hidden] neuron with [inputs + 1] input weights plus the bias.
+        """
+        hidden layer has [hidden] neuron
+        [inputs + 1] input weights + bias
+        """
         hidden_layer = [{'weights': [random() for i in range(n_inputs + 1)]}
                         for i in range(n_hidden)]
         network.append(hidden_layer)
-        # The output layer has [outputs] neurons, each with [hidden + 1] weight plus the bias.
+
+        """
+        The output layer has [outputs] neurons
+        each [hidden + 1] weight + bias
+        """
         output_layer = [{'weights': [random() for i in range(n_hidden + 1)]}
                         for i in range(n_outputs)]
         network.append(output_layer)
@@ -38,22 +35,22 @@ class BP():
     step 1 forward_propagate
     """
 
-    def activate(self, weights, inputs):
+    def _activate(self, weights, inputs):
         activation = weights[-1]
         for i in range(len(weights) - 1):
             activation += weights[i] * inputs[i]
         return activation
 
-    def transfer(self, activation):
+    def _transfer(self, activation):
         return 1.0 / (1.0 + math.exp(-activation))
 
-    def forward_propagate(self, network, row):
+    def _forward_propagate(self, network, row):
         inputs = row
         for layer in network:
             new_inputs = []
             for neuron in layer:
-                activation = self.activate(neuron['weights'], inputs)
-                neuron['output'] = self.transfer(activation)
+                activation = self._activate(neuron['weights'], inputs)
+                neuron['output'] = self._transfer(activation)
                 new_inputs.append(neuron['output'])
             """
             * inputs = new_inputs, which is the last step value
@@ -61,7 +58,7 @@ class BP():
             inputs = new_inputs
         return inputs
 
-    def transfer_derivative(self, output):
+    def _transfer_derivative(self, output):
         return output * (1.0 - output)
 
     """
@@ -95,13 +92,13 @@ class BP():
                 * no output
                 """
                 neuron['delta'] = errors[j] * \
-                    self.transfer_derivative(neuron['output'])
+                    self._transfer_derivative(neuron['output'])
 
     """
     step 3 update_weights
     """
 
-    def update_weights(self, network, row, lrate):
+    def _update_weights(self, network, row, lrate):
         for i in range(len(network)):
             inputs = row[:-1]
             if i != 0:
@@ -123,7 +120,7 @@ class BP():
             sum_error = 0
 
             for row in train:
-                outputs = self.forward_propagate(network, row)  # cal output
+                outputs = self._forward_propagate(network, row)  # cal output
 
                 expected = [0 for i in range(noutputs)]
 
@@ -133,12 +130,12 @@ class BP():
                                   2 for i in range(len(expected))])
 
                 self.backward_propagate_error(network, expected)  # get delta
-                self.update_weights(network, row, lrate)
+                self._update_weights(network, row, lrate)
 
             print('epoch=%d, learning rate=%.3f, sum error=%.3f' %
                   (epoch, lrate, sum_error))
 
     def predict(self, network, row):
-        outputs = self.forward_propagate(network, row)
+        outputs = self._forward_propagate(network, row)
         print(outputs)
         return outputs.index(max(outputs))

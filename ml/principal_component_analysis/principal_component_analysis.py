@@ -12,9 +12,19 @@ class PCA():
     def _transform(self, X, n_components):
         covariance_matrix = mt.covariance_matrix(X)
 
-        eigenvalues, eigenvectors = np.linalg.eig(covariance_matrix)
+        """
+        Get eigenvalues and eigenvectors of SW^-1 * SB
+        """
+        eigenvalues, eigenvectors = mt.eig(covariance_matrix)
 
+        """
+        Sort eigenvectors from largest to smallest
+        """
         idx = eigenvalues.argsort()[::-1]
+
+        """
+        select the first n_components of eigenvalues
+        """
         eigenvalues = eigenvalues[idx][:n_components]
         eigenvectors = eigenvectors[:, idx][:, :n_components]
 

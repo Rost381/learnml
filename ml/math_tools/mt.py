@@ -6,12 +6,22 @@ from sklearn.model_selection import train_test_split
 
 
 def covariance_matrix(X, Y=None):
+    """
+    caculate covariance matrix
+    """
     if Y is None:
         Y = X
     n_samples = np.shape(X)[0]
     covariance_matrix = (1 / (n_samples - 1)) * \
         (X - X.mean(axis=0)).T.dot(Y - Y.mean(axis=0))
     return np.array(covariance_matrix, dtype=float)
+
+
+def eig(matrix):
+    """
+    return eigenvalues, eigenvectors
+    """
+    return np.linalg.eig(matrix)
 
 
 def calculate_variance(X):
@@ -26,7 +36,7 @@ def calculate_variance(X):
 
 def standardize(X):
     """
-    Standardize the dataset X
+    standardize X
     """
     X_std = X
     mean = X.mean(axis=0)
@@ -38,6 +48,9 @@ def standardize(X):
 
 
 def normalize(X, axis=-1, order=2):
+    """
+    normalize X
+    """
     l2 = np.atleast_1d(np.linalg.norm(X, order, axis))
     l2[l2 == 0] = 1
     return X / np.expand_dims(l2, axis)

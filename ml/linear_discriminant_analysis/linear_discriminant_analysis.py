@@ -58,7 +58,7 @@ class LDA():
         [ 0.70509418 -0.27697698  0.37633114 -0.53338619]
         [ 0.03509243  0.92533467  0.31008854 -0.21533546]]
         """
-        eigenvalues, eigenvectors = np.linalg.eigh(A)
+        eigenvalues, eigenvectors = mt.eig(A)
 
         """
         Sort eigenvectors from largest to smallest

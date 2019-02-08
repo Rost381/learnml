@@ -30,7 +30,7 @@ def main():
     train, test = train_test_split(dataset, test_size=0.4)
 
     logit = logistic_regression.LOGIT()
-    coef = logit.sgd(train, l_rate, n_epoch)
+    coef = logit.fit(train, l_rate, n_epoch)
     print(coef)
 
     correct_count = 0

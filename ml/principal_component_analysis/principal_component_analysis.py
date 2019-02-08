@@ -9,7 +9,7 @@ from ml.math_tools import mt
 
 
 class PCA():
-    def transform(self, X, n_components):
+    def _transform(self, X, n_components):
         covariance_matrix = mt.covariance_matrix(X)
 
         eigenvalues, eigenvectors = np.linalg.eig(covariance_matrix)
@@ -23,7 +23,7 @@ class PCA():
         return X_transformed
 
     def plot_pca(self, X, y, filename):
-        X_transformed = self.transform(X, n_components=2)
+        X_transformed = self._transform(X, n_components=2)
         x1 = X_transformed[:, 0]
         x2 = X_transformed[:, 1]
         plt.scatter(x1, x2, c=y)

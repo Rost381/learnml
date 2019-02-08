@@ -88,12 +88,22 @@ class DT():
                 # Iterate through all unique values of feature column i and
                 # calculate the impurity
                 for threshold in unique_values:
-                    # Divide X and y depending on if the feature value of X at index feature_i
-                    # meets the threshold
+
+                    """
+                    Divide X and y depending on threshold
+                    Xy: train dataset
+                    feature_i: column order
+                    threshold: unique_values in this column order
+
+                    Xy1: the value in row >= threshold in row
+                    Xy2: the value in row < threshold in row
+                    """
                     Xy1, Xy2 = mt.divide_on_feature(Xy, feature_i, threshold)
 
                     if len(Xy1) > 0 and len(Xy2) > 0:
-                        # Select the y-values of the two sets
+                        """
+                        Select the y values of the two sets
+                        """
                         y1 = Xy1[:, n_features:]
                         y2 = Xy2[:, n_features:]
 
@@ -124,15 +134,21 @@ class DT():
                             }
 
         if largest_impurity > self.min_impurity:
-            # Build subtrees for the right and left branches
+            """
+            Build subtrees for the right and left branches
+            """
             true_branch = self._build_tree(
                 best_sets["leftX"], best_sets["lefty"], current_depth + 1)
             false_branch = self._build_tree(
                 best_sets["rightX"], best_sets["righty"], current_depth + 1)
-            return Node(feature_i=best_criteria["feature_i"], threshold=best_criteria[
-                "threshold"], true_branch=true_branch, false_branch=false_branch)
+            return Node(feature_i=best_criteria["feature_i"],
+                        threshold=best_criteria["threshold"],
+                        true_branch=true_branch,
+                        false_branch=false_branch)
 
-        # We're at leaf => determine value
+        """
+        We're at leaf => determine value
+        """
         leaf_value = self._leaf_value_calculation(y)
         return Node(value=leaf_value)
 
@@ -141,7 +157,6 @@ class DT():
         Do a recursive search down the tree and make a prediction of the data sample by the
             value of the leaf that we end up at
         """
-
         if tree is None:
             tree = self.root
 
@@ -199,7 +214,7 @@ class CT(DT):
     Classification Tree
     """
 
-    def _calculate_information_gain(self, y, y1, y2):
+    def _info_gain(self, y, y1, y2):
         """
         切割树的标准，这里使用的是交叉熵
         """
@@ -225,7 +240,7 @@ class CT(DT):
         return most_common
 
     def fit(self, X, y):
-        self._impurity_calculation = self._calculate_information_gain
+        self._impurity_calculation = self._info_gain
         self._leaf_value_calculation = self._majority_vote
         super(CT, self).fit(X, y)
 
@@ -235,7 +250,7 @@ class RT(DT):
     Regression Tree
     """
 
-    def _calculate_variance_reduction(self, y, y1, y2):
+    def _variance_reduction(self, y, y1, y2):
         """
         切割树的标准，这里使用的是平方残差
         """
@@ -258,6 +273,6 @@ class RT(DT):
         return value if len(value) > 1 else value[0]
 
     def fit(self, X, y):
-        self._impurity_calculation = self._calculate_variance_reduction
+        self._impurity_calculation = self._variance_reduction
         self._leaf_value_calculation = self._mean_of_y
         super(RT, self).fit(X, y)

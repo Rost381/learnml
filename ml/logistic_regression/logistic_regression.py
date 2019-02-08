@@ -18,7 +18,10 @@ class LOGIT():
             yhat += coef[i + 1] * row[i]
         return 1.0 / (1.0 + math.exp(-yhat))
 
-    def sgd(self, train, l_rate, n_epoch):
+    def fit(self, train, l_rate, n_epoch):
+        """
+        Stochastic gradient descent
+        """
         coef = [0.0 for i in range(len(train[0]))]
         for epoch in range(n_epoch):
             sum_error = 0

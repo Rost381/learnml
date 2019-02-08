@@ -12,15 +12,15 @@ class LDA():
     def __init__(self):
         None
 
-    def labels(self, y):
+    def _labels(self, y):
         return np.unique(y)
 
-    def n_features(self, X):
+    def _n_features(self, X):
         return X.shape[1]
 
-    def S_W(self, X, y):
-        labels = self.labels(y)
-        n_features = self.n_features(X)
+    def _S_W(self, X, y):
+        labels = self._labels(y)
+        n_features = self._n_features(X)
         S_W = np.empty((n_features, n_features))
         for label in labels:
             _X = X[y == label]
@@ -31,9 +31,9 @@ class LDA():
             S_W += (len(_X) - 1) * mt.covariance_matrix(_X)
         return S_W
 
-    def S_B(self, X, y):
-        labels = self.labels(y)
-        n_features = self.n_features(X)
+    def _S_B(self, X, y):
+        labels = self._labels(y)
+        n_features = self._n_features(X)
         overall_mean = np.mean(X, axis=0)
         S_B = np.empty((n_features, n_features))
         for label in labels:
@@ -43,8 +43,8 @@ class LDA():
                 (_mean - overall_mean).dot((_mean - overall_mean).T)
         return S_B
 
-    def transform(self, X, y, n_components):
-        S_W, S_B = self.S_W(X, y), self.S_B(X, y)
+    def _transform(self, X, y, n_components):
+        S_W, S_B = self._S_W(X, y), self._S_B(X, y)
 
         """SW^-1 * SB"""
         A = np.linalg.inv(S_W).dot(S_B)
@@ -85,7 +85,7 @@ class LDA():
 
     def plot_lda(self, X, y, filename):
         """ Plot the dataset X and the corresponding labels y in transformation."""
-        X_transformed = self.transform(X, y, n_components=2)
+        X_transformed = self._transform(X, y, n_components=2)
         x1 = X_transformed[:, 0]
         x2 = X_transformed[:, 1]
         plt.scatter(x1, x2, c=y)

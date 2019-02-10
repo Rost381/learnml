@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from ml.math_tools import mt
+from ml_student.math_tools import mt
 
 
 class LDA():
@@ -50,7 +50,7 @@ class LDA():
         A = np.linalg.inv(S_W).dot(S_B)
 
         """
-        Get eigenvalues and eigenvectors of SW^-1 * SB
+        # caculate eigenvalues and eigenvectors of SW^-1 * SB
         eigenvalues: [ -35.12243062  205.94594317  420.207018   3228.70484396]
         eigenvectors:
         [[-0.03606865  0.10724823 -0.76021496 -0.6397422]
@@ -61,13 +61,13 @@ class LDA():
         eigenvalues, eigenvectors = mt.eig(A)
 
         """
-        Sort eigenvectors from largest to smallest
+        # sort eigenvectors from largest to smallest
         idx: [3 2 1 0]
         """
         idx = eigenvalues.argsort()[::-1]
 
         """
-        select the first n_components of eigenvalues
+        # select the first n_components of eigenvalues
         eigenvalues: [3228.70484396  420.207018]
         eigenvectors:
         [[-0.6397422   -0.76021496]
@@ -78,13 +78,14 @@ class LDA():
         eigenvalues = eigenvalues[idx][:n_components]
         eigenvectors = eigenvectors[:, idx][:, :n_components]
 
-        """Project the data onto eigenvectors"""
+        """
+        project the data onto eigenvectors
+        """
         X_transformed = X.dot(eigenvectors)
 
         return X_transformed
 
     def plot_lda(self, X, y, filename):
-        """ Plot the dataset X and the corresponding labels y in transformation."""
         X_transformed = self._transform(X, y, n_components=2)
         x1 = X_transformed[:, 0]
         x2 = X_transformed[:, 1]

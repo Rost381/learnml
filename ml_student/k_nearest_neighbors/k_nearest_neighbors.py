@@ -7,7 +7,7 @@ import pandas as pd
 from random import random, seed
 
 import math
-from ml.math_tools import mt
+from ml_student.math_tools import mt
 
 
 class KNN():
@@ -18,6 +18,9 @@ class KNN():
         return math.sqrt(r)
 
     def _get_neighbors(self, train, test_row, k):
+        """
+        return k neighbors list
+        """
         r = list()
 
         for train_row in train:
@@ -29,13 +32,12 @@ class KNN():
         n = list()
         for i in range(k):
             n.append(r[i][0])
-
         return n
 
     def predict(self, train, test_row, k):
 
         n = self._get_neighbors(train, test_row, k)
         o = [i[-1] for i in n]
-        m = max(o, key=o.count)
+        output = max(o, key=o.count)
 
-        return m
+        return output

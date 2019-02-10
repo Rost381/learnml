@@ -7,7 +7,7 @@ import pandas as pd
 import random
 
 import math
-from ml.math_tools import mt
+from ml_student.math_tools import mt
 
 
 class Node():
@@ -68,7 +68,7 @@ class DT():
         Xy = np.concatenate((X, y), axis=1)
 
         """
-        returns the shape of X as tuple
+        # returns the shape of X as tuple
         n_samples: rows
         n_features: columns
         """
@@ -90,7 +90,7 @@ class DT():
                 for threshold in unique_values:
 
                     """
-                    Divide X and y depending on threshold
+                    # Divide X and y depending on threshold
                     Xy: train dataset
                     feature_i: column order
                     threshold: unique_values in this column order
@@ -108,7 +108,7 @@ class DT():
                         y2 = Xy2[:, n_features:]
 
                         """
-                        Calculate impurity
+                        # Calculate impurity
                         if classification tree, use information gain
                         if regression tree, use variance reduction
                         """
@@ -200,12 +200,12 @@ class DT():
         # Go deeper down the tree
         else:
             # Print test
-            print("%s:%s? " % (tree.feature_i, tree.threshold))
+            print("%s:%s?" % (tree.feature_i, tree.threshold))
             # Print the true scenario
-            print("%sT->" % (indent), end="")
+            print("%s True ->" % (indent), end="")
             self.print_tree(tree.true_branch, indent + indent)
             # Print the false scenario
-            print("%sF->" % (indent), end="")
+            print("%s False ->" % (indent), end="")
             self.print_tree(tree.false_branch, indent + indent)
 
 

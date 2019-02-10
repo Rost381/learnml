@@ -8,7 +8,7 @@ from random import random, seed
 
 
 import math
-from ml.math_tools import mt
+from ml_student.math_tools import mt
 
 
 class BP():
@@ -31,9 +31,7 @@ class BP():
         network.append(output_layer)
         return network
 
-    """
-    step 1 forward_propagate
-    """
+    # step 1 forward_propagate
 
     def _activate(self, weights, inputs):
         activation = weights[-1]
@@ -61,9 +59,7 @@ class BP():
     def _transfer_derivative(self, output):
         return output * (1.0 - output)
 
-    """
-    step 2 backward_propagate
-    """
+    # step 2 backward_propagate
 
     def backward_propagate_error(self, network, expected):
         """
@@ -94,9 +90,7 @@ class BP():
                 neuron['delta'] = errors[j] * \
                     self._transfer_derivative(neuron['output'])
 
-    """
-    step 3 update_weights
-    """
+    # step 3 update_weights
 
     def _update_weights(self, network, row, lrate):
         for i in range(len(network)):
@@ -132,10 +126,9 @@ class BP():
                 self.backward_propagate_error(network, expected)  # get delta
                 self._update_weights(network, row, lrate)
 
-            print('epoch=%d, learning rate=%.3f, sum error=%.3f' %
-                  (epoch, lrate, sum_error))
+            # print('epoch=%d, learning rate=%.3f, sum error=%.3f' % (epoch, lrate, sum_error))
 
     def predict(self, network, row):
         outputs = self._forward_propagate(network, row)
-        print(outputs)
+        # print(outputs)
         return outputs.index(max(outputs))

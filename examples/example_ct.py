@@ -3,13 +3,12 @@ import sys
 
 import numpy as np
 import pandas as pd
-from sklearn import datasets
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from ml.decision_tree import decision_tree
-from ml.math_tools import mt
+from ml_student.decision_tree import decision_tree
+from ml_student.math_tools import mt
 
 
 def main():

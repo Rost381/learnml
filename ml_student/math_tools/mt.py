@@ -93,6 +93,7 @@ def shuffle_data(X, y, seed=None):
 
 def divide_on_feature(X, feature_i, threshold):
     """
+    # decision tree
     Divide dataset based on if sample value on 
     feature index is larger than the given threshold
     """

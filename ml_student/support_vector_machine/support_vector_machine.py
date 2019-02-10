@@ -7,7 +7,7 @@ import pandas as pd
 import random
 
 import math
-from ml.math_tools import mt
+from ml_student.math_tools import mt
 
 
 class SVM():
@@ -92,7 +92,7 @@ class SVM():
 
     def _alpha_L_H(self, _alpha, L, H):
         """
-        get alpha2_new
+        calculate alpha2_new
         """
         if _alpha > H:
             return H
@@ -108,7 +108,7 @@ class SVM():
             i1, i2 = self._alpha_init()
 
             """
-            get L, H
+            caculate L, H
             """
             if self.Y[i1] == self.Y[i2]:
                 L = max(0, self.alpha[i1] + self.alpha[i2] - self.C)
@@ -118,13 +118,13 @@ class SVM():
                 H = min(self.C, self.C + self.alpha[i2] - self.alpha[i1])
 
             """
-            get E1, E2
+            caculate E1, E2
             """
             E1 = self.E[i1]
             E2 = self.E[i2]
 
             """
-            get eta
+            caculate eta
             eta = K11 + K22 - 2 * K12
             """
             eta = self.kernel(self.X[i1], self.X[i1]) + self.kernel(
@@ -133,16 +133,16 @@ class SVM():
                 continue
 
             """
-            get new alpha1, alpha2
+            caculate new alpha1, alpha2
             """
-            alpha2_new_unc = self.alpha[i2] + self.Y[i2] * (E1 - E2) / eta
-            alpha2_new = self._alpha_L_H(alpha2_new_unc, L, H)
-
             alpha1_new = self.alpha[i1] + self.Y[i1] * \
                 self.Y[i2] * (self.alpha[i2] - alpha2_new)
 
+            alpha2_new_unc = self.alpha[i2] + self.Y[i2] * (E1 - E2) / eta
+            alpha2_new = self._alpha_L_H(alpha2_new_unc, L, H)
+
             """
-            get new b1, b2
+            caculate new b1, b2
             """
             b1_new = -E1 - self.Y[i1] * self.kernel(self.X[i1], self.X[i1]) * (alpha1_new - self.alpha[i1]) - \
                 self.Y[i2] * self.kernel(self.X[i2], self.X[i1]) * \
@@ -152,7 +152,7 @@ class SVM():
                 (alpha2_new - self.alpha[i2]) + self.b
 
             """
-            get new b
+            caculate new b
             """
             if 0 < alpha1_new < self.C:
                 b_new = b1_new
@@ -170,7 +170,7 @@ class SVM():
 
             self.E[i1] = self._E(i1)
             self.E[i2] = self._E(i2)
-        return 'train done!'
+        return None
 
     def predict(self, data):
         r = self.b

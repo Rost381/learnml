@@ -8,8 +8,8 @@ from sklearn.model_selection import train_test_split
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from ml.k_nearest_neighbors import k_nearest_neighbors
-from ml.math_tools import mt
+from ml_student.k_nearest_neighbors import k_nearest_neighbors
+from ml_student.math_tools import mt
 
 
 def main():

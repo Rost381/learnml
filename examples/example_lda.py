@@ -7,10 +7,8 @@ import pandas as pd
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from ml.linear_discriminant_analysis import linear_discriminant_analysis
-from ml.math_tools import mt
-
-from sklearn import datasets
+from ml_student.linear_discriminant_analysis import linear_discriminant_analysis
+from ml_student.math_tools import mt
 
 
 def main():

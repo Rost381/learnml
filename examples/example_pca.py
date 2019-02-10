@@ -7,8 +7,8 @@ import pandas as pd
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from ml.principal_component_analysis import principal_component_analysis
-from ml.math_tools import mt
+from ml_student.principal_component_analysis import principal_component_analysis
+from ml_student.math_tools import mt
 
 
 def main():

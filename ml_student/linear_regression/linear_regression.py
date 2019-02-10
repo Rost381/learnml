@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from ml.math_tools import mt
+from ml_student.math_tools import mt
 
 
 class LR():

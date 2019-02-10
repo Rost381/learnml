@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from ml.math_tools import mt
+from ml_student.math_tools import mt
 
 
 class PCA():
@@ -13,12 +13,12 @@ class PCA():
         covariance_matrix = mt.covariance_matrix(X)
 
         """
-        Get eigenvalues and eigenvectors of SW^-1 * SB
+        caculate eigenvalues and eigenvectors of SW^-1 * SB
         """
         eigenvalues, eigenvectors = mt.eig(covariance_matrix)
 
         """
-        Sort eigenvectors from largest to smallest
+        sort eigenvectors from largest to smallest
         """
         idx = eigenvalues.argsort()[::-1]
 

@@ -8,7 +8,7 @@ from random import random, seed
 
 
 import math
-from ml.math_tools import mt
+from ml_student.math_tools import mt
 
 
 class LOGIT():

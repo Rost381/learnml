@@ -14,12 +14,12 @@ from ml_student.math_tools import mt
 def main():
     df = pd.read_csv("data/iris.csv")
 
+    # convert 'setosa', 'virginica', 'versicolor' to 0, 1, 2
+    df.species = pd.factorize(df.species)[0]
+
     X = df.iloc[:, :-1].values
     X = mt.normalize(np.array(X))
-
     y = df.iloc[:, -1]
-    y = y.replace(to_replace=['setosa', 'virginica',
-                              'versicolor'], value=[0, 1, 2])
     y = y.values
 
     pca = principal_component_analysis.PCA()

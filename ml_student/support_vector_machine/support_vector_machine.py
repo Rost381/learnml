@@ -11,6 +11,13 @@ from ml_student.math_tools import mt
 
 
 class SVM():
+    """
+    The Support Vector Machine classifier.
+
+    Args:
+        max_iter: int, limit on iterations within solver.
+        kernel: function, polynomial or linear.
+    """
     def __init__(self, max_iter=100, kernel='linear'):
         self.max_iter = max_iter
         self._kernel = kernel
@@ -133,13 +140,13 @@ class SVM():
                 continue
 
             """
-            caculate new alpha1, alpha2
+            caculate new alpha2(first), alpha1
             """
-            alpha1_new = self.alpha[i1] + self.Y[i1] * \
-                self.Y[i2] * (self.alpha[i2] - alpha2_new)
-
             alpha2_new_unc = self.alpha[i2] + self.Y[i2] * (E1 - E2) / eta
             alpha2_new = self._alpha_L_H(alpha2_new_unc, L, H)
+
+            alpha1_new = self.alpha[i1] + self.Y[i1] * \
+                self.Y[i2] * (self.alpha[i2] - alpha2_new)
 
             """
             caculate new b1, b2

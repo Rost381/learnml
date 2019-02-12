@@ -26,7 +26,7 @@ def main():
     y_test = np.array([row[-1] for row in test])
 
     print('b0={0}, b1={1}'.format(b0, b1))
-    mt.mean_squared_error(y_test, y_pred)
+    mt.calculate_mean_squared_error(y_test, y_pred)
 
 
 if __name__ == "__main__":

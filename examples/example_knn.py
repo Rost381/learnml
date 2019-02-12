@@ -31,7 +31,7 @@ def main():
         y_pred.append(knn.predict(train, row, 5))
         y_test.append(row[-1])
 
-    mt.accuracy_score(np.array(y_test), y_pred)
+    mt.calculate_accuracy_score(np.array(y_test), y_pred)
 
 
 if __name__ == "__main__":

@@ -20,34 +20,39 @@ class Node():
         self.false_branch = false_branch  # 'Right' subtree
 
 
-class DT():
-    def __init__(self, min_samples_split=2, min_impurity=1e-7,
-                 max_depth=float("inf"), loss=None):
-        self.root = None  # Root node in dec. tree
-        # Minimum n of samples to justify split
-        self.min_samples_split = min_samples_split
-        # The minimum impurity to justify split
-        self.min_impurity = min_impurity
-        # The maximum depth to grow the tree to
-        self.max_depth = max_depth
-        # Function to calculate impurity (classif.=>info gain, regr=>variance reduct.)
-        # 切割树的方法，gini，方差等
-        self._impurity_calculation = None
-        # Function to determine prediction of y at leaf
-        # 树节点取值的方法，分类树：选取出现最多次数的值，回归树：取所有值的平均值
-        self._leaf_value_calculation = None
-        # If y is one-hot encoded (multi-dim) or not (one-dim)
-        self.one_dim = None
-        # If Gradient Boost
-        self.loss = loss
+class DecisionTree():
+    """
+    Super class of ClassificationTree and RegressionTree
 
-    def fit(self, X, y, loss=None):
+    Args:
+        min_impurity: float, The minimum impurity required to split tree.
+        max_depth: int, The maximum depth of a tree.
+    """
+
+    def __init__(self, min_impurity=1e-7, max_depth=float("inf")):
+        self.root = None
+        self.min_impurity = min_impurity
+        self.max_depth = max_depth
+
+        """
+        Function to calculate impurity
+        ClassificationTree => info gain
+        RegressionTree => variance reduction
+        """
+        self._impurity_calculation = None
+
+        """
+        Function to determine prediction of y at leaf
+        ClassificationTree => max count
+        RegressionTree => mean
+        """
+        self._leaf_value_calculation = None
+
+    def fit(self, X, y):
         """
         Build decision tree
         """
-        self.one_dim = len(np.shape(y)) == 1
         self.root = self._build_tree(X, y)
-        self.loss = None
 
     def _build_tree(self, X, y, current_depth=0):
         """
@@ -68,7 +73,7 @@ class DT():
         Xy = np.concatenate((X, y), axis=1)
 
         """
-        # returns the shape of X as tuple
+        returns the shape of X as tuple
         n_samples: rows
         n_features: columns
         """
@@ -79,7 +84,7 @@ class DT():
         1. n_samples >= 2
         2. current_depth <= float("inf"), unbounded upper value
         """
-        if n_samples >= self.min_samples_split and current_depth <= self.max_depth:
+        if current_depth <= self.max_depth:
             # Calculate the impurity for each feature
             for feature_i in range(n_features):
                 # All values of feature_i
@@ -90,7 +95,7 @@ class DT():
                 for threshold in unique_values:
 
                     """
-                    # Divide X and y depending on threshold
+                    Divide X and y depending on threshold
                     Xy: train dataset
                     feature_i: column order
                     threshold: unique_values in this column order
@@ -154,8 +159,8 @@ class DT():
 
     def predict_value(self, x, tree=None):
         """
-        Do a recursive search down the tree and make a prediction of the data sample by the
-            value of the leaf that we end up at
+        recursive search down the tree and make a prediction of the data sample
+        by the value of the leaf
         """
         if tree is None:
             tree = self.root
@@ -209,14 +214,14 @@ class DT():
             self.print_tree(tree.false_branch, indent + indent)
 
 
-class CT(DT):
+class ClassificationTree(DecisionTree):
     """
     Classification Tree
     """
 
     def _info_gain(self, y, y1, y2):
         """
-        切割树的标准，这里使用的是交叉熵
+        split tree by info gain
         """
         p = len(y1) / len(y)
         entropy = mt.calculate_entropy(y)
@@ -227,12 +232,12 @@ class CT(DT):
 
     def _majority_vote(self, y):
         """
-        计算子节点值的方法，这里使用的是选取数据集中出现最多的种类
+        leaf, max count
         """
         most_common = None
         max_count = 0
         for label in np.unique(y):
-            # Count number of occurences of samples with label
+
             count = len(y[y == label])
             if count > max_count:
                 most_common = label
@@ -242,32 +247,29 @@ class CT(DT):
     def fit(self, X, y):
         self._impurity_calculation = self._info_gain
         self._leaf_value_calculation = self._majority_vote
-        super(CT, self).fit(X, y)
+        super(ClassificationTree, self).fit(X, y)
 
 
-class RT(DT):
+class RegressionTree(DecisionTree):
     """
     Regression Tree
     """
 
     def _variance_reduction(self, y, y1, y2):
         """
-        切割树的标准，这里使用的是平方残差
+        split tree by variance reduction
         """
         var_tot = mt.calculate_variance(y)
         var_1 = mt.calculate_variance(y1)
         var_2 = mt.calculate_variance(y2)
         frac_1 = len(y1) / len(y)
         frac_2 = len(y2) / len(y)
-
-        # Calculate the variance reduction
         variance_reduction = var_tot - (frac_1 * var_1 + frac_2 * var_2)
-
         return sum(variance_reduction)
 
     def _mean_of_y(self, y):
         """
-        计算子节点值的方法，这里使用的是取数据集中的平均值
+        leaf, mean
         """
         value = np.mean(y, axis=0)
         return value if len(value) > 1 else value[0]
@@ -275,4 +277,4 @@ class RT(DT):
     def fit(self, X, y):
         self._impurity_calculation = self._variance_reduction
         self._leaf_value_calculation = self._mean_of_y
-        super(RT, self).fit(X, y)
+        super(RegressionTree, self).fit(X, y)

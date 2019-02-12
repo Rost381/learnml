@@ -24,11 +24,11 @@ def main():
 
     X_train, X_test, y_train, y_test = mt.data_train_test_split(
         X, y, test_size=0.4)
-    rt = decision_tree.RT()
+    rt = decision_tree.RegressionTree()
     rt.fit(X_train, y_train)
 
     y_pred = rt.predict(X_test)
-    mt.mean_squared_error(y_test, y_pred)
+    mt.calculate_mean_squared_error(y_test, y_pred)
 
 
 if __name__ == "__main__":

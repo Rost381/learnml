@@ -15,7 +15,7 @@ class PCA():
         """
         caculate eigenvalues and eigenvectors of SW^-1 * SB
         """
-        eigenvalues, eigenvectors = mt.eig(covariance_matrix)
+        eigenvalues, eigenvectors = mt.calculate_eig(covariance_matrix)
 
         """
         sort eigenvectors from largest to smallest

@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 
 def covariance_matrix(X, Y=None):
     """
-    caculate covariance matrix
+    Caculate covariance matrix
     """
     if Y is None:
         Y = X
@@ -17,9 +17,9 @@ def covariance_matrix(X, Y=None):
     return np.array(covariance_matrix, dtype=float)
 
 
-def eig(matrix):
+def calculate_eig(matrix):
     """
-    return eigenvalues, eigenvectors
+    Return eigenvalues, eigenvectors
     """
     return np.linalg.eig(matrix)
 
@@ -56,7 +56,7 @@ def normalize(X, axis=-1, order=2):
     return X / np.expand_dims(l2, axis)
 
 
-def mean_squared_error(y_true, y_pred):
+def calculate_mean_squared_error(y_true, y_pred):
     """
     y_true:numpy.ndarray
     y_pred:list
@@ -95,7 +95,7 @@ def divide_on_feature(X, feature_i, threshold):
     """
     # decision tree
     Divide dataset based on if sample value on 
-    feature index is larger than the given threshold
+        feature index is larger than the given threshold
     """
     split_func = None
     if isinstance(threshold, int) or isinstance(threshold, float):
@@ -123,7 +123,7 @@ def calculate_entropy(y):
     return entropy
 
 
-def accuracy_score(y_true, y_pred):
+def calculate_accuracy_score(y_true, y_pred):
     """
     y_true:numpy.ndarray
     y_pred:list

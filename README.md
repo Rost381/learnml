@@ -1,4 +1,4 @@
-# Machine learning algorithms From Scratch
+# Machine learning algorithms For Student
 
 ## Getting Started
 Implementation of Machine Learning Algorithms Step by Step As Student
@@ -7,9 +7,20 @@ Implementation of Machine Learning Algorithms Step by Step As Student
 Run exmaple_*.py under examples/ folder
 
 ## Algorithms
+### Getting started
+* [Simple Linear Regression](./ml/simple_linear_regression/simple_linear_regression.py) | [Example](./examples/example_SimpleLinearRegression.py)
+
 ### Supervised Learning
-* [Linear Regression](./ml/linear_regression/linear_regression.py)
-  * [Example](./examples/example_lr.py)
+* [Linear Regression](./ml/regression/regression.py)
+
+| Option | Description |
+| ------ | ----------- |
+| Loss function | Least squared error |
+| Core | X+ = (X_t * X)^-1 * X_t<br>X = U * Sigma * V<br>X+ = V * pseudo-inverse(Sigma) * Adjugate(U)<br>w = U * pseudo-inverse(Sigma) * Adjugate(U) * X * y |
+| SVD | ![](images/svd.png) |
+| Example | [One-dimensional linear regression](./examples/example_LinearRegression.py) |
+| Example | [Multiple linear regression]() |
+
 * [Logistic Regression](./ml/logistic_regression/logistic_regression.py)
   * [Example](./examples/example_logit.py)
 * [k Nearest Neighbors](./ml/k_nearest_neighbors/k_nearest_neighbors.py)

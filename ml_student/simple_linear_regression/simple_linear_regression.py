@@ -9,7 +9,7 @@ import pandas as pd
 from ml_student.math_tools import mt
 
 
-class LR():
+class LinearRegression():
     def _mean(self, values):
         """
         mean

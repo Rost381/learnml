@@ -11,7 +11,7 @@ import math
 from ml_student.math_tools import mt
 
 
-class LOGIT():
+class LogisticRegression():
     def predict(self, row, coef):
         yhat = coef[0]
         for i in range(len(row) - 1):

@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from ml_student.linear_regression import linear_regression
+from ml_student.simple_linear_regression import simple_linear_regression
 from ml_student.math_tools import mt
 
 
@@ -19,7 +19,7 @@ def main():
     train, test = train_test_split(df, test_size=0.4)
     train, test = train.values.tolist(), test.values.tolist()
 
-    lr = linear_regression.LR()
+    lr = simple_linear_regression.LinearRegression()
     b0, b1 = lr.fit(train)
 
     y_pred = lr.predict(train, test)

@@ -75,14 +75,14 @@ class LinearRegression(Regression):
             """
             Calculate weights by least squares
             X+ = (X_t * X)^-1 * X_t
-            X = U * Sigma * V
+            X = U * Sigma * Adjugate(V)
             X+ = V * pseudo-inverse(Sigma) * Adjugate(U)
             w = V * pseudo-inverse(Sigma) * Adjugate(U) * X * y
 
             https://math.stackexchange.com/questions/772039/how-does-the-svd-solve-the-least-squares-problem/2173715#2173715
             https://math.stackexchange.com/questions/1816364/the-svd-solution-to-linear-least-squares-linear-system-of-equations
             """
-            w = V.dot(Sigma_pinv).dot(U.conj().T).dot(X.T).dot(y)
+            w = V.dot(Sigma_pinv).dot(U).dot(X.T).dot(y)
             self.w = w
 
         else:

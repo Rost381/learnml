@@ -13,7 +13,7 @@ from ml_student.math_tools import mt
 
 
 def main():
-    knn = k_nearest_neighbors.KNN()
+    model = k_nearest_neighbors.KNN()
 
     df = pd.read_csv("data/abalone.csv", header=None)
     df_ = df.replace(['F', 'I', 'M'], [0, 1, 2])
@@ -28,10 +28,11 @@ def main():
     y_pred = []
     y_test = []
     for row in test:
-        y_pred.append(knn.predict(train, row, 5))
+        y_pred.append(model.predict(train, row, 5))
         y_test.append(row[-1])
 
-    mt.calculate_accuracy_score(y_test, y_pred)
+    accuracy = mt.calculate_accuracy_score(y_test, y_pred)
+    print("Accuracy Score: {:.2%}".format(accuracy))
 
 
 if __name__ == "__main__":

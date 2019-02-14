@@ -13,20 +13,20 @@ from ml_student.math_tools import mt
 
 
 def main():
-
     df = pd.read_csv('data/insurance.csv', header=None)
 
     train, test = train_test_split(df, test_size=0.4)
     train, test = train.values.tolist(), test.values.tolist()
 
-    lr = simple_linear_regression.LinearRegression()
-    b0, b1 = lr.fit(train)
+    model = simple_linear_regression.LinearRegression()
+    b0, b1 = model.fit(train)
 
-    y_pred = lr.predict(train, test)
+    y_pred = model.predict(train, test)
     y_test = np.array([row[-1] for row in test])
 
     print('b0={0}, b1={1}'.format(b0, b1))
-    mt.calculate_mean_squared_error(y_test, y_pred)
+    mse = mt.calculate_mean_squared_error(y_test, y_pred)
+    print("MSE: {0}".format(mse))
 
 
 if __name__ == "__main__":

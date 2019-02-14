@@ -29,17 +29,18 @@ def main():
     n_epoch = 100
     train, test = train_test_split(dataset, test_size=0.4)
 
-    logit = logistic_regression.LogisticRegression()
-    coef = logit.fit(train, l_rate, n_epoch)
+    model = logistic_regression.LogisticRegression()
+    coef = model.fit(train, l_rate, n_epoch)
     print(coef)
 
     y_test = []
     y_pred = []
     for row in test:
-        y_pred.append(round(logit.predict(row, coef)))
+        y_pred.append(round(model.predict(row, coef)))
         y_test.append(row[-1])
 
-    mt.calculate_accuracy_score(y_test, y_pred)
+    accuracy = mt.calculate_accuracy_score(y_test, y_pred)
+    print("Accuracy Score: {:.2%}".format(accuracy))
 
 
 if __name__ == "__main__":

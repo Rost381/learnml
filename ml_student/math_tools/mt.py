@@ -63,7 +63,7 @@ def calculate_mean_squared_error(y_true, y_pred):
     Returns the mean squared error between y_true and y_pred
     """
     mse = np.mean(np.power(y_true - y_pred, 2))
-    print("MSE: {0}".format(mse))
+    #print("MSE: {0}".format(mse))
     return mse
 
 
@@ -132,5 +132,5 @@ def calculate_accuracy_score(y_true, y_pred):
     if isinstance(y_true, list):
         y_true = np.array(y_true)
     accuracy = np.sum(y_true == y_pred, axis=0) / len(y_true)
-    print("Accuracy Score: {:.2%}".format(accuracy))
+    # print("Accuracy Score: {:.2%}".format(accuracy))
     return accuracy

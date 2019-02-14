@@ -24,16 +24,16 @@ def main():
                [8.675418651, -0.242068655, 1],
                [7.673756466, 3.508563011, 1]]
 
-    bp = back_propagation.BP()
+    model = back_propagation.BP()
 
     n_inputs = len(dataset[0]) - 1
     n_outputs = len(set([row[-1] for row in dataset]))
 
-    network = bp.init_network(n_inputs, 2, n_outputs)
-    bp.train_network(network, dataset, 0.5, 50, n_outputs)
+    network = model.init_network(n_inputs, 2, n_outputs)
+    model.train_network(network, dataset, 0.5, 50, n_outputs)
 
     for row in dataset:
-        prediction = bp.predict(network, row)
+        prediction = model.predict(network, row)
         print('Expected=%d, Got=%d' % (row[-1], prediction))
 
 

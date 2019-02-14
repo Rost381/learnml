@@ -22,8 +22,8 @@ def main():
     y = df.iloc[:, -1]
     y = y.values
 
-    pca = principal_component_analysis.PCA()
-    pca.plot_pca(X, y, 'example_pca.png')
+    model = principal_component_analysis.PCA()
+    model.plot_pca(X, y, 'example_pca.png')
 
 
 if __name__ == "__main__":

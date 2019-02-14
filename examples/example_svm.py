@@ -19,10 +19,10 @@ def main():
     X_train, X_test, y_train, y_test = mt.data_train_test_split(
         X, y, test_size=0.4)
 
-    svm = support_vector_machine.SVM(max_iter=1000, kernel='poly')
-    svm.fit(X_train, y_train)
+    model = support_vector_machine.SVM(max_iter=1000, kernel='poly')
+    model.fit(X_train, y_train)
 
-    accuracy = svm.score(X_test, y_test)
+    accuracy = model.score(X_test, y_test)
     print("Accuracy Score: {:.2%}".format(accuracy))
 
 

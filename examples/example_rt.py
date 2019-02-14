@@ -28,7 +28,8 @@ def main():
     rt.fit(X_train, y_train)
 
     y_pred = rt.predict(X_test)
-    mt.calculate_mean_squared_error(y_test, y_pred)
+    mse = mt.calculate_mean_squared_error(y_test, y_pred)
+    print("MSE: {0}".format(mse))
 
 
 if __name__ == "__main__":

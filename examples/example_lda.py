@@ -22,8 +22,8 @@ def main():
     y = df.iloc[:, -1]
     y = y.values
 
-    lda = linear_discriminant_analysis.LDA()
-    lda.plot_lda(X, y, 'example_lda.png')
+    model = linear_discriminant_analysis.LDA()
+    model.plot_lda(X, y, 'example_lda.png')
 
 
 if __name__ == "__main__":

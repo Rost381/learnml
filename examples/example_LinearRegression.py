@@ -10,7 +10,6 @@ os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 from ml_student.regression import regression
 from ml_student.math_tools import mt
-import statsmodels.api as sm
 
 
 def main():
@@ -20,24 +19,13 @@ def main():
 
     n_samples, n_features = np.shape(X)
 
-    lr = regression.LinearRegression()
+    model = regression.LinearRegression()
 
-    lr.fit(X_train, y_train)
-    print(lr.w)
-    y_pred = lr.predict(X_test)
+    model.fit(X_train, y_train)
+    print(model.w)
+    y_pred = model.predict(X_test)
     mse = mt.calculate_mean_squared_error(y_test, y_pred)
-
-    "============================"
-    X_train = sm.add_constant(X_train)
-    model = sm.OLS(y_train, X_train)
-    results = model.fit()
-    print(results.params)
-
-    lr = regression.LinearRegression(
-        n_iterations=10, learning_rate=0.001, gradient_descent=True)
-    X = np.array([[1, 1, 1], [1, 1, 2], [1, 2, 1]])
-    y = np.array([6, 9, 8])
-    lr.fit(X, y)
+    print("MSE: {0}".format(mse))
 
 
 if __name__ == "__main__":

@@ -22,12 +22,13 @@ def main():
     X_train, X_test, y_train, y_test = mt.data_train_test_split(
         X, y, test_size=0.4)
 
-    ct = decision_tree.ClassificationTree(max_depth=5)
-    ct.fit(X_train, y_train)
-    ct.print_tree()
+    model = decision_tree.ClassificationTree(max_depth=5)
+    model.fit(X_train, y_train)
+    model.print_tree()
 
-    y_pred = ct.predict(X_test)
-    mt.calculate_accuracy_score(y_test, y_pred)
+    y_pred = model.predict(X_test)
+    accuracy = mt.calculate_accuracy_score(y_test, y_pred)
+    print("Accuracy Score: {:.2%}".format(accuracy))
 
 
 if __name__ == "__main__":

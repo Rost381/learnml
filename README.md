@@ -14,7 +14,7 @@ Run exmaple_*.py under examples/ folder
 * [Simple Linear Regression](./ml_student/simple_linear_regression/simple_linear_regression.py) | [Example](./examples/example_SimpleLinearRegression.py)
 
 ### Supervised Learning
-* [Regression](./ml_student/regression/regression.py)
+### [Regression](./ml_student/regression/regression.py)
 
 | | Linear Regression | Lasso Regression | Ridge Regression |
 | --- | --- | --- | --- |
@@ -23,14 +23,22 @@ Run exmaple_*.py under examples/ folder
 | Images | ![](images/svd.png) | |
 | Examples | [One-dimensional Linear Regression](./examples/example_LinearRegression.py) | | [Ridge Regression](./examples/example_RidgeRegression.py) |
 
-* [Support Vector Machine](./ml_student/support_vector_machine/support_vector_machine.py)
+### [Support Vector Machine](./ml_student/support_vector_machine/support_vector_machine.py)
 
-| Option | Description |
+| | Description |
 | ------ | ----------- |
 | Core | SMO, Kernel |
 | Images | ![](images/svm.png) |
 | Kernel | ![](images/svm_2.png) |
 | Examples | [Support Vector Machine](./examples/example_svm.py) |
+
+### [Decision Trees](./ml_student/decision_tree/decision_tree.py)
+
+| | Classification Tree | RegressionTree |
+| -- | --- | --- |
+| Split | Information gain | Variance reduction |
+| Predict | Majority vote | Mean of Y |
+| Examples | [Example - Classification Tree](./examples/example_ct.py) | [Example - Regression Tree](./examples/example_rt.py) |
 
 * [Logistic Regression](./ml_student/logistic_regression/logistic_regression.py)
   * [Example](./examples/example_logit.py)
@@ -39,16 +47,7 @@ Run exmaple_*.py under examples/ folder
 * [Principal Component Analysis](./ml_student/linear_discriminant_analysis/linear_discriminant_analysis.py)
   * [Example](./examples/example_lda.py)
 
-* [Decision Trees](./ml_student/decision_tree/decision_tree.py)
 
-![](images/dtree.png) 
-
-| | Classification Tree | RegressionTree |
-| -- | --- | --- |
-| Split | Information gain | Variance reduction |
-| Predict | Majority vote | Mean of Y |
-| Images | | |
-| Examples | [Example - Classification Tree](./examples/example_ct.py) | [Example - Regression Tree](./examples/example_rt.py) |
 
 ### Unsupervised Learning
 * [Linear Discriminant Analysis](./ml_student/principal_component_analysis/principal_component_analysis.py)

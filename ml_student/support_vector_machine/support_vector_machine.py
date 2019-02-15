@@ -11,31 +11,35 @@ from ml_student.math_tools import mt
 
 
 class SVM():
-    """
-    The Support Vector Machine classifier.
+    """ Support Vector Machine.
+
+    Use Sequential minimal optimization (SMO) to solve the quadratic QP problem.
+    When all the Lagrange multipliers satisfy the KKT, 
+    the problem has been solved.
 
     Args:
-        max_iter: int, limit on iterations within solver.
-        kernel: function, polynomial or linear.
+        max_iter: int
+            limit on iterations within solver.
+        kernel: string
+            polynomial or linear.
+        C: float
+            Penalty term.
     """
-    def __init__(self, max_iter=100, kernel='linear'):
+
+    def __init__(self, max_iter=100, kernel='linear', C=1.0):
         self.max_iter = max_iter
         self._kernel = kernel
-
-    def _init_args(self, features, labels):
-        self.m, self.n = features.shape
-        self.X = features
-        self.Y = labels
-        self.b = 0.0
-
-        self.alpha = np.ones(self.m)
-        self.E = [self._E(i) for i in range(self.m)]
-
-        self.C = 1.0  # 松弛变量
+        self.m = None
+        self.n = None
+        self.X = None
+        self.Y = None
+        self.b = None
+        self.alpha = None
+        self.E = None
+        self.C = C
 
     def kernel(self, x1, x2):
-        """
-        kernel
+        """ Kernel
         """
         if self._kernel == 'linear':
             # return sum([x1[k] * x2[k] for k in range(self.n)])
@@ -47,8 +51,7 @@ class SVM():
             return 0
 
     def _g(self, i):
-        """
-        g(x) = sum(a_j * y_j * K(x_i, x_j)) + b
+        """ g(x) = sum(a_j * y_j * K(x_i, x_j)) + b
         """
         g = self.b
         for j in range(self.m):
@@ -56,8 +59,7 @@ class SVM():
         return g
 
     def _KKT(self, i):
-        """
-        KKT
+        """ KKT
         """
         yg = self._g(i) * self.Y[i]
         if self.alpha[i] == 0:  # 边界内部
@@ -68,14 +70,12 @@ class SVM():
             return yg <= 1
 
     def _E(self, i):
-        """
-        E(i) = g(x_i) - y_i
+        """ E(i) = g(x_i) - y_i
         """
         return self._g(i) - self.Y[i]
 
     def _alpha_init(self):
-        """
-        find alpha1, alpha2
+        """ Find alpha1, alpha2
         """
         # 0 < alpha < C
         index_list = [i for i in range(self.m) if 0 < self.alpha[i] < self.C]
@@ -98,8 +98,7 @@ class SVM():
             return i, j
 
     def _alpha_L_H(self, _alpha, L, H):
-        """
-        calculate alpha2_new
+        """ Calculate alpha2_new
         """
         if _alpha > H:
             return H
@@ -108,14 +107,24 @@ class SVM():
         else:
             return _alpha
 
-    def fit(self, features, labels):
-        self._init_args(features, labels)
+    def fit(self, X, y):
+        #self._init_args(features, labels)
+
+        self.m, self.n = np.shape(X)
+        self.X = X
+        self.Y = y
+        self.b = 0.0
+
+        """ np.ones()
+        np.ones(5) => array([ 1.,  1.,  1.,  1.,  1.])
+        """
+        self.alpha = np.ones(self.m)
+        self.E = [self._E(i) for i in range(self.m)]
 
         for each_iter in range(self.max_iter):
             i1, i2 = self._alpha_init()
 
-            """
-            caculate L, H
+            """ Caculate L, H
             """
             if self.Y[i1] == self.Y[i2]:
                 L = max(0, self.alpha[i1] + self.alpha[i2] - self.C)
@@ -124,14 +133,12 @@ class SVM():
                 L = max(0, self.alpha[i2] - self.alpha[i1])
                 H = min(self.C, self.C + self.alpha[i2] - self.alpha[i1])
 
-            """
-            caculate E1, E2
+            """ Caculate E1, E2
             """
             E1 = self.E[i1]
             E2 = self.E[i2]
 
-            """
-            caculate eta
+            """ Caculate eta
             eta = K11 + K22 - 2 * K12
             """
             eta = self.kernel(self.X[i1], self.X[i1]) + self.kernel(
@@ -139,8 +146,7 @@ class SVM():
             if eta <= 0:
                 continue
 
-            """
-            caculate new alpha2(first), alpha1
+            """ Caculate new alpha2(first), alpha1
             """
             alpha2_new_unc = self.alpha[i2] + self.Y[i2] * (E1 - E2) / eta
             alpha2_new = self._alpha_L_H(alpha2_new_unc, L, H)
@@ -148,8 +154,7 @@ class SVM():
             alpha1_new = self.alpha[i1] + self.Y[i1] * \
                 self.Y[i2] * (self.alpha[i2] - alpha2_new)
 
-            """
-            caculate new b1, b2
+            """ Caculate new b1, b2
             """
             b1_new = -E1 - self.Y[i1] * self.kernel(self.X[i1], self.X[i1]) * (alpha1_new - self.alpha[i1]) - \
                 self.Y[i2] * self.kernel(self.X[i2], self.X[i1]) * \
@@ -158,8 +163,7 @@ class SVM():
                 self.Y[i2] * self.kernel(self.X[i2], self.X[i2]) * \
                 (alpha2_new - self.alpha[i2]) + self.b
 
-            """
-            caculate new b
+            """ Caculate new b
             """
             if 0 < alpha1_new < self.C:
                 b_new = b1_new
@@ -168,27 +172,29 @@ class SVM():
             else:
                 b_new = (b1_new + b2_new) / 2
 
-            """
-            update alpha1, alpha2, b
+            """ Update alpha1, alpha2, b
             """
             self.alpha[i1] = alpha1_new
             self.alpha[i2] = alpha2_new
             self.b = b_new
 
+            """ Update E
+            """
             self.E[i1] = self._E(i1)
             self.E[i2] = self._E(i2)
         return None
 
-    def predict(self, data):
-        r = self.b
-        for i in range(self.m):
-            r += self.alpha[i] * self.Y[i] * self.kernel(data, self.X[i])
-        return 1 if r > 0 else -1
+    def predict(self, X_test):
+        y_pred = []
+        for sample in range(len(X_test)):
+            prediction = self.b
+            for i in range(self.m):
+                prediction += self.alpha[i] * self.Y[i] * \
+                    self.kernel(X_test[sample], self.X[i])
 
-    def score(self, X_test, y_test):
-        c = 0
-        for i in range(len(X_test)):
-            result = self.predict(X_test[i])
-            if result == y_test[i]:
-                c += 1
-        return c / len(X_test)
+            """ np.sign
+            The sign function returns -1 if x < 0, 0 if x==0, 1 if x > 0.
+            """
+            y_pred_sample = np.sign(prediction)
+            y_pred.append(y_pred_sample)
+        return y_pred

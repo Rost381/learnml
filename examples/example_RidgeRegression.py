@@ -20,11 +20,11 @@ def main():
     coefs = []
     errors = []
 
-    alphas = np.logspace(-4, 4, 200)
+    alphas = np.logspace(-3, 3, 200)
 
     for alpha in alphas:
         model = regression.RidgeRegression(
-            alpha=alpha, n_iterations=1000, learning_rate=1e-4)
+            alpha=alpha, max_iter=1000, learning_rate=1e-3)
         model.fit(X, y)
 
         coef = model.w

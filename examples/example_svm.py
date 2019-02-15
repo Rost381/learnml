@@ -22,7 +22,9 @@ def main():
     model = support_vector_machine.SVM(max_iter=1000, kernel='poly')
     model.fit(X_train, y_train)
 
-    accuracy = model.score(X_test, y_test)
+    y_pred = model.predict(X_test)
+
+    accuracy = mt.calculate_accuracy_score(y_test, y_pred)
     print("Accuracy Score: {:.2%}".format(accuracy))
 
 

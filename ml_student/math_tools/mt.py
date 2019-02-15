@@ -3,6 +3,7 @@ import pandas as pd
 import math
 from sklearn.preprocessing import normalize
 from sklearn.model_selection import train_test_split
+from itertools import combinations_with_replacement
 
 
 def covariance_matrix(X, Y=None):

@@ -8,9 +8,16 @@ import pandas as pd
 from ml_student.math_tools import mt
 
 
-class LDA():
-    def __init__(self):
-        None
+class LinearDiscriminantAnalysis():
+    """ Linear Discriminant Analysis
+    
+    Parameters:
+    -----------
+    n_components : int
+        Number of components (< n_classes - 1) for dimensionality reduction.
+    """
+    def __init__(self, n_components):
+        self.n_components = n_components
 
     def _labels(self, y):
         return np.unique(y)
@@ -19,8 +26,7 @@ class LDA():
         return X.shape[1]
 
     def _S_W(self, X, y):
-        """
-        Caculate s_w
+        """ Caculate SW
         """
         labels = self._labels(y)
         n_features = self._n_features(X)
@@ -35,8 +41,7 @@ class LDA():
         return S_W
 
     def _S_B(self, X, y):
-        """
-        Caculate s_b
+        """ Caculate SB
         """
         labels = self._labels(y)
         n_features = self._n_features(X)
@@ -49,11 +54,16 @@ class LDA():
                 (_mean - overall_mean).dot((_mean - overall_mean).T)
         return S_B
 
-    def _transform(self, X, y, n_components):
-        S_W, S_B = self._S_W(X, y), self._S_B(X, y)
+    def fit(self, X, y):
+        self.X = X
+        self.y = y
+        self.s_w = self._S_W(self.X, self.y)
+        self.s_b = self._S_B(self.X, self.y)
+        return self
 
-        """SW^-1 * SB"""
-        A = np.linalg.inv(S_W).dot(S_B)
+    def transform(self, X):
+        """ SW^-1 * SB"""
+        A = np.linalg.inv(self.s_w).dot(self.s_b)
 
         """
         Caculate eigenvalues and eigenvectors of SW^-1 * SB
@@ -65,7 +75,7 @@ class LDA():
         [1, 2, 3]
         [1, 2, 3]]
         """
-        eigenvalues, eigenvectors = mt.calculate_eig(A)
+        eigenvalues, eigenvectors = np.linalg.eig(A)
 
         """
         Sort eigenvectors from largest to smallest
@@ -83,8 +93,8 @@ class LDA():
         [1, 2]
         [1, 2]]
         """
-        eigenvalues = eigenvalues[idx][:n_components]
-        eigenvectors = eigenvectors[:, idx][:, :n_components]
+        eigenvalues = eigenvalues[idx][:self.n_components]
+        eigenvectors = eigenvectors[:, idx][:, :self.n_components]
 
         """
         Project the data onto eigenvectors
@@ -92,11 +102,3 @@ class LDA():
         X_transformed = X.dot(eigenvectors)
 
         return X_transformed
-
-    def plot_lda(self, X, y, filename):
-        X_transformed = self._transform(X, y, n_components=2)
-        x1 = X_transformed[:, 0]
-        x2 = X_transformed[:, 1]
-        plt.scatter(x1, x2, c=y)
-        # plt.show()
-        plt.savefig(filename)

@@ -12,9 +12,6 @@ from ml_student.math_tools import mt
 
 
 def main():
-    """
-    Classification Tree
-    """
     df = pd.read_csv("data/banknote.csv", header=None)
 
     y = df.iloc[:, -1].values

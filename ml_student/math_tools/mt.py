@@ -7,8 +7,7 @@ from itertools import combinations_with_replacement
 
 
 def covariance_matrix(X, Y=None):
-    """
-    Caculate covariance matrix
+    """ Caculate covariance matrix
     """
     if Y is None:
         Y = X
@@ -18,16 +17,8 @@ def covariance_matrix(X, Y=None):
     return np.array(covariance_matrix, dtype=float)
 
 
-def calculate_eig(matrix):
-    """
-    Return eigenvalues, eigenvectors
-    """
-    return np.linalg.eig(matrix)
-
-
 def calculate_variance(X):
-    """
-    Return the variance of the features in dataset X
+    """ Return the variance of the features in dataset X
     """
     mean = np.ones(np.shape(X)) * X.mean(0)
     n_samples = np.shape(X)[0]
@@ -36,8 +27,7 @@ def calculate_variance(X):
 
 
 def standardize(X):
-    """
-    standardize X
+    """ standardize X
     """
     X_std = X
     mean = X.mean(axis=0)
@@ -49,8 +39,7 @@ def standardize(X):
 
 
 def normalize(X, axis=-1, order=2):
-    """
-    normalize X
+    """ Normalize X
     """
     l2 = np.atleast_1d(np.linalg.norm(X, order, axis))
     l2[l2 == 0] = 1
@@ -58,10 +47,9 @@ def normalize(X, axis=-1, order=2):
 
 
 def calculate_mean_squared_error(y_true, y_pred):
-    """
+    """ Returns the mean squared error between y_true and y_pred
     y_true:numpy.ndarray
     y_pred:list
-    Returns the mean squared error between y_true and y_pred
     """
     mse = np.mean(np.power(y_true - y_pred, 2))
     #print("MSE: {0}".format(mse))
@@ -69,8 +57,7 @@ def calculate_mean_squared_error(y_true, y_pred):
 
 
 def data_train_test_split(X, y, test_size=0.5, shuffle=True, seed=None):
-    """
-    Split the data into train and test sets
+    """ Split the data into train and test sets
     """
     if shuffle:
         X, y = shuffle_data(X, y, seed)
@@ -82,8 +69,7 @@ def data_train_test_split(X, y, test_size=0.5, shuffle=True, seed=None):
 
 
 def shuffle_data(X, y, seed=None):
-    """
-    Random shuffle of the samples in X and y
+    """ Random shuffle of the samples in X and y
     """
     if seed:
         np.random.seed(seed)
@@ -93,8 +79,7 @@ def shuffle_data(X, y, seed=None):
 
 
 def divide_on_feature(X, feature_i, threshold):
-    """
-    # decision tree
+    """ Used for decision tree
     Divide dataset based on if sample value on 
         feature index is larger than the given threshold
     """
@@ -111,8 +96,7 @@ def divide_on_feature(X, feature_i, threshold):
 
 
 def calculate_entropy(y):
-    """
-    Calculate the entropy of label array y
+    """ Calculate the entropy of label array y
     """
     def log2(x): return math.log(x) / math.log(2)
     unique_labels = np.unique(y)
@@ -125,10 +109,9 @@ def calculate_entropy(y):
 
 
 def calculate_accuracy_score(y_true, y_pred):
-    """
+    """ Compare y_true to y_pred and return the accuracy
     y_true:numpy.ndarray
     y_pred:list
-    Compare y_true to y_pred and return the accuracy
     """
     if isinstance(y_true, list):
         y_true = np.array(y_true)

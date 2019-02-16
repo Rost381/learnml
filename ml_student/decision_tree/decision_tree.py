@@ -21,12 +21,15 @@ class Node():
 
 
 class DecisionTree():
-    """
+    """ Base Tree model
     Super class of ClassificationTree and RegressionTree
 
-    Args:
-        min_impurity: float, The minimum impurity required to split tree.
-        max_depth: int, The maximum depth of a tree.
+    Parameters:
+    -----------
+    min_impurity : float
+        The minimum impurity required to split tree.
+    max_depth : int
+        The maximum depth of a tree.
     """
 
     def __init__(self, min_impurity=1e-7, max_depth=float("inf")):
@@ -34,30 +37,24 @@ class DecisionTree():
         self.min_impurity = min_impurity
         self.max_depth = max_depth
 
-        """
-        Function to calculate impurity
+        """ Function to calculate impurity
         ClassificationTree => info gain
         RegressionTree => variance reduction
         """
         self._impurity_calculation = None
 
-        """
-        Function to determine prediction of y at leaf
+        """ Function to determine prediction of y at leaf
         ClassificationTree => max count
         RegressionTree => mean
         """
         self._leaf_value_calculation = None
 
     def fit(self, X, y):
-        """
-        Build decision tree
-        """
         self.root = self._build_tree(X, y)
 
     def _build_tree(self, X, y, current_depth=0):
-        """
-        Recursive method which builds out the decision tree and splits X and respective y
-        on the feature of X which (based on impurity) best separates the data
+        """ Recursive method which builds out the decision tree and splits X and
+        respective y on the feature of X which (based on impurity) best separates the data
         """
         largest_impurity = 0
         best_criteria = None  # Feature index and threshold
@@ -67,20 +64,17 @@ class DecisionTree():
         if len(np.shape(y)) == 1:
             y = np.expand_dims(y, axis=1)
 
-        """
-        train data
+        """ Train data
         """
         Xy = np.concatenate((X, y), axis=1)
 
-        """
-        returns the shape of X as tuple
-        n_samples: rows
-        n_features: columns
+        """ Returns the shape of X as tuple
+        n_samples : rows
+        n_features : columns
         """
         n_samples, n_features = np.shape(X)
 
-        """
-        run when:
+        """ Runs when:
         1. n_samples >= 2
         2. current_depth <= float("inf"), unbounded upper value
         """
@@ -94,33 +88,29 @@ class DecisionTree():
                 # calculate the impurity
                 for threshold in unique_values:
 
-                    """
-                    Divide X and y depending on threshold
+                    """ Divide X and y depending on threshold
                     Xy: train dataset
-                    feature_i: column order
-                    threshold: unique_values in this column order
+                    feature_i : column order
+                    threshold : unique_values in this column order
 
-                    Xy1: the value in row >= threshold in row
-                    Xy2: the value in row < threshold in row
+                    Xy1 : the value in row >= threshold in row
+                    Xy2 : the value in row < threshold in row
                     """
                     Xy1, Xy2 = mt.divide_on_feature(Xy, feature_i, threshold)
 
                     if len(Xy1) > 0 and len(Xy2) > 0:
-                        """
-                        Select the y values of the two sets
+                        """ Select the y values of the two sets
                         """
                         y1 = Xy1[:, n_features:]
                         y2 = Xy2[:, n_features:]
 
-                        """
-                        # Calculate impurity
+                        """ Calculate impurity
                         if classification tree, use information gain
                         if regression tree, use variance reduction
                         """
                         impurity = self._impurity_calculation(y, y1, y2)
 
-                        """
-                        If this threshold information gain bigger than previous
+                        """ If this threshold information gain bigger than previous
                         save the threshold value and the feature index
                         """
                         if impurity > largest_impurity:
@@ -139,8 +129,7 @@ class DecisionTree():
                             }
 
         if largest_impurity > self.min_impurity:
-            """
-            Build subtrees for the right and left branches
+            """ Build subtrees for the right and left branches
             """
             true_branch = self._build_tree(
                 best_sets["leftX"], best_sets["lefty"], current_depth + 1)
@@ -151,15 +140,13 @@ class DecisionTree():
                         true_branch=true_branch,
                         false_branch=false_branch)
 
-        """
-        We're at leaf => determine value
+        """ We're at leaf => determine value
         """
         leaf_value = self._leaf_value_calculation(y)
         return Node(value=leaf_value)
 
     def predict_value(self, x, tree=None):
-        """
-        recursive search down the tree and make a prediction of the data sample
+        """ recursive search down the tree and make a prediction of the data sample
         by the value of the leaf
         """
         if tree is None:
@@ -184,8 +171,7 @@ class DecisionTree():
         return self.predict_value(x, branch)
 
     def predict(self, X):
-        """
-        Classify samples one by one and return the set of labels
+        """ Classify samples one by one and return the set of labels
         """
         y_pred = []
         for x in X:
@@ -193,8 +179,7 @@ class DecisionTree():
         return y_pred
 
     def print_tree(self, tree=None, indent=" "):
-        """
-        Recursively print the decision tree
+        """ Recursively print the decision tree
         """
         if not tree:
             tree = self.root
@@ -215,8 +200,7 @@ class DecisionTree():
 
 
 class ClassificationTree(DecisionTree):
-    """
-    Classification Tree
+    """ Classification Tree
     """
 
     def _info_gain(self, y, y1, y2):
@@ -231,8 +215,7 @@ class ClassificationTree(DecisionTree):
         return info_gain
 
     def _majority_vote(self, y):
-        """
-        leaf, max count
+        """ leaf, max count
         """
         most_common = None
         max_count = 0
@@ -251,13 +234,11 @@ class ClassificationTree(DecisionTree):
 
 
 class RegressionTree(DecisionTree):
-    """
-    Regression Tree
+    """ Regression Tree
     """
 
     def _variance_reduction(self, y, y1, y2):
-        """
-        split tree by variance reduction
+        """ Split tree by variance reduction
         """
         var_tot = mt.calculate_variance(y)
         var_1 = mt.calculate_variance(y1)
@@ -268,8 +249,7 @@ class RegressionTree(DecisionTree):
         return sum(variance_reduction)
 
     def _mean_of_y(self, y):
-        """
-        leaf, mean
+        """ Leaf, mean
         """
         value = np.mean(y, axis=0)
         return value if len(value) > 1 else value[0]

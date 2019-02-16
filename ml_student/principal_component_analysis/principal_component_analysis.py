@@ -9,46 +9,36 @@ from ml_student.math_tools import mt
 
 
 class PCA():
-    def _transform(self, X, n_components):
+    """ Principal component analysis (PCA)
+    
+    Parameters:
+    -----------
+    n_components : int
+        Number of components to keep. 
+    """
+    def __init__(self, n_components):
+        self.n_components = n_components
+
+    def fit(self, X):
+        self.X = X
+        return self
+
+    def transform(self, X):
         covariance_matrix = mt.covariance_matrix(X)
 
+        """ caculate eigenvalues and eigenvectors of SW^-1 * SB
         """
-        caculate eigenvalues and eigenvectors of SW^-1 * SB
-        """
-        eigenvalues, eigenvectors = mt.calculate_eig(covariance_matrix)
+        eigenvalues, eigenvectors = np.linalg.eig(covariance_matrix)
 
-        """
-        sort eigenvectors from largest to smallest
+        """ sort eigenvectors from largest to smallest
         """
         idx = eigenvalues.argsort()[::-1]
 
+        """ select the first n_components of eigenvalues
         """
-        select the first n_components of eigenvalues
-        """
-        eigenvalues = eigenvalues[idx][:n_components]
-        eigenvectors = eigenvectors[:, idx][:, :n_components]
+        eigenvalues = eigenvalues[idx][:self.n_components]
+        eigenvectors = eigenvectors[:, idx][:, :self.n_components]
 
         X_transformed = X.dot(eigenvectors)
 
         return X_transformed
-
-    def plot_pca(self, X, y, filename):
-        X_transformed = self._transform(X, n_components=2)
-        x1 = X_transformed[:, 0]
-        x2 = X_transformed[:, 1]
-        plt.scatter(x1, x2, c=y)
-
-        cmap = plt.get_cmap('viridis')
-        colors = [cmap(i) for i in np.linspace(0, 1, len(np.unique(y)))]
-
-        class_distr = []
-        for i, l in enumerate(np.unique(y)):
-            _x1 = x1[y == l]
-            _x2 = x2[y == l]
-            _y = y[y == l]
-            class_distr.append(plt.scatter(_x1, _x2, color=colors[i]))
-
-        plt.xlabel('Principal Component 1')
-        plt.ylabel('Principal Component 2')
-        # plt.show()
-        plt.savefig(filename)

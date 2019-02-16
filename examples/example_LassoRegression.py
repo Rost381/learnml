@@ -33,7 +33,7 @@ def main():
 
     print(model.intercept_)
     print(model.coef_)
-    print("r^2 on test data : %f" % Score)
+    print("Score : %f" % Score)
 
 
 if __name__ == "__main__":

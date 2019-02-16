@@ -1,7 +1,3 @@
-import os
-import sys
-
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import random
@@ -12,21 +8,21 @@ from ml_student.math_tools import mt
 
 class SVM():
     """ Support Vector Machine.
-
     Use Sequential minimal optimization (SMO) to solve the quadratic QP problem.
     When all the Lagrange multipliers satisfy the KKT, 
     the problem has been solved.
 
-    Args:
-        max_iter: int
-            limit on iterations within solver.
-        kernel: string
-            polynomial or linear.
-        C: float
-            Penalty term.
+    Parameters:
+    -----------
+    max_iter: int
+        The maximum number of iterations.
+    kernel: string
+        'polynomial' or 'linear'.
+    C: float
+        Penalty term.
     """
 
-    def __init__(self, max_iter=100, kernel='linear', C=1.0):
+    def __init__(self, max_iter=1000, kernel='linear', C=1.0):
         self.max_iter = max_iter
         self._kernel = kernel
         self.m = None
@@ -42,10 +38,8 @@ class SVM():
         """ Kernel
         """
         if self._kernel == 'linear':
-            # return sum([x1[k] * x2[k] for k in range(self.n)])
             return np.dot(x1, x2.T)
-        elif self._kernel == 'poly':
-            # return (sum([x1[k] * x2[k] for k in range(self.n)]) + 1)**2
+        elif self._kernel == 'polynomial':
             return np.dot(x1, x2.T) ** 2
         else:
             return 0
@@ -62,11 +56,11 @@ class SVM():
         """ KKT
         """
         yg = self._g(i) * self.Y[i]
-        if self.alpha[i] == 0:  # 边界内部
+        if self.alpha[i] == 0:  # inner
             return yg >= 1
-        elif 0 < self.alpha[i] < self.C:  # 边界上
+        elif 0 < self.alpha[i] < self.C:  # border
             return yg == 1
-        else:  # 两条边界之间
+        else:  # between the borders
             return yg <= 1
 
     def _E(self, i):
@@ -108,8 +102,6 @@ class SVM():
             return _alpha
 
     def fit(self, X, y):
-        #self._init_args(features, labels)
-
         self.m, self.n = np.shape(X)
         self.X = X
         self.Y = y
@@ -192,7 +184,7 @@ class SVM():
                 prediction += self.alpha[i] * self.Y[i] * \
                     self.kernel(X_test[sample], self.X[i])
 
-            """ np.sign
+            """ np.sign()
             The sign function returns -1 if x < 0, 0 if x==0, 1 if x > 0.
             """
             y_pred_sample = np.sign(prediction)

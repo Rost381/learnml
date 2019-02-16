@@ -12,14 +12,13 @@ from ml_student.math_tools import mt
 
 
 def main():
-
     df = pd.read_csv('data/svm.csv', header=None)
     y = df.iloc[:, -1].values
     X = df.iloc[:, :-1].values
     X_train, X_test, y_train, y_test = mt.data_train_test_split(
         X, y, test_size=0.4)
 
-    model = support_vector_machine.SVM(max_iter=1000, kernel='poly')
+    model = support_vector_machine.SVM(max_iter=1000, kernel='polynomial')
     model.fit(X_train, y_train)
 
     y_pred = model.predict(X_test)

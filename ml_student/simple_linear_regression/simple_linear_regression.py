@@ -59,17 +59,3 @@ class LinearRegression():
             predctions.append(yhat)
 
         return predctions
-
-    '''
-    def mse(self, actual, predicted):
-        """
-        Mean Squared Error
-        """
-        sum_error = 0.0
-
-        for i in range(len(actual)):
-            prediction_error = predicted[i] - actual[i]
-            sum_error += (prediction_error ** 2)
-            mean_error = sum_error / float(len(actual))
-        return mean_error
-    '''

@@ -16,10 +16,8 @@ from ml_student.regression import regression
 def main():
     X, y, w = make_regression(n_samples=10, n_features=10, coef=True,
                               random_state=1, bias=3.5)
-
     coefs = []
     errors = []
-
     alphas = np.logspace(-3, 3, 200)
 
     for alpha in alphas:

@@ -45,13 +45,12 @@ Run exmaple_*.py under examples/ folder
 
 ---
 
-### [Principal Component Analysis](./ml_student/linear_discriminant_analysis/linear_discriminant_analysis.py)
+### [Linear Discriminant Analysis](./ml_student/linear_discriminant_analysis/linear_discriminant_analysis.py)
  
-| | Principal Component Analysis |
+| | Linear Discriminant Analysis |
 | -- | --- |
-| Algorithms | maximize the variance of our data |
+| Algorithms | maximize the separation between multiple classes |
 | Examples | [Example](./examples/example_PCA_LDA.py) |
-
 
 ---
 
@@ -60,13 +59,12 @@ Run exmaple_*.py under examples/ folder
 * [k Nearest Neighbors](./ml_student/k_nearest_neighbors/k_nearest_neighbors.py)
   * [Example](./examples/example_knn.py)
 
-
 ### Unsupervised Learning
-### [Linear Discriminant Analysis](./ml_student/principal_component_analysis/principal_component_analysis.py)
+### [Principal Component Analysis](./ml_student/principal_component_analysis/principal_component_analysis.py)
 
-| | Linear Discriminant Analysis |
+| | Principal Component Analysis |
 | -- | --- |
-| Algorithms | maximize the separation between multiple classes |
+| Algorithms | maximize the variance of our data |
 | Examples | [Example](./examples/example_PCA_LDA.py) |
 
 ---

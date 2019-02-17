@@ -1,13 +1,9 @@
-import os
-import sys
-
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import random
 
 import math
-from ml_student.math_tools import mt
+from mlalgo.utils.tools import divide_on_feature, calculate_entropy, calculate_variance
 
 
 class Node():
@@ -96,7 +92,7 @@ class DecisionTree():
                     Xy1 : the value in row >= threshold in row
                     Xy2 : the value in row < threshold in row
                     """
-                    Xy1, Xy2 = mt.divide_on_feature(Xy, feature_i, threshold)
+                    Xy1, Xy2 = divide_on_feature(Xy, feature_i, threshold)
 
                     if len(Xy1) > 0 and len(Xy2) > 0:
                         """ Select the y values of the two sets
@@ -208,10 +204,10 @@ class ClassificationTree(DecisionTree):
         split tree by info gain
         """
         p = len(y1) / len(y)
-        entropy = mt.calculate_entropy(y)
+        entropy = calculate_entropy(y)
         info_gain = entropy - p * \
-            mt.calculate_entropy(y1) - (1 - p) * \
-            mt.calculate_entropy(y2)
+            calculate_entropy(y1) - (1 - p) * \
+            calculate_entropy(y2)
         return info_gain
 
     def _majority_vote(self, y):
@@ -240,9 +236,9 @@ class RegressionTree(DecisionTree):
     def _variance_reduction(self, y, y1, y2):
         """ Split tree by variance reduction
         """
-        var_tot = mt.calculate_variance(y)
-        var_1 = mt.calculate_variance(y1)
-        var_2 = mt.calculate_variance(y2)
+        var_tot = calculate_variance(y)
+        var_1 = calculate_variance(y1)
+        var_2 = calculate_variance(y2)
         frac_1 = len(y1) / len(y)
         frac_2 = len(y2) / len(y)
         variance_reduction = var_tot - (frac_1 * var_1 + frac_2 * var_2)

@@ -1,9 +1,7 @@
+import math
+
 import numpy as np
 import pandas as pd
-import random
-
-import math
-from ml_student.math_tools import mt
 
 
 class SVM():
@@ -17,30 +15,37 @@ class SVM():
     max_iter: int
         The maximum number of iterations.
     kernel: string
-        'polynomial' or 'linear'.
+        'poly' or 'linear' or 'rbf'.
+    degree : int
+        Degree of the polynomial kernel function ('poly'). 
     C: float
         Penalty term.
     """
 
-    def __init__(self, max_iter=1000, kernel='linear', C=1.0):
+    def __init__(self, max_iter=1000, kernel='linear', gamma=3, C=1.0):
         self.max_iter = max_iter
         self._kernel = kernel
+        self._gamma = gamma
         self.m = None
         self.n = None
         self.X = None
         self.Y = None
-        self.b = None
         self.alpha = None
         self.E = None
         self.C = C
+        self.w = 0
+        self.b = None
 
     def kernel(self, x1, x2):
         """ Kernel
         """
         if self._kernel == 'linear':
             return np.dot(x1, x2.T)
-        elif self._kernel == 'polynomial':
+        elif self._kernel == 'poly':
             return np.dot(x1, x2.T) ** 2
+        elif self._kernel == 'rbf':
+            distance = np.linalg.norm(x1 - x2) ** 2
+            return np.exp(-self.gamma * distance)
         else:
             return 0
 
@@ -174,6 +179,9 @@ class SVM():
             """
             self.E[i1] = self._E(i1)
             self.E[i2] = self._E(i2)
+
+        self.w = sum(np.dot(self.alpha, self.X)) + self.b
+
         return None
 
     def predict(self, X_test):

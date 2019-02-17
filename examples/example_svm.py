@@ -1,30 +1,32 @@
 import os
 import sys
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from ml_student.support_vector_machine import support_vector_machine
-from ml_student.math_tools import mt
+from mlalgo.api import SVM
 
 
 def main():
     df = pd.read_csv('data/svm.csv', header=None)
     y = df.iloc[:, -1].values
     X = df.iloc[:, :-1].values
-    X_train, X_test, y_train, y_test = mt.data_train_test_split(
-        X, y, test_size=0.4)
 
-    model = support_vector_machine.SVM(max_iter=1000, kernel='polynomial')
-    model.fit(X_train, y_train)
+    model = SVM(max_iter=1000, kernel='linear')
+    model.fit(X, y)
 
-    y_pred = model.predict(X_test)
+    print(model.w)
+    print(model.b)
 
-    accuracy = mt.calculate_accuracy_score(y_test, y_pred)
-    print("Accuracy Score: {:.2%}".format(accuracy))
+    plt.scatter(X[:, 0], X[:, 1], c=y, s=30, cmap=plt.cm.Paired)
+    x = np.linspace(0, 10)
+    y = model.w * x + model.b
+    plt.plot(x, y, 'k-')
+    plt.savefig('example_SVM.png')
 
 
 if __name__ == "__main__":

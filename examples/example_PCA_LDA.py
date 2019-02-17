@@ -9,10 +9,8 @@ from sklearn import datasets
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from ml_student.linear_discriminant_analysis import linear_discriminant_analysis
-from ml_student.principal_component_analysis import principal_component_analysis
-
-from ml_student.math_tools import mt
+from mlalgo.api import LinearDiscriminantAnalysis
+from mlalgo.api import PCA
 
 
 def main():
@@ -22,9 +20,8 @@ def main():
     y = iris.target
     target_names = iris.target_names
 
-    lda = linear_discriminant_analysis.LinearDiscriminantAnalysis(
-        n_components=2)
-    pca = principal_component_analysis.PCA(n_components=2)
+    lda = LinearDiscriminantAnalysis(n_components=2)
+    pca = PCA(n_components=2)
 
     X_r = pca.fit(X).transform(X)
     X_r2 = lda.fit(X, y).transform(X)

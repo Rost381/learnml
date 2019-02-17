@@ -1,12 +1,7 @@
 import math
-import os
-import sys
 
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-
-from ml_student.math_tools import mt
 
 
 class l1_regularization():

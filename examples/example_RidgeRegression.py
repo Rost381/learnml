@@ -9,8 +9,8 @@ from sklearn.datasets import make_regression
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from ml_student.math_tools import mt
-from ml_student.regression import regression
+from mlalgo.api import RidgeRegression
+from mlalgo.api import calculate_mean_squared_error, normalize
 
 
 def main():
@@ -21,13 +21,13 @@ def main():
     alphas = np.logspace(-3, 3, 200)
 
     for alpha in alphas:
-        model = regression.RidgeRegression(
+        model = RidgeRegression(
             alpha=alpha, max_iter=1000, learning_rate=1e-3)
         model.fit(X, y)
 
         coef = model.w
         y_pred = model.predict(X)
-        error = mt.calculate_mean_squared_error(y, y_pred)
+        error = calculate_mean_squared_error(y, y_pred)
 
         coefs.append(coef)
         errors.append(error)

@@ -56,7 +56,8 @@ def calculate_mean_squared_error(y_true, y_pred):
     return mse
 
 
-def data_train_test_split(X, y, test_size=0.5, shuffle=True, seed=None):
+'''
+def split_data(X, y, test_size=0.5, shuffle=True, seed=None):
     """ Split the data into train and test sets
     """
     if shuffle:
@@ -76,6 +77,7 @@ def shuffle_data(X, y, seed=None):
     idx = np.arange(X.shape[0])
     np.random.shuffle(idx)
     return X[idx], y[idx]
+'''
 
 
 def divide_on_feature(X, feature_i, threshold):

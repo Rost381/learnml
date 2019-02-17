@@ -1,21 +1,18 @@
-import os
-import sys
-
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from ml_student.math_tools import mt
+from mlalgo.utils.tools import covariance_matrix
 
 
 class LinearDiscriminantAnalysis():
     """ Linear Discriminant Analysis
-    
+
     Parameters:
     -----------
     n_components : int
         Number of components (< n_classes - 1) for dimensionality reduction.
     """
+
     def __init__(self, n_components):
         self.n_components = n_components
 
@@ -37,7 +34,7 @@ class LinearDiscriminantAnalysis():
             """
             S_W = \sum\limits_{i=1}^{c} (N_{i}-1) \Sigma_i
             """
-            S_W += (len(_X) - 1) * mt.covariance_matrix(_X)
+            S_W += (len(_X) - 1) * covariance_matrix(_X)
         return S_W
 
     def _S_B(self, X, y):
@@ -62,11 +59,17 @@ class LinearDiscriminantAnalysis():
         return self
 
     def transform(self, X):
-        """ SW^-1 * SB"""
+        """
+        Returns
+        -------
+        X_new : array-like, shape (n_samples, n_components)
+        """
+
+        """ SW^-1 * SB
+        """
         A = np.linalg.inv(self.s_w).dot(self.s_b)
 
-        """
-        Caculate eigenvalues and eigenvectors of SW^-1 * SB
+        """ Caculate eigenvalues and eigenvectors of SW^-1 * SB
 
         Examples:
         eigenvalues: [3, 2, 1]
@@ -77,14 +80,12 @@ class LinearDiscriminantAnalysis():
         """
         eigenvalues, eigenvectors = np.linalg.eig(A)
 
-        """
-        Sort eigenvectors from largest to smallest
+        """ Sort eigenvectors from largest to smallest
         idx: [3, 2, 1]
         """
         idx = eigenvalues.argsort()[::-1]
 
-        """
-        Select the first n_components of eigenvalues and eigenvectors
+        """ Select the first n_components of eigenvalues and eigenvectors
         
         Examples:
         eigenvalues: [3, 2]
@@ -96,8 +97,7 @@ class LinearDiscriminantAnalysis():
         eigenvalues = eigenvalues[idx][:self.n_components]
         eigenvectors = eigenvectors[:, idx][:, :self.n_components]
 
-        """
-        Project the data onto eigenvectors
+        """ Project the data onto eigenvectors
         """
         X_transformed = X.dot(eigenvectors)
 

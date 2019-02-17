@@ -1,21 +1,18 @@
-import os
-import sys
-
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from ml_student.math_tools import mt
+from mlalgo.utils.tools import covariance_matrix
 
 
 class PCA():
     """ Principal component analysis (PCA)
-    
+
     Parameters:
     -----------
     n_components : int
         Number of components to keep. 
     """
+
     def __init__(self, n_components):
         self.n_components = n_components
 
@@ -24,11 +21,16 @@ class PCA():
         return self
 
     def transform(self, X):
-        covariance_matrix = mt.covariance_matrix(X)
+        """
+        Returns
+        -------
+        X_new : array-like, shape (n_samples, n_components)
+        """
+        cov_matrix = covariance_matrix(X)
 
         """ caculate eigenvalues and eigenvectors of SW^-1 * SB
         """
-        eigenvalues, eigenvectors = np.linalg.eig(covariance_matrix)
+        eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
 
         """ sort eigenvectors from largest to smallest
         """

@@ -5,26 +5,25 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from sklearn.datasets import make_regression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import r2_score
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from ml_student.math_tools import mt
-from ml_student.regression import regression
-
-from sklearn.metrics import r2_score
+from mlalgo.api import LassoRegression
 
 
 def main():
 
     df = pd.read_csv("data/Boston.csv", index_col=0)
     y = df.iloc[:,  13].values
-    df = (df - df.mean()) / df.std()  # 基準化
+    df = (df - df.mean()) / df.std()
     X = df.iloc[:, :13].values
-    X_train, X_test, y_train, y_test = mt.data_train_test_split(
+    X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.4)
 
-    model = regression.LassoRegression(
+    model = LassoRegression(
         alpha=0.1, max_iter=1000, fit_intercept=True)
     model.fit(X_train, y_train)
 

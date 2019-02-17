@@ -4,12 +4,13 @@ import sys
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from ml_student.decision_tree import decision_tree
-from ml_student.math_tools import mt
+from mlalgo.api import RegressionTree
+from mlalgo.api import standardize, calculate_mean_squared_error
 
 
 def main():
@@ -19,16 +20,16 @@ def main():
 
     X = np.atleast_2d(df["time"].as_matrix()).T
     y = np.atleast_2d(df["temp"].as_matrix()).T
-    X = mt.standardize(X)
+    X = standardize(X)
     y = y[:, 0]
 
-    X_train, X_test, y_train, y_test = mt.data_train_test_split(
+    X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.4)
-    rt = decision_tree.RegressionTree()
+    rt = RegressionTree()
     rt.fit(X_train, y_train)
 
     y_pred = rt.predict(X_test)
-    mse = mt.calculate_mean_squared_error(y_test, y_pred)
+    mse = calculate_mean_squared_error(y_test, y_pred)
     print("MSE: {0}".format(mse))
 
     """ example 2
@@ -41,8 +42,8 @@ def main():
     y[::5] += 3 * (0.5 - rng.rand(16))
 
     # Fit regression model
-    model_1 = decision_tree.RegressionTree(max_depth=2)
-    model_2 = decision_tree.RegressionTree(max_depth=5)
+    model_1 = RegressionTree(max_depth=2)
+    model_2 = RegressionTree(max_depth=5)
     model_1.fit(X, y)
     model_2.fit(X, y)
 

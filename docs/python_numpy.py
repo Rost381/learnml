@@ -26,5 +26,16 @@ print(X[:, 1:])
 for i in range(4):
     print(X[:, i])
 
-# zero
+""" zero
+[0. 0. 0.]
+"""
 print(np.zeros(3))
+
+""" np.outer()
+Compute the outer product of two vectors.
+
+[[1 2 3]
+ [2 4 6]
+ [3 6 9]]
+"""
+print(np.outer([1, 2, 3], [1, 2, 3]))

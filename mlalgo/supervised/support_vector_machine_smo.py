@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 
-class SVM():
+class svmSMO():
     """ Support Vector Machine.
     Use Sequential minimal optimization (SMO) to solve the quadratic QP problem.
     When all the Lagrange multipliers satisfy the KKT, 

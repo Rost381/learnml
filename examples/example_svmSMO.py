@@ -8,7 +8,8 @@ import pandas as pd
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from mlalgo.api import SVM
+from mlalgo.api import svmSMO
+from sklearn.svm import SVC
 
 
 def main():
@@ -16,7 +17,7 @@ def main():
     y = df.iloc[:, -1].values
     X = df.iloc[:, :-1].values
 
-    model = SVM(max_iter=1000, kernel='linear')
+    model = svmSMO(max_iter=1000, kernel='linear')
     model.fit(X, y)
 
     print(model.w)
@@ -26,7 +27,7 @@ def main():
     x = np.linspace(0, 10)
     y = model.w * x + model.b
     plt.plot(x, y, 'k-')
-    plt.savefig('example_SVM.png')
+    plt.savefig('example_svmSMO.png')
 
 
 if __name__ == "__main__":

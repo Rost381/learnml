@@ -8,8 +8,7 @@ import pandas as pd
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from mlalgo.api import svmSMO
-from sklearn.svm import SVC
+from zero.api import svmSMO
 
 
 def main():
@@ -23,8 +22,9 @@ def main():
     print(model.w)
     print(model.b)
 
-    plt.scatter(X[:, 0], X[:, 1], c=y, s=30, cmap=plt.cm.Paired)
-    x = np.linspace(0, 10)
+    plt.scatter(X[:, 0], X[:, 1], c=y, zorder=10, cmap=plt.cm.Paired,
+                edgecolors='k')
+    x = np.linspace(2, 8)
     y = model.w * x + model.b
     plt.plot(x, y, 'k-')
     plt.savefig('example_svmSMO.png')

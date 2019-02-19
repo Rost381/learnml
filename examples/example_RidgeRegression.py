@@ -9,8 +9,8 @@ from sklearn.datasets import make_regression
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from mlalgo.api import RidgeRegression
-from mlalgo.api import calculate_mean_squared_error, normalize
+from zero.api import RidgeRegression
+from zero.utils.api import calculate_mean_squared_error, normalize
 
 
 def main():

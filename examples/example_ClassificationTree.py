@@ -8,8 +8,8 @@ from sklearn.model_selection import train_test_split
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from mlalgo.api import ClassificationTree
-from mlalgo.api import calculate_accuracy_score
+from zero.api import ClassificationTree
+from zero.utils.api import calculate_accuracy_score
 
 
 def main():

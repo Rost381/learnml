@@ -11,7 +11,7 @@ from sklearn.metrics import r2_score
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from mlalgo.api import LassoRegression
+from zero.api import LassoRegression
 
 
 def main():

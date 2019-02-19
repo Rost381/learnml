@@ -9,8 +9,8 @@ from sklearn import datasets
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from mlalgo.api import LinearDiscriminantAnalysis
-from mlalgo.api import PCA
+from zero.api import LinearDiscriminantAnalysis
+from zero.api import PCA
 
 
 def main():

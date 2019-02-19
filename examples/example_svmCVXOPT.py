@@ -8,7 +8,7 @@ import pandas as pd
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from mlalgo.api import svmCVXOPT
+from zero.api import svmCVXOPT
 
 
 def main():
@@ -25,7 +25,7 @@ def main():
     w = model.coef_
     a = -w[0] / w[1]
     xx = np.linspace(2, 8)
-    yy = a * xx - (model.intercept_) / w[1]
+    yy = a * xx - (model.intercept_[0]) / w[1]
 
     # plot the parallels to the separating hyperplane that pass through the
     # support vectors (margin away from hyperplane in direction
@@ -40,7 +40,7 @@ def main():
     plt.plot(xx, yy_down, 'k--')
     plt.plot(xx, yy_up, 'k--')
 
-    plt.scatter(model.support_vectors_[:, 0], model.support_vectors_[:, 1], s=80,
+    plt.scatter(model.support_vectors_[:, 0], model.support_vectors_[:, 1], s=180,
                 facecolors='none', zorder=10, edgecolors='k')
     plt.scatter(X[:, 0], X[:, 1], c=y, zorder=10, cmap=plt.cm.Paired,
                 edgecolors='k')

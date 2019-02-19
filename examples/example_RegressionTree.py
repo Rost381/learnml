@@ -9,8 +9,8 @@ from sklearn.model_selection import train_test_split
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from mlalgo.api import RegressionTree
-from mlalgo.api import standardize, calculate_mean_squared_error
+from zero.api import RegressionTree
+from zero.utils.api import standardize, calculate_mean_squared_error
 
 
 def main():

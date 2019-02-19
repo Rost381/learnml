@@ -3,7 +3,8 @@ import pandas as pd
 import random
 
 import math
-from mlalgo.utils.tools import divide_on_feature, calculate_entropy, calculate_variance
+from zero.utils.stats import calculate_entropy, calculate_variance
+from zero.utils.tools import divide_on_feature
 
 
 class Node():

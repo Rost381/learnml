@@ -23,8 +23,7 @@ class LinearDiscriminantAnalysis():
         return X.shape[1]
 
     def _S_W(self, X, y):
-        """ Caculate SW
-        """
+        """ Caculate SW """
         labels = self._labels(y)
         n_features = self._n_features(X)
         S_W = np.empty((n_features, n_features))
@@ -38,8 +37,7 @@ class LinearDiscriminantAnalysis():
         return S_W
 
     def _S_B(self, X, y):
-        """ Caculate SB
-        """
+        """ Caculate SB """
         labels = self._labels(y)
         n_features = self._n_features(X)
         overall_mean = np.mean(X, axis=0)
@@ -65,8 +63,7 @@ class LinearDiscriminantAnalysis():
         X_new : array-like, shape (n_samples, n_components)
         """
 
-        """ SW^-1 * SB
-        """
+        """ SW^-1 * SB """
         A = np.linalg.inv(self.s_w).dot(self.s_b)
 
         """ Caculate eigenvalues and eigenvectors of SW^-1 * SB
@@ -97,8 +94,7 @@ class LinearDiscriminantAnalysis():
         eigenvalues = eigenvalues[idx][:self.n_components]
         eigenvectors = eigenvectors[:, idx][:, :self.n_components]
 
-        """ Project the data onto eigenvectors
-        """
+        """ Project the data onto eigenvectors """
         X_transformed = X.dot(eigenvectors)
 
         return X_transformed

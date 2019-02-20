@@ -14,8 +14,7 @@ class l1_regularization():
         self.alpha = alpha
 
     def __call__(self, w):
-        """ np.linalg.norm
-        """
+        """ np.linalg.norm """
         return self.alpha * np.linalg.norm(w)
 
     def grad(self, w):
@@ -234,8 +233,7 @@ class LassoRegression(Regression):
                     beta[0] = np.sum(
                         y - np.dot(X[:, 1:], beta[1:])) / (X.shape[0])
 
-        """ Caculate intercept_ and coef_
-        """
+        """ Caculate intercept_ and coef_ """
         if self.fit_intercept:
             self.intercept_ = beta[0]
             self.coef_ = beta[1:]

@@ -121,8 +121,7 @@ class svmCVXOPT():
                 i] * self.kernel(self.support_vectors_[i], self.support_vectors_[0])
         """
 
-        """ Caculate weight
-        """
+        """ Caculate weight """
         alphas = np.array(solution['x'])
         self.coef_ = np.array((np.sum(alphas * y[:, None] * X, axis=0)))
         self.intercept_ = (self.support_vector_labels_ -

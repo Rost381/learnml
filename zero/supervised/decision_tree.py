@@ -61,8 +61,7 @@ class DecisionTree():
         if len(np.shape(y)) == 1:
             y = np.expand_dims(y, axis=1)
 
-        """ Train data
-        """
+        """ Xy : Train data """
         Xy = np.concatenate((X, y), axis=1)
 
         """ Returns the shape of X as tuple
@@ -96,8 +95,7 @@ class DecisionTree():
                     Xy1, Xy2 = divide_on_feature(Xy, feature_i, threshold)
 
                     if len(Xy1) > 0 and len(Xy2) > 0:
-                        """ Select the y values of the two sets
-                        """
+                        """ Select the y values of the two sets """
                         y1 = Xy1[:, n_features:]
                         y2 = Xy2[:, n_features:]
 
@@ -126,8 +124,7 @@ class DecisionTree():
                             }
 
         if largest_impurity > self.min_impurity:
-            """ Build subtrees for the right and left branches
-            """
+            """ Build subtrees for the right and left branches """
             true_branch = self._build_tree(
                 best_sets["leftX"], best_sets["lefty"], current_depth + 1)
             false_branch = self._build_tree(
@@ -137,8 +134,7 @@ class DecisionTree():
                         true_branch=true_branch,
                         false_branch=false_branch)
 
-        """ We're at leaf => determine value
-        """
+        """ We're at leaf => determine value """
         leaf_value = self._leaf_value_calculation(y)
         return Node(value=leaf_value)
 
@@ -168,16 +164,14 @@ class DecisionTree():
         return self.predict_value(x, branch)
 
     def predict(self, X):
-        """ Classify samples one by one and return the set of labels
-        """
+        """ Classify samples one by one and return the set of labels """
         y_pred = []
         for x in X:
             y_pred.append(self.predict_value(x))
         return y_pred
 
     def print_tree(self, tree=None, indent=" "):
-        """ Recursively print the decision tree
-        """
+        """ Recursively print the decision tree """
         if not tree:
             tree = self.root
 
@@ -197,13 +191,10 @@ class DecisionTree():
 
 
 class ClassificationTree(DecisionTree):
-    """ Classification Tree
-    """
+    """ Classification Tree """
 
     def _info_gain(self, y, y1, y2):
-        """
-        split tree by info gain
-        """
+        """ Split tree by info gain """
         p = len(y1) / len(y)
         entropy = calculate_entropy(y)
         info_gain = entropy - p * \
@@ -212,8 +203,7 @@ class ClassificationTree(DecisionTree):
         return info_gain
 
     def _majority_vote(self, y):
-        """ leaf, max count
-        """
+        """ leaf, max count """
         most_common = None
         max_count = 0
         for label in np.unique(y):
@@ -231,12 +221,10 @@ class ClassificationTree(DecisionTree):
 
 
 class RegressionTree(DecisionTree):
-    """ Regression Tree
-    """
+    """ Regression Tree """
 
     def _variance_reduction(self, y, y1, y2):
-        """ Split tree by variance reduction
-        """
+        """ Split tree by variance reduction """
         var_tot = calculate_variance(y)
         var_1 = calculate_variance(y1)
         var_2 = calculate_variance(y2)
@@ -246,8 +234,7 @@ class RegressionTree(DecisionTree):
         return sum(variance_reduction)
 
     def _mean_of_y(self, y):
-        """ Leaf, mean
-        """
+        """ Leaf, mean """
         value = np.mean(y, axis=0)
         return value if len(value) > 1 else value[0]
 

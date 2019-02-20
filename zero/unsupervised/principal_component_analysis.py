@@ -28,16 +28,13 @@ class PCA():
         """
         cov_matrix = covariance_matrix(X)
 
-        """ caculate eigenvalues and eigenvectors of SW^-1 * SB
-        """
+        """ caculate eigenvalues and eigenvectors of SW^-1 * SB """
         eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
 
-        """ sort eigenvectors from largest to smallest
-        """
+        """ sort eigenvectors from largest to smallest """
         idx = eigenvalues.argsort()[::-1]
 
-        """ select the first n_components of eigenvalues
-        """
+        """ select the first n_components of eigenvalues """
         eigenvalues = eigenvalues[idx][:self.n_components]
         eigenvectors = eigenvectors[:, idx][:, :self.n_components]
 

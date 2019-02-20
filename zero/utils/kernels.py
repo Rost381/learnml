@@ -3,13 +3,13 @@ import numpy as np
 
 def linear(**kwargs):
     def f(x1, x2):
-        return np.inner(x1, x2)
+        return np.dot(x1, x2)
     return f
 
 
 def poly(degree, coef0, **kwargs):
     def f(x1, x2):
-        return (np.inner(x1, x2) + coef0)**degree
+        return (np.dot(x1, x2) + coef0)**degree
     return f
 
 

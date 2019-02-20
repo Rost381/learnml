@@ -19,5 +19,5 @@ def calculate_mean_squared_error(y_true, y_pred):
     y_pred:list
     """
     mse = np.mean(np.power(y_true - y_pred, 2))
-    #print("MSE: {0}".format(mse))
+    # print("MSE: {0}".format(mse))
     return mse

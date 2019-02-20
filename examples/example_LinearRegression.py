@@ -6,9 +6,6 @@ import pandas as pd
 from sklearn.datasets import make_regression
 from sklearn.model_selection import train_test_split
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-os.chdir(os.path.dirname(os.path.realpath(__file__)))
-
 from zero.api import LinearRegression
 from zero.utils.api import calculate_mean_squared_error
 

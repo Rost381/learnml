@@ -16,12 +16,7 @@ model = LinearRegression()
 model.fit(X, y)
 ```
 
-## Usage
-Run exmaple_*.py under examples/ folder.
-
 ## Docs
-
-## Mathematics and Python
 Read theses simple code used in 'Zero' before learning algorithms.
 * Mathematics
   * [Singular value decomposition(SVD)](./docs/singular_value_decomposition.py)
@@ -32,21 +27,16 @@ Read theses simple code used in 'Zero' before learning algorithms.
 
 ## Algorithms
 ### Supervised Learning
-* #### Regression
+- **Regression** [[Code](./zero/supervised/regression.py)]
+  * Linear Regression  [[Example](./examples/example_LinearRegression.py)]
+  * Lasso Regression [[Example](./examples/example_LassoRegression.py)]
+  * Ridge Regression [[Example](./examples/example_RidgeRegression.py)]
 
-| Linear Regression | Lasso Regression | Ridge Regression |
-| --- | --- | --- |
-| Least squared error | L1 regularization| L2 regularization |
-| SVD [[Code](./zero/supervised/regression.py)] [[Example](./examples/example_LinearRegression.py)] | Coordinate descent [[Paper](https://core.ac.uk/download/pdf/6287975.pdf)] [[Code](./zero/supervised/regression.py)] [[Example](./examples/example_LassoRegression.py)] | Gradient descent [[Code](./zero/supervised/regression.py)] [[Example](./examples/example_RidgeRegression.py)] |
+- **Support Vector Machine** [[Code](./zero/supervised/support_vector_machine_cvxopt.py)] [[Example](./examples/example_svmCVXOPT.py)] 
 
-* #### Support Vector Machine
-    **Convex optimization** [[Code](./zero/supervised/support_vector_machine_cvxopt.py)] [[Example](./examples/example_svmCVXOPT.py)] | **SMO** [[Paper](https://pdfs.semanticscholar.org/59ee/e096b49d66f39891eb88a6c84cc89acba12d.pdf)] [[Code](./zero/supervised/support_vector_machine_smo.py)] [[Example](./examples/example_svmSMO.py)]
-
-* #### Decision Trees
-
-| Classification Tree | RegressionTree |
-| --- | --- |
-| Information gain [[Code](./zero/supervised/decision_tree.py)] [[Example](./examples/example_ClassificationTree.py)]| Variance reduction [[Code](./zero/supervised/decision_tree.py)] [[Example](./examples/example_RegressionTree.py)] |
+- **Decision Trees**
+  * Classification Tree [[Code](./zero/supervised/decision_tree.py)] [[Example](./examples/example_ClassificationTree.py)]
+  * RegressionTree [[Code](./zero/supervised/decision_tree.py)] [[Example](./examples/example_RegressionTree.py)]
 
 - **Linear Discriminant Analysis** [[Code](./zero/supervised/linear_discriminant_analysis.py)] [[Example](./examples/example_PCA_LDA.py)]
 

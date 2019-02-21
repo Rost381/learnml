@@ -10,13 +10,13 @@ os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 from zero.api import ClassificationTree
 from zero.utils.api import calculate_accuracy_score
-
+from zero.datasets.api import load_banknote
 
 def main():
-    df = pd.read_csv("data/banknote.csv", header=None)
-
-    y = df.iloc[:, -1].values
-    X = df.iloc[:, :-1].values
+    data = load_banknote()
+    X = data.data
+    y = data.target
+    
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.4)
 

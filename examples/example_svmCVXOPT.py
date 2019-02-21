@@ -5,18 +5,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-os.chdir(os.path.dirname(os.path.realpath(__file__)))
-
 from zero.api import svmCVXOPT
 
 
 def main():
-    df = pd.read_csv('data/svm.csv', header=None)
-    y = df.iloc[:, -1].values
-    X = df.iloc[:, :-1].values
+    X = np.r_[np.random.randn(20, 2) - [2, 2], np.random.randn(20, 2) + [2, 2]]
+    y = [-1] * 20 + [1] * 20
 
-    model = svmCVXOPT()
+    model = svmCVXOPT(kernel='linear')
     model.fit(X, y)
 
     print(model.coef_, model.intercept_)
@@ -24,7 +20,7 @@ def main():
 
     w = model.coef_
     a = -w[0] / w[1]
-    xx = np.linspace(2, 8)
+    xx = np.linspace(-4, 4)
     yy = a * xx - (model.intercept_[0]) / w[1]
 
     # plot the parallels to the separating hyperplane that pass through the
@@ -45,7 +41,7 @@ def main():
     plt.scatter(X[:, 0], X[:, 1], c=y, zorder=10, cmap=plt.cm.Paired,
                 edgecolors='k')
 
-    plt.savefig('example_svmCVXOPT.png')
+    plt.savefig('./examples/example_svmCVXOPT.png')
 
 
 if __name__ == "__main__":

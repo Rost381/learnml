@@ -64,7 +64,7 @@ def main():
     plt.title("Decision Tree Regression")
     plt.legend()
     # plt.show()
-    plt.savefig('example_RegressionTree.png')
+    plt.savefig('./examples/example_RegressionTree.png')
 
 
 if __name__ == "__main__":

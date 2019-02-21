@@ -56,6 +56,8 @@ class svmCVXOPT():
         self.intercept_ = None
 
     def fit(self, X, y):
+        X = np.array(X)
+        y = np.array(y)
         n_samples, n_features = np.shape(X)
 
         if not self._gamma:
@@ -78,8 +80,16 @@ class svmCVXOPT():
         P = cvxopt.matrix(np.outer(y, y) * kernel_matrix, tc='d')
         q = cvxopt.matrix(np.ones(n_samples) * -1)
 
-        G = cvxopt.matrix(np.identity(n_samples) * -1)
-        h = cvxopt.matrix(np.zeros(n_samples))
+        if not self._C:
+            G = cvxopt.matrix(np.identity(n_samples) * -1)
+            h = cvxopt.matrix(np.zeros(n_samples))
+        else:
+            G_max = np.identity(n_samples) * -1
+            G_min = np.identity(n_samples)
+            G = cvxopt.matrix(np.vstack((G_max, G_min)))
+            h_max = cvxopt.matrix(np.zeros(n_samples))
+            h_min = cvxopt.matrix(np.ones(n_samples) * self._C)
+            h = cvxopt.matrix(np.vstack((h_max, h_min)))
 
         A = cvxopt.matrix(y, (1, n_samples), tc='d')
         b = cvxopt.matrix(0, tc='d')
@@ -112,13 +122,16 @@ class svmCVXOPT():
         self._lagr_multipliers = lagr_mult[idx]
         self.support_vectors_ = X[idx]
         self.support_vector_labels_ = y[idx]
+ 
 
-        """ Caculate intercept
+        """ Caculate intercept """
         
         self.intercept_ = self.support_vector_labels_[0]
+
+        """
         for i in range(len(self._lagr_multipliers)):
             self.intercept_ -= self._lagr_multipliers[i] * self.support_vector_labels_[
-                i] * self.kernel(self.support_vectors_[i], self.support_vectors_[0])
+                i] * self._kernel(self.support_vectors_[i], self.support_vectors_[0])
         """
 
         """ Caculate weight """

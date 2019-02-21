@@ -3,22 +3,19 @@ import sys
 
 import numpy as np
 import pandas as pd
-from sklearn.datasets import make_regression
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-os.chdir(os.path.dirname(os.path.realpath(__file__)))
+from sklearn.model_selection import train_test_split
 
 from zero.api import LassoRegression
+from zero.datasets.api import load_boston
+from zero.utils.api import standardize
 
 
 def main():
+    boston = load_boston()
+    y = boston.target
+    X = standardize(boston.data)
 
-    df = pd.read_csv("data/Boston.csv", index_col=0)
-    y = df.iloc[:,  13].values
-    df = (df - df.mean()) / df.std()
-    X = df.iloc[:, :13].values
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.4)
 

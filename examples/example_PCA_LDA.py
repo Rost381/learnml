@@ -4,17 +4,13 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from sklearn import datasets
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-os.chdir(os.path.dirname(os.path.realpath(__file__)))
-
-from zero.api import LinearDiscriminantAnalysis
-from zero.api import PCA
+from zero.api import PCA, LinearDiscriminantAnalysis
+from zero.datasets.api import load_iris
 
 
 def main():
-    iris = datasets.load_iris()
+    iris = load_iris()
 
     X = iris.data
     y = iris.target
@@ -47,7 +43,7 @@ def main():
                     label=target_name)
     plt.legend(loc='best', shadow=False, scatterpoints=1)
     plt.title('LDA of IRIS dataset')
-    plt.savefig('example_PCA_LDA.png')
+    plt.savefig('./examples/example_PCA_LDA.png')
 
 
 if __name__ == "__main__":

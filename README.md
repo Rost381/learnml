@@ -9,9 +9,17 @@ $ git clone https://github.com/byzhi/zero
 $ cd zero
 $ python setup.py install
 ```
+## Demo
+```python
+from zero.api import LinearRegression
+model = LinearRegression()
+model.fit(X, y)
+```
 
 ## Usage
 Run exmaple_*.py under examples/ folder.
+
+## Docs
 
 ## Mathematics and Python
 Read theses simple code used in 'Zero' before learning algorithms.

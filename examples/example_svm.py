@@ -5,14 +5,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from zero.api import svmCVXOPT
+from zero.api import svm
 
 
 def main():
     X = np.r_[np.random.randn(20, 2) - [2, 2], np.random.randn(20, 2) + [2, 2]]
     y = [-1] * 20 + [1] * 20
 
-    model = svmCVXOPT(kernel='linear')
+    model = svm(kernel='linear')
     model.fit(X, y)
 
     print(model.coef_, model.intercept_)
@@ -21,7 +21,7 @@ def main():
     w = model.coef_
     a = -w[0] / w[1]
     xx = np.linspace(-4, 4)
-    yy = a * xx - (model.intercept_[0]) / w[1]
+    yy = a * xx - (model.intercept_) / w[1]
 
     # plot the parallels to the separating hyperplane that pass through the
     # support vectors (margin away from hyperplane in direction
@@ -41,7 +41,7 @@ def main():
     plt.scatter(X[:, 0], X[:, 1], c=y, zorder=10, cmap=plt.cm.Paired,
                 edgecolors='k')
 
-    plt.savefig('./examples/example_svmCVXOPT.png')
+    plt.savefig('./examples/example_svm.png')
 
 
 if __name__ == "__main__":

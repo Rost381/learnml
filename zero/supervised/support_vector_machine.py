@@ -7,7 +7,7 @@ from zero.utils.kernels import linear, poly, rbf
 cvxopt.solvers.options['show_progress'] = False
 
 
-class svmCVXOPT():
+class svm():
     """ Support Vector Machine.
     Use cvxopt to solve the quadratic QP problem.
 
@@ -128,17 +128,19 @@ class svmCVXOPT():
         
         self.intercept_ = self.support_vector_labels_[0]
 
-        """
+        
         for i in range(len(self._lagr_multipliers)):
             self.intercept_ -= self._lagr_multipliers[i] * self.support_vector_labels_[
                 i] * self._kernel(self.support_vectors_[i], self.support_vectors_[0])
-        """
 
         """ Caculate weight """
         alphas = np.array(solution['x'])
         self.coef_ = np.array((np.sum(alphas * y[:, None] * X, axis=0)))
+
+        """
         self.intercept_ = (self.support_vector_labels_ -
                            np.dot(self.support_vectors_, self.coef_))
+        """
 
     def predict(self, X):
         y_pred = []

@@ -1,7 +1,7 @@
-# Machine learning algorithms
+# Zero: Machine learning algorithms for learning
 
-## Getting Started
-Minimal implementation of machine learning algorithms from Zero. This project was designed for easily learning algorithms. For readability, python source code are all with friendly comments.
+## Description
+Minimal implementation of machine learning algorithms from Zero. This project was designed for easily learning algorithms. Friendly code comments! Friendly document!
 
 ## Installation
 ```
@@ -9,41 +9,34 @@ $ git clone https://github.com/byzhi/zero
 $ cd zero
 $ python setup.py install
 ```
-## Demo
+## Usage
 ```python
 from zero.api import LinearRegression
 model = LinearRegression()
 model.fit(X, y)
 ```
 
-## Docs
-Read theses simple code used in 'Zero' before learning algorithms.
-* Mathematics
-  * [Singular value decomposition(SVD)](./docs/singular_value_decomposition.py)
-  * [Quadratic program](./docs/quadratic_program.py)
-* Python
-  * [Classes](./docs/python_class.py)
-  * [Numpy](./docs/python_numpy.py)
+## Document
+Read this friendly [document](./docs/README.md) before checking code.
 
 ## Algorithms
 ### Supervised Learning
-- **Regression** [[Code](./zero/supervised/regression.py)]
-  * Linear Regression  [[Example](./examples/example_LinearRegression.py)]
-  * Lasso Regression [[Example](./examples/example_LassoRegression.py)]
-  * Ridge Regression [[Example](./examples/example_RidgeRegression.py)]
+-  [**Regression**](./zero/supervised/regression.py)
+  ([Linear Example](./examples/example_LinearRegression.py))
+  ([Lasso Example](./examples/example_LassoRegression.py))
+  ([Ridge Example](./examples/example_RidgeRegression.py))
 
-- **Support Vector Machine** [[Code](./zero/supervised/support_vector_machine_cvxopt.py)] [[Example](./examples/example_svmCVXOPT.py)] 
+-  [**Support Vector Machine**](./zero/supervised/support_vector_machine.py) ([Example 01](./examples/example_svm.py)) ([Example 02](./examples/example_svm_02.py))
 
-- **Decision Trees**
-  * Classification Tree [[Code](./zero/supervised/decision_tree.py)] [[Example](./examples/example_ClassificationTree.py)]
-  * RegressionTree [[Code](./zero/supervised/decision_tree.py)] [[Example](./examples/example_RegressionTree.py)]
+-  [**Classification Tree**](./zero/supervised/decision_tree.py) ([Example](./examples/example_ClassificationTree.py))
+-  [**RegressionTree**](./zero/supervised/decision_tree.py) ([Example](./examples/example_RegressionTree.py))
 
-- **Linear Discriminant Analysis** [[Code](./zero/supervised/linear_discriminant_analysis.py)] [[Example](./examples/example_PCA_LDA.py)]
+- [**Linear Discriminant Analysis**](./zero/supervised/linear_discriminant_analysis.py) ([Example](./examples/example_PCA_LDA.py))
 
 ---
 
 ### Unsupervised Learning
-- **Principal Component Analysis** [[Code](./zero/unsupervised/principal_component_analysis.py)]  [[Example](./examples/example_PCA_LDA.py)]
+-  [**Principal Component Analysis**](./zero/unsupervised/principal_component_analysis.py) ([Example](./examples/example_PCA_LDA.py))
 
 
 ---

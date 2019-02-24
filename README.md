@@ -1,7 +1,7 @@
 # Zero: Machine learning algorithms for learning
 
 ## Description
-Minimal implementation of machine learning algorithms from Zero. This project was designed for easily learning algorithms. Friendly code comments! Friendly document!
+Machine learning algorithms tutorial. Friendly code. Friendly document. Minimal implementation of machine learning algorithms from Zero, designed for easily learning algorithms.
 
 ## Installation
 ```
@@ -17,14 +17,16 @@ model.fit(X, y)
 ```
 
 ## Document
-Read this friendly [document](./docs/README.md) before checking code.
+Friendly [document](./docs/README.md) here.
 
 ## Algorithms
+Friendly code here.
 ### Supervised Learning
 -  [**Regression**](./zero/supervised/regression.py)
   ([Linear Example](./examples/example_LinearRegression.py))
   ([Lasso Example](./examples/example_LassoRegression.py))
   ([Ridge Example](./examples/example_RidgeRegression.py))
+  ([Polynomial Ridge Example](./examples/example_PolynomialRidgeRegression.py))
 
 -  [**Support Vector Machine**](./zero/supervised/support_vector_machine.py) ([Example 01](./examples/example_svm.py)) ([Example 02](./examples/example_svm_02.py))
 

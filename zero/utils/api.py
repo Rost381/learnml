@@ -12,3 +12,5 @@ from .metrics import (
 from .tools import divide_on_feature
 
 from .plot import make_meshgrid, plot_contours
+
+from .preprocessing import PolynomialFeatures

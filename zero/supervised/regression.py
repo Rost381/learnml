@@ -3,6 +3,9 @@ import math
 import numpy as np
 import pandas as pd
 
+from zero.utils.preprocessing import PolynomialFeatures
+from zero.utils.stats import normalize
+
 
 class l1_regularization():
     """ L1 regularization
@@ -62,7 +65,7 @@ class Regression(object):
         X = np.insert(X, 0, 1, axis=1)
         self.training_errors = []
         self._init_weights(n_features=X.shape[1])
-
+        m = len(y)
         for i in range(self.max_iter):
             y_pred = X.dot(self.w)
             mse = np.mean(0.5 * (y - y_pred)**2 + self.regularization(self.w))
@@ -253,3 +256,21 @@ class LassoRegression(Regression):
             y_pred = X.dot(self.w)
         return y_pred
         super(LassoRegression, self).predict(X)
+
+
+class PolynomialRidgeRegression(Regression):
+    """ """
+    def __init__(self, degree, reg_factor, max_iter=3000, learning_rate=0.001, gradient_descent=True):
+        self.degree = degree
+        self.regularization = l2_regularization(alpha=reg_factor)
+        self.regularization.grad = lambda x: 0
+        super(PolynomialRidgeRegression, self).__init__(
+            max_iter=max_iter, learning_rate=learning_rate)
+
+    def fit(self, X, y):
+        X = normalize(PolynomialFeatures(X, degree=self.degree))
+        super(PolynomialRidgeRegression, self).fit(X, y)
+
+    def predict(self, X):
+        X = normalize(PolynomialFeatures(X, degree=self.degree))
+        return super(PolynomialRidgeRegression, self).predict(X)

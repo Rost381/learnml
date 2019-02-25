@@ -5,18 +5,16 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-os.chdir(os.path.dirname(os.path.realpath(__file__)))
-
 from zero.api import ClassificationTree
-from zero.utils.api import calculate_accuracy_score
 from zero.datasets.api import load_banknote
+from zero.utils.api import calculate_accuracy_score
+
 
 def main():
     data = load_banknote()
     X = data.data
     y = data.target
-    
+
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.4)
 

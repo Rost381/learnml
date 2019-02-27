@@ -43,6 +43,10 @@ class LogisticRegression(object):
         return self.w
 
     def predict_proba(self, X):
+        """ predict_proba
+        Probability estimates.
+        The returned estimates for all classes are ordered by the label of classes.
+        """
         y_proba = list()
         if self.fit_intercept:
             X = np.insert(X, 0, 1, axis=1)

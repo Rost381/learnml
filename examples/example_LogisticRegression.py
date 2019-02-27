@@ -1,5 +1,3 @@
-import math
-
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -24,14 +22,13 @@ def main():
     X_new = np.linspace(0, 3, 1000).reshape(-1, 1)
     y_proba = model.predict_proba(X_new)
 
-    plt.plot(X_new, y_proba[:, 0], "r--",
-             linewidth=2, label="Not Iris-Virginica")
-    plt.plot(X_new, y_proba[:, 1], "g-", linewidth=2, label="Iris-Virginica")
+    plt.plot(X_new, y_proba[:, 0], "r--", label="Not Iris-Virginica")
+    plt.plot(X_new, y_proba[:, 1], "g-", label="Iris-Virginica")
 
-    plt.plot(X[y == 0], y[y == 0], "rs")
-    plt.plot(X[y == 1], y[y == 1], "gs")
+    plt.plot(X[y == 0], y[y == 0], "ro")
+    plt.plot(X[y == 1], y[y == 1], "go")
     plt.legend()
-    # plt.show()
+    plt.show()
     plt.savefig("./examples/example_LogisticRegression.png")
 
 

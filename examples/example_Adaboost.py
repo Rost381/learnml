@@ -1,6 +1,6 @@
 import numpy as np
 
-from zero.api import Adaboost
+from zero.api import AdaBoostClassifier
 from zero.datasets.api import load_iris
 
 
@@ -17,12 +17,10 @@ def main():
         return np.array(features), np.array(labels)
 
     X, y = load_simple_data()
-    model = Adaboost(max_iter=5)
+    model = AdaBoostClassifier(n_estimators=5)
     model.fit(X, y)
 
     y_pred = model.predict(X)
-
-    print(y, y_pred)
 
 
 if __name__ == "__main__":

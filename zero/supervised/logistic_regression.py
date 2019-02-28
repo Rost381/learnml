@@ -33,7 +33,7 @@ class LogisticRegression(object):
 
         self.w = np.zeros(X.shape[1])
 
-        for i in range(self.max_iter):
+        for _ in range(self.max_iter):
             scores = np.dot(X, self.w)
             y_pred = self.sigmoid(scores)
 

@@ -3,9 +3,7 @@ X = np.array([[1, 2, 3, 4],
               [5, 6, 7, 8],
               [9, 10, 11, 12]])
 
-""" shape
-shape of X = 3 x 4
-"""
+""" shape of X = 3 x 4 """
 print(X.shape[0])
 
 
@@ -39,3 +37,10 @@ Compute the outer product of two vectors.
  [3 6 9]]
 """
 print(np.outer([1, 2, 3], [1, 2, 3]))
+
+""" [False, False ...] """
+n = np.array([1, 2, 3])
+f = [False, True, False]
+
+n[f] = 1
+print(n)  # [1 1 3]

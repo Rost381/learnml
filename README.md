@@ -1,15 +1,20 @@
-# Zero: Machine learning algorithms for learning
+<div align="center">
 
-## Description
+![](docs/logo.png)
+
+# zero
+> Machine learning algorithms learning for Humans
+
+![](https://img.shields.io/badge/python-3.5%20%7C%203.6%20%7C%203.7-blue.svg)
+
+![](http://progressed.io/bar/25?title=done)
+
+</div>
+
 Machine learning algorithms tutorial. Friendly code. Friendly document. Minimal implementation of machine learning algorithms from Zero, designed for easily learning algorithms.
 
-## Installation
-```
-$ git clone https://github.com/byzhi/zero
-$ cd zero
-$ python setup.py install
-```
-## Usage
+## Getting started
+Linear regression demo.
 ```python
 from zero.api import LinearRegression
 model = LinearRegression()

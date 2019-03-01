@@ -3,15 +3,18 @@
 ![](docs/logo.png)
 
 # zero
-> Machine learning algorithms learning for Humans
+> Write Machine learning algorithms from Zero
 
 ![](https://img.shields.io/badge/python-3.5%20%7C%203.6%20%7C%203.7-blue.svg)
-
-![](http://progressed.io/bar/25?title=done)
+![](https://img.shields.io/badge/machine%20learning-algorithms-brightgreen.svg)
+![](http://progressed.io/bar/25?)
 
 </div>
 
-Machine learning algorithms tutorial. Friendly code. Friendly document. Minimal implementation of machine learning algorithms from Zero, designed for easily learning algorithms.
+## Features
+- Friendly code and document.
+- Minimal implementation from Zero.
+- Designed for easily learning algorithms.
 
 ## Getting started
 Linear regression demo.
@@ -22,7 +25,7 @@ model.fit(X, y)
 ```
 
 ## Document
-Friendly [document](./docs/README.md) here.
+[Here](./docs/README.md).
 
 ## Algorithms
 

@@ -1,168 +1,174 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>AdaBoostClassifier - Zero</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "AdaBoostClassifier";
-    var mkdocs_page_input_path = "AdaBoostClassifier.md";
-    var mkdocs_page_url = null;
-  </script>
-  
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>AdaBoostClassifier - Zero</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Write Machine learning algorithms from Zero">
+<meta name="generator" content="mkdocs-1.0.4, mkdocs-gitbook-1.0.7">
+<meta name="author" content="byzhi">
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../css/style.min.css" rel="stylesheet"> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body>
+<div class="book">
+<div class="book-summary">
 
-  <div class="wy-grid-for-nav">
-
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-      <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> Zero</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
-  </form>
+<!--
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
 </div>
-      </div>
+-->
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="..">Home</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">AdaBoostClassifier</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#adaboost">AdaBoost</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#algorithms">Algorithms</a></li>
-        
-        </ul>
-    
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href=".." target="_blank" class="custom-link">Zero</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="">
+<a href="..">Home</a>
+<li class="chapter active" data-path="AdaBoostClassifier/">
+<a href="./">AdaBoostClassifier</a>
+<li class="chapter" data-path="svm/">
+<a href="../svm/">About</a>
+<li class="divider"></li>
 
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../about/">About</a>
-	    </li>
-          
-        </ul>
-      </div>
-      &nbsp;
-    </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+<!--
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
 
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">Zero</a>
-      </nav>
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>-->
+</ul>
 
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
-    
-      
-    
-    <li>AdaBoostClassifier</li>
-    <li class="wy-breadcrumbs-aside">
-      
-    </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main">
-            <div class="section">
-              
-                <h1 id="adaboost">AdaBoost</h1>
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+
+<!--
+<div id="book-search-results">
+<div class="search-noresults">-->
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="adaboost">AdaBoost</h1>
 <p>An AdaBoost classifier is a meta-estimator that begins by fitting a classifier on the original dataset and then fits additional copies of the classifier on the same dataset but where the weights of incorrectly classified instances are adjusted such that subsequent classifiers focus more on difficult cases.</p>
-<h2 id="algorithms">Algorithms</h2>
-<p>We know that $a=\sqrt{b}$.</p>
+<h2 id="algorithms-discrete-adaboost">Algorithms (Discrete AdaBoost)</h2>
+<p>Initialize the weights ${\displaystyle w_{1,1}\dots w_{n,1}}$ set to ${\displaystyle {\frac {1}{n}}}$</p>
 <pre><code class="python">w = np.full(n_samples, (1 / n_samples))
 </code></pre>
 
-<p>When (a \ne 0), there are two solutions to (ax^2 + bx + c = 0) and they are
-$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$</p>
-              
-            </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../about/" class="btn btn-neutral float-right" title="About">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
-  
+<p><strong>while</strong> $m \leq M$ <strong>do</strong></p>
+<p>Calculate minimum error
+$$
+\operatorname { err } _ { m } = \sum _ { i = 1 } ^ { N } w _ { i } ^ { ( m ) } h \left( - y _ { i } H _ { m } \left( \mathbf { x } _ { \mathbf { i } } \right) \right)
+$$</p>
+<pre><code class="python">error = sum(w[y != prediction])
+</code></pre>
 
-  <hr/>
+<p>Calcuate alpha</p>
+<p>Minimize</p>
+<p>$$\sum_{i}w_{i}e^{-y_{i}h_{i}\alpha_{t}}$$</p>
+<p>Using the convexity of the exponential function</p>
+<p>$$
+\sum _ { i } w _ { i } e ^ { - y _ { i } h _ { i } \alpha _ { t } } \leq \sum _ { i } \left( \frac { 1 - y _ { i } h _ { i } } { 2 } \right) w _ { i } e ^ { \alpha _ { t } } + \sum _ { i } \left( \frac { 1 + y _ { i } h _ { i } } { 2 } \right) w _ { i } e ^ { - \alpha _ { t } }
+$$</p>
+<p>$$
+= \left( \frac { \epsilon _ { t } } { 2 } \right) e ^ { \alpha _ { t } } + \left( \frac { 1 - \epsilon _ { t } } { 2 } \right) e ^ { - \alpha _ { t } }
+$$</p>
+<p>Set it to zero to find the minimum</p>
+<p>$$
+\left( \frac { \epsilon _ { t } } { 2 } \right) e ^ { \alpha _ { t } } - \left( \frac { 1 - \epsilon _ { t } } { 2 } \right) e ^ { - \alpha _ { t } } = 0
+$$</p>
+<p>So</p>
+<p>$$
+\alpha _ { m } = \frac { 1 } { 2 } \log \left( \frac { 1 - \operatorname { err } _ { m } } { \operatorname { err } _ { m } } \right)
+$$</p>
+<pre><code class="python">stump.alpha = 0.5 * math.log((1 - error_min) / (error_min + 1e-6))
+</code></pre>
 
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-    
-  </div>
+<p>For each sample i = 1,...,N, update the weight</p>
+<p>$$
+w _ { i } ^ { ( m ) } = w _ { i } ^ { ( m ) } \exp \left( - \alpha _ { m } y _ { i } H _ { m } \left( \mathbf { x } _ { \mathbf { i } } \right) \right)
+$$</p>
+<pre><code class="python">w *= np.exp(-stump.alpha * y * predictions)
+</code></pre>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
-      
-        </div>
-      </div>
+<p>Renormalize the weights: $S _ { m } = \sum _ { j = 1 } ^ { N } v _ { j }$ and, for $i = 1 , \dots , N$</p>
+<p>$$
+w _ { i } ^ { ( m + 1 ) } = v _ { i } ^ { ( m ) } / S _ { m }$$</p>
+<pre><code class="python">w /= np.sum(w)
+</code></pre>
 
-    </section>
+<p>$
+m \leftarrow m + 1
+$</p>
+<p><strong>end while</strong></p>
+<p>Predict:
+$$
+H ( \mathbf { x } ) = \operatorname { sign } \left( \sum _ { j = 1 } ^ { M } \alpha _ { j } H _ { j } ( \mathbf { x } ) \right)
+$$</p>
 
-  </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-      
-        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../about/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+</section>
+
+<!--
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme.js" defer></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML" defer></script>
-      <script src="../search/main.js" defer></script>
+<div class="search-results">
+<div class="has-results">
 
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div>
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div>
+</div>
+</div>
+-->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script src="../js/mathjaxhelper.js"></script>
+<script src="../search/main.js"></script>
+<script src="../js/gitbook.min.js"></script>
+<script src="../js/theme.min.js"></script>
 </body>
 </html>

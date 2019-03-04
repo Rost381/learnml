@@ -30,7 +30,7 @@ model.fit(X, y)
 ## Algorithms
 
 ### Supervised Learning
-<p style="color:#959da5;">linear models</p>
+<span style="color:#959da5;">linear models</span>
 
 - [**Regression**](./zero/supervised/regression.py)
   | [linear example](./examples/example_LinearRegression.py)

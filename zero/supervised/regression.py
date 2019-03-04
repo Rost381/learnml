@@ -3,40 +3,9 @@ import math
 import numpy as np
 import pandas as pd
 
+from zero.utils.loss_function import l1_regularization, l2_regularization
 from zero.utils.preprocessing import PolynomialFeatures
 from zero.utils.stats import normalize
-
-
-class l1_regularization():
-    """ L1 regularization
-    For Lasso regression, also known as least absolute deviations, least absolute errors.
-    *** but here use Coordinate Descent to solve LassoRegression ***
-    """
-
-    def __init__(self, alpha):
-        self.alpha = alpha
-
-    def __call__(self, w):
-        """ np.linalg.norm """
-        return self.alpha * np.linalg.norm(w)
-
-    def grad(self, w):
-        return self.alpha * np.sign(w)
-
-
-class l2_regularization():
-    """  L2 regularization
-    For Ridge regression, gives an estimate which minimise the sum of square error.
-    """
-
-    def __init__(self, alpha):
-        self.alpha = alpha
-
-    def __call__(self, w):
-        return self.alpha * 0.5 * w.T.dot(w)
-
-    def grad(self, w):
-        return self.alpha * w
 
 
 class Regression(object):
@@ -226,13 +195,11 @@ class LassoRegression(Regression):
                 beta[j] = 0.0
                 z = (y - X.dot(beta)).dot(X[:, j].T)
                 gamma = self.alpha * X.shape[0]
-                """ update beta[1:]
-                """
+                """ update beta[1:] """
                 beta[j] = self._S(z, gamma) / X[:, j].dot(X[:, j].T)
 
                 if self.fit_intercept:
-                    """ update beta[0], which means intercept_
-                    """
+                    """ update beta[0], which means intercept_ """
                     beta[0] = np.sum(
                         y - np.dot(X[:, 1:], beta[1:])) / (X.shape[0])
 
@@ -260,6 +227,7 @@ class LassoRegression(Regression):
 
 class PolynomialRidgeRegression(Regression):
     """ """
+
     def __init__(self, degree, reg_factor, max_iter=3000, learning_rate=0.001, gradient_descent=True):
         self.degree = degree
         self.regularization = l2_regularization(alpha=reg_factor)

@@ -1,25 +1,21 @@
-import os
-import sys
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-os.chdir(os.path.dirname(os.path.realpath(__file__)))
-
 from zero.api import RegressionTree
 from zero.utils.api import standardize, calculate_mean_squared_error
+from zero.datasets.api import load_temperature
 
 
 def main():
     """ example 1
     """
-    df = pd.read_csv("data/tempature.csv")
+    temp = load_temperature()
 
-    X = np.atleast_2d(df["time"].as_matrix()).T
-    y = np.atleast_2d(df["temp"].as_matrix()).T
+    X = np.atleast_2d((temp.data)).T
+    y = np.atleast_2d((temp.target)).T
+
     X = standardize(X)
     y = y[:, 0]
 

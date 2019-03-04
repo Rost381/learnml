@@ -1,0 +1,126 @@
+import numpy as np
+from zero.api import RegressionTree
+from zero.utils.api import l2_loss, cross_entropy_loss, to_categorical
+
+
+class GradientBoosting():
+    """ Gradient Boosting base.
+
+    Parameters:
+    -----------
+    n_estimators : int (default=100)
+        The number of boosting stages to perform. 
+        Gradient boosting is fairly robust to over-fitting so a large number
+        usually results in better performance.
+    learning_rate : float, optional (default=0.1)
+        learning rate shrinks the contribution of each tree by learning_rate.
+        There is a trade-off between learning_rate and n_estimators.
+    min_samples_split : int, float, optional (default=2)
+        The minimum number of samples required to split an internal node:
+        If int, then consider min_samples_split as the minimum number.
+        If float, then min_samples_split is a fraction and
+        ceil(min_samples_split * n_samples) are the minimum number of samples for each split.
+    min_impurity_split : float, (default=1e-7)
+        Threshold for early stopping in tree growth.
+        A node will split if its impurity is above the threshold, otherwise it is a leaf.
+    max_depth : integer, optional (default=3)
+        maximum depth of the individual regression estimators.
+        The maximum depth limits the number of nodes in the tree.
+        Tune this parameter for best performance;
+        the best value depends on the interaction of the input variables.
+    isClassifier : bool
+        is Gradient Boosting Classifier?
+    trees : list
+        Regression Trees
+    """
+
+    def __init__(self,
+                 n_estimators=100,
+                 learning_rate=0.1,
+                 min_samples_split=2,
+                 min_impurity_split=1e-7,
+                 max_depth=3,
+                 isClassifier=True):
+        self.n_estimators = n_estimators
+        self.learning_rate = learning_rate
+        self.min_samples_split = min_samples_split
+        self.min_impurity_split = min_impurity_split
+        self.max_depth = max_depth
+        self.isClassifier = isClassifier
+        self.trees = []
+
+        """ loss function
+        Classifier: l2_loss
+        Regression: cross_entropy
+        """
+        if self.isClassifier:
+            self.loss_function = l2_loss()
+        if not self.isClassifier:
+            self.loss_function = cross_entropy_loss()
+
+        """ create tress """
+        for _ in range(n_estimators):
+            tree = RegressionTree(
+                min_samples_split=self.min_samples_split,
+                min_impurity_split=self.min_impurity_split,
+                max_depth=self.max_depth
+            )
+            self.trees.append(tree)
+
+    def fit(self, X, y):
+        y_pred = np.full(np.shape(y), np.mean(y, axis=0))
+        for i in range(self.n_estimators):
+            gradient = self.loss_function.gradient(y, y_pred)
+            self.trees[i].fit(X, gradient)
+            update = self.trees[i].predict(X)
+            y_pred -= np.multiply(self.learning_rate, update)
+
+    def predict(self, X):
+        y_pred = np.array([])
+        for tree in self.trees:
+            update = tree.predict(X)
+            update = np.multiply(self.learning_rate, update)
+            y_pred = -update if not y_pred.any() else y_pred - update
+
+        if self.isClassifier:
+            """ Turn into probability distribution """
+            y_pred = np.exp(
+                y_pred) / np.expand_dims(np.sum(np.exp(y_pred), axis=1), axis=1)
+            """ Set label to the value that maximizes probability """
+            y_pred = np.argmax(y_pred, axis=1)
+        return y_pred
+
+
+class GradientBoostingClassifier(GradientBoosting):
+    """ Gradient Boosting for classification.
+    GB builds an additive model in a forward stage-wise fashion;
+    it allows for the optimization of arbitrary differentiable loss functions.
+    In each stage n_classes_ regression trees are fit on the negative gradient
+    of the binomial or multinomial deviance loss function.
+    Binary classification is a special case where only a single regression tree is induced.
+    """
+
+    def __init__(self, n_estimators=100,
+                 learning_rate=.1,
+                 min_samples_split=2,
+                 min_info_gain=1e-7,
+                 max_depth=3):
+        super(GradientBoostingClassifier, self).__init__(n_estimators=n_estimators,
+                                                         learning_rate=learning_rate,
+                                                         min_samples_split=min_samples_split,
+                                                         min_impurity_split=min_info_gain,
+                                                         max_depth=max_depth,
+                                                         isClassifier=True)
+
+    def fit(self, X, y):
+        y = to_categorical(y)
+        super(GradientBoostingClassifier, self).fit(X, y)
+
+
+class GradientBoostingRegressor(GradientBoosting):
+    """ Gradient Boosting for regression.
+    GB builds an additive model in a forward stage-wise fashion;
+    it allows for the optimization of arbitrary differentiable loss functions.
+    In each stage a regression tree is fit on the negative gradient of the given loss function.
+    """
+    pass

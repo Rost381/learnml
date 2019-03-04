@@ -8,8 +8,12 @@ from zero.utils.tools import divide_on_feature
 
 
 class Node():
-    def __init__(self, feature_i=None, threshold=None,
-                 value=None, true_branch=None, false_branch=None):
+    def __init__(self,
+                 feature_i=None,
+                 threshold=None,
+                 value=None,
+                 true_branch=None,
+                 false_branch=None):
         self.feature_i = feature_i  # Index for the feature that is tested
         self.threshold = threshold  # Threshold value for feature
         self.value = value  # Value if the node is a leaf in the tree
@@ -23,15 +27,21 @@ class DecisionTree():
 
     Parameters:
     -----------
-    min_impurity : float
+    min_samples_split : int
+        The minimum number of samples needed to make a split when building a tree.
+    min_impurity_split : float
         The minimum impurity required to split tree.
     max_depth : int
         The maximum depth of a tree.
     """
 
-    def __init__(self, min_impurity=1e-7, max_depth=float("inf")):
+    def __init__(self,
+                 min_samples_split=2,
+                 min_impurity_split=1e-7,
+                 max_depth=float("inf")):
         self.root = None
-        self.min_impurity = min_impurity
+        self.min_samples_split = min_samples_split
+        self.min_impurity_split = min_impurity_split
         self.max_depth = max_depth
 
         """ Function to calculate impurity
@@ -74,7 +84,7 @@ class DecisionTree():
         1. n_samples >= 2
         2. current_depth <= float("inf"), unbounded upper value
         """
-        if current_depth <= self.max_depth:
+        if n_samples >= self.min_samples_split and current_depth <= self.max_depth:
             # Calculate the impurity for each feature
             for feature_i in range(n_features):
                 # All values of feature_i
@@ -123,7 +133,7 @@ class DecisionTree():
                                 "righty": Xy2[:, n_features:]
                             }
 
-        if largest_impurity > self.min_impurity:
+        if largest_impurity > self.min_impurity_split:
             """ Build subtrees for the right and left branches """
             true_branch = self._build_tree(
                 best_sets["leftX"], best_sets["lefty"], current_depth + 1)

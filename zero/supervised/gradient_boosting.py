@@ -15,19 +15,16 @@ class GradientBoosting():
     learning_rate : float, optional (default=0.1)
         learning rate shrinks the contribution of each tree by learning_rate.
         There is a trade-off between learning_rate and n_estimators.
-    min_samples_split : int, float, optional (default=2)
+    min_samples_split : int, float
         The minimum number of samples required to split an internal node:
         If int, then consider min_samples_split as the minimum number.
         If float, then min_samples_split is a fraction and
         ceil(min_samples_split * n_samples) are the minimum number of samples for each split.
-    min_impurity_split : float, (default=1e-7)
+    min_impurity_split : float
         Threshold for early stopping in tree growth.
         A node will split if its impurity is above the threshold, otherwise it is a leaf.
-    max_depth : integer, optional (default=3)
+    max_depth : integer,
         maximum depth of the individual regression estimators.
-        The maximum depth limits the number of nodes in the tree.
-        Tune this parameter for best performance;
-        the best value depends on the interaction of the input variables.
     isClassifier : bool
         is Gradient Boosting Classifier?
     trees : list
@@ -40,25 +37,28 @@ class GradientBoosting():
                  min_samples_split=2,
                  min_impurity_split=1e-7,
                  max_depth=3,
-                 isClassifier=True):
+                 _isClassifier=False,
+                 _isRegressor=False
+                 ):
         self.n_estimators = n_estimators
         self.learning_rate = learning_rate
         self.min_samples_split = min_samples_split
         self.min_impurity_split = min_impurity_split
         self.max_depth = max_depth
-        self.isClassifier = isClassifier
+        self._isClassifier = _isClassifier
+        self._isRegressor = _isRegressor
         self.trees = []
 
         """ loss function
-        Classifier: l2_loss
-        Regression: cross_entropy
+        Classifier: cross_entropy_loss
+        Regression: l2_loss
         """
-        if self.isClassifier:
-            self.loss_function = l2_loss()
-        if not self.isClassifier:
+        if self._isClassifier:
             self.loss_function = cross_entropy_loss()
+        if self._isRegressor:
+            self.loss_function = l2_loss()
 
-        """ create tress """
+        """ Create many tress """
         for _ in range(n_estimators):
             tree = RegressionTree(
                 min_samples_split=self.min_samples_split,
@@ -68,11 +68,26 @@ class GradientBoosting():
             self.trees.append(tree)
 
     def fit(self, X, y):
+        """ Initialize the y_pred
+        example:
+        [
+            [ 0.30000001  0.32222223  0.37777779]
+            [ 0.30000001  0.32222223  0.37777779]
+            [ 0.30000001  0.32222223  0.37777779]
+            ...
+        ]
+        """
         y_pred = np.full(np.shape(y), np.mean(y, axis=0))
         for i in range(self.n_estimators):
+            """ Very important step
+            We use -(y - y_pred) to fit in the this tree.
+            """
             gradient = self.loss_function.gradient(y, y_pred)
             self.trees[i].fit(X, gradient)
             update = self.trees[i].predict(X)
+            """ Predict = learning_rate * update
+            learning rate shrinks the contribution of each tree by learning_rate.
+            """
             y_pred -= np.multiply(self.learning_rate, update)
 
     def predict(self, X):
@@ -82,12 +97,22 @@ class GradientBoosting():
             update = np.multiply(self.learning_rate, update)
             y_pred = -update if not y_pred.any() else y_pred - update
 
-        if self.isClassifier:
+        if self._isClassifier:
             """ Turn into probability distribution """
             y_pred = np.exp(
                 y_pred) / np.expand_dims(np.sum(np.exp(y_pred), axis=1), axis=1)
-            """ Set label to the value that maximizes probability """
+
+            """ Select the label with maximum probability 
+            y_pred = [[ 0.19578768  0.58784106  0.21637126]
+            [ 0.5514167   0.22429165  0.22429165]
+            [ 0.195787    0.21636848  0.58784452]
+            ...
+            ]
+
+            np.argmax(y_pred, axis=1) = [1 0 2 ... ]
+            """
             y_pred = np.argmax(y_pred, axis=1)
+            print(y_pred)
         return y_pred
 
 
@@ -103,14 +128,14 @@ class GradientBoostingClassifier(GradientBoosting):
     def __init__(self, n_estimators=100,
                  learning_rate=.1,
                  min_samples_split=2,
-                 min_info_gain=1e-7,
+                 min_impurity_split=1e-7,
                  max_depth=3):
         super(GradientBoostingClassifier, self).__init__(n_estimators=n_estimators,
                                                          learning_rate=learning_rate,
                                                          min_samples_split=min_samples_split,
-                                                         min_impurity_split=min_info_gain,
+                                                         min_impurity_split=min_impurity_split,
                                                          max_depth=max_depth,
-                                                         isClassifier=True)
+                                                         _isClassifier=True)
 
     def fit(self, X, y):
         y = to_categorical(y)
@@ -123,4 +148,15 @@ class GradientBoostingRegressor(GradientBoosting):
     it allows for the optimization of arbitrary differentiable loss functions.
     In each stage a regression tree is fit on the negative gradient of the given loss function.
     """
-    pass
+
+    def __init__(self, n_estimators=100,
+                 learning_rate=.1,
+                 min_samples_split=2,
+                 min_impurity_split=1e-7,
+                 max_depth=3):
+        super(GradientBoostingRegressor, self).__init__(n_estimators=n_estimators,
+                                                        learning_rate=learning_rate,
+                                                        min_samples_split=min_samples_split,
+                                                        min_impurity_split=min_impurity_split,
+                                                        max_depth=max_depth,
+                                                        _isRegressor=True)

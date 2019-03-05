@@ -34,19 +34,11 @@ class l2_regularization():
         return self.alpha * w
 
 
-class loss(object):
-    def loss(self, y_true, y_pred):
-        return NotImplementedError()
-
-    def gradient(self, y, y_pred):
-        raise NotImplementedError()
-
-    def acc(self, y, y_pred):
-        return 0
-
-
-class l1_loss(loss):
-    """ L1 Loss """
+class l1_loss():
+    """ L1 Loss function 
+    minimizes the absolute differences between 
+    the estimated values and the existing target values.
+    """
 
     def __init__(self): pass
 
@@ -54,8 +46,11 @@ class l1_loss(loss):
         return abs(y - y_pred)
 
 
-class l2_loss(loss):
-    """ L2 Loss
+class l2_loss():
+    """ L2 loss function(Least squared error)
+    minimizes the squared differences between
+    the estimated and existing target values.
+
     Used in GradientBoostingClassifier
     """
 
@@ -68,8 +63,10 @@ class l2_loss(loss):
         return -(y - y_pred)
 
 
-class cross_entropy_loss(loss):
+class cross_entropy_loss():
     """ Define a Cross Entropy loss
+    Used in GradientBoostingRegressor
+
     In binary classification, cross-entropy can be calculated as:
     -{(y\log(p) + (1 - y)\log(1 - p))}
     """
@@ -77,12 +74,12 @@ class cross_entropy_loss(loss):
     def __init__(self): pass
 
     def loss(self, y, p):
-        p = np.clip(p, 1e-15, 1 - 1e-15)
+        p = np.clip(p, 1e-7, 1 - 1e-7)
         return - (y * np.log(p) + (1 - y) * np.log(1 - p))
 
     def acc(self, y, p):
         return calculate_accuracy_score(np.argmax(y, axis=1), np.argmax(p, axis=1))
 
     def gradient(self, y, p):
-        p = np.clip(p, 1e-15, 1 - 1e-15)
+        p = np.clip(p, 1e-7, 1 - 1e-7)
         return - (y / p) + (1 - y) / (1 - p)

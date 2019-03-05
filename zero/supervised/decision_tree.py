@@ -93,7 +93,6 @@ class DecisionTree():
                 # Iterate through all unique values of feature column i and
                 # calculate the impurity
                 for threshold in unique_values:
-
                     """ Divide X and y depending on threshold
                     Xy: train dataset
                     feature_i : column order

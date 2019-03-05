@@ -5,7 +5,7 @@ from .supervised.regression import LinearRegression, RidgeRegression, LassoRegre
 from .supervised.logistic_regression import LogisticRegression
 from .supervised.support_vector_machine import svm
 from .supervised.adaboost import AdaBoostClassifier
-from .supervised.gradient_boosting import GradientBoostingClassifier
+from .supervised.gradient_boosting import GradientBoostingClassifier, GradientBoostingRegressor
 
 from . import unsupervised
 from .unsupervised.principal_component_analysis import PCA

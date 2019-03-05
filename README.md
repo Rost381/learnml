@@ -30,7 +30,7 @@ model.fit(X, y)
 ## Algorithms
 
 ### Supervised Learning
-<span style="color:#959da5;">linear models</span>
+linear models
 
 - [**Regression**](./zero/supervised/regression.py)
   | [linear example](./examples/example_LinearRegression.py)
@@ -39,7 +39,7 @@ model.fit(X, y)
   | [polynomial ridge example](./examples/example_PolynomialRidgeRegression.py)
 - [**Logistic Regression**](./zero/supervised/logistic_regression.py) | [example](./examples/example_LogisticRegression.py)
 
-<p style="color:#959da5;">classification</p>
+classification
 
 - Perceptron
 - [**Support Vector Machine**](./zero/supervised/support_vector_machine.py) | [example_01](./examples/example_svm.py) | [example_02](./examples/example_svm_02.py)
@@ -47,23 +47,22 @@ model.fit(X, y)
 - [**Linear Discriminant Analysis**](./zero/supervised/linear_discriminant_analysis.py) | [example](./examples/example_PCA_LDA.py)
 
 
-<p style="color:#959da5;">tree-based and ensemble methods</p>
+tree-based and ensemble methods
 
 - [**Classification Tree**](./zero/supervised/decision_tree.py) | [example](./examples/example_ClassificationTree.py)
 - [**RegressionTree**](./zero/supervised/decision_tree.py) | [example](./examples/example_RegressionTree.py)
 - Random forests
 - [**Adaboost**](./zero/supervised/adaboost.py) | [example](./examples/example_Adaboost.py)
-- [**Gradient boosting**](./zero/supervised/gradient_boosting.py) | [example_classifier](./examples/example_GradientBoostingClassifier.py) | [example_regressor]()
+- [**Gradient boosting**](./zero/supervised/gradient_boosting.py) | [example_classifier](./examples/example_GradientBoostingClassifier.py) | [example_regressor](./examples/example_GradientBoostingRegressor.py)
 - XGBoost
 
-
-<p style="color:#959da5;">generative Learning</p>
+generative Learning
 
 - Naive Bayes
 
 ### Unsupervised Learning
 
-<p style="color:#959da5;">dimension reduction</p>
+dimension reduction
 
 -  [**Principal Component Analysis**](./zero/unsupervised/principal_component_analysis.py) | [example](./examples/example_PCA_LDA.py)
 -  K-Means

@@ -5,7 +5,7 @@ from zero.utils.stats import covariance_matrix
 
 
 class PCA():
-    """ Principal component analysis (PCA)
+    """Principal component analysis (PCA)
 
     Parameters:
     -----------
@@ -21,20 +21,19 @@ class PCA():
         return self
 
     def transform(self, X):
-        """
-        Returns
+        """Returns
         -------
         X_new : array-like, shape (n_samples, n_components)
         """
         cov_matrix = covariance_matrix(X)
 
-        """ caculate eigenvalues and eigenvectors of covariance_matrix(X) """
+        """Caculate eigenvalues and eigenvectors of covariance_matrix(X) """
         eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
 
-        """ sort eigenvectors from largest to smallest """
+        """Sort eigenvectors from largest to smallest """
         idx = eigenvalues.argsort()[::-1]
 
-        """ select the first n_components of eigenvalues """
+        """Select the first n_components of eigenvalues """
         eigenvalues = eigenvalues[idx][:self.n_components]
         eigenvectors = eigenvectors[:, idx][:, :self.n_components]
 

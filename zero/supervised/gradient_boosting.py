@@ -1,10 +1,11 @@
 import numpy as np
 from zero.api import RegressionTree
+from zero.utils.api import softmax
 from zero.utils.api import l2_loss, cross_entropy_loss, to_categorical
 
 
 class GradientBoosting():
-    """ Gradient Boosting base.
+    """Gradient Boosting base.
 
     Parameters:
     -----------
@@ -49,7 +50,7 @@ class GradientBoosting():
         self._isRegressor = _isRegressor
         self.trees = []
 
-        """ loss function
+        """Loss function
         Classifier: cross_entropy_loss
         Regression: l2_loss
         """
@@ -58,7 +59,7 @@ class GradientBoosting():
         if self._isRegressor:
             self.loss_function = l2_loss()
 
-        """ Create many tress """
+        """Create many tress """
         for _ in range(n_estimators):
             tree = RegressionTree(
                 min_samples_split=self.min_samples_split,
@@ -68,7 +69,7 @@ class GradientBoosting():
             self.trees.append(tree)
 
     def fit(self, X, y):
-        """ Initialize the y_pred
+        """Initialize the y_pred
         example:
         [
             [ 0.30000001  0.32222223  0.37777779]
@@ -79,13 +80,13 @@ class GradientBoosting():
         """
         y_pred = np.full(np.shape(y), np.mean(y, axis=0))
         for i in range(self.n_estimators):
-            """ Very important step
+            """Very important step
             We use -(y - y_pred) to fit in the this tree.
             """
             gradient = self.loss_function.gradient(y, y_pred)
             self.trees[i].fit(X, gradient)
             update = self.trees[i].predict(X)
-            """ Predict = learning_rate * update
+            """Predict = learning_rate * update
             learning rate shrinks the contribution of each tree by learning_rate.
             """
             y_pred -= np.multiply(self.learning_rate, update)
@@ -98,11 +99,9 @@ class GradientBoosting():
             y_pred = -update if not y_pred.any() else y_pred - update
 
         if self._isClassifier:
-            """ Turn into probability distribution """
-            y_pred = np.exp(
-                y_pred) / np.expand_dims(np.sum(np.exp(y_pred), axis=1), axis=1)
-
-            """ Select the label with maximum probability 
+            """Turn into probability distribution """
+            y_pred = softmax(y_pred)
+            """Select the label with maximum probability 
             y_pred = [[ 0.19578768  0.58784106  0.21637126]
             [ 0.5514167   0.22429165  0.22429165]
             [ 0.195787    0.21636848  0.58784452]
@@ -112,12 +111,11 @@ class GradientBoosting():
             np.argmax(y_pred, axis=1) = [1 0 2 ... ]
             """
             y_pred = np.argmax(y_pred, axis=1)
-            print(y_pred)
         return y_pred
 
 
 class GradientBoostingClassifier(GradientBoosting):
-    """ Gradient Boosting for classification.
+    """Gradient Boosting for classification.
     GB builds an additive model in a forward stage-wise fashion;
     it allows for the optimization of arbitrary differentiable loss functions.
     In each stage n_classes_ regression trees are fit on the negative gradient
@@ -143,7 +141,7 @@ class GradientBoostingClassifier(GradientBoosting):
 
 
 class GradientBoostingRegressor(GradientBoosting):
-    """ Gradient Boosting for regression.
+    """Gradient Boosting for regression.
     GB builds an additive model in a forward stage-wise fashion;
     it allows for the optimization of arbitrary differentiable loss functions.
     In each stage a regression tree is fit on the negative gradient of the given loss function.

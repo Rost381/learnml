@@ -7,16 +7,24 @@ from zero.datasets.api import load_temperature
 
 
 def main():
-    temp = load_temperature()
+    np.random.seed(1)
 
-    X = np.atleast_2d((temp.data)).T
-    y = np.atleast_2d((temp.target)).T
+    def f(x):
+        """The function to predict."""
+        return x * np.sin(x)
 
-    X = X.reshape((-1, 1))
-    X = np.insert(X, 0, values=1, axis=1) 
-    y = y[:, 0]
+    X = np.atleast_2d(np.random.uniform(0, 10.0, size=100)).T
+    X = X.astype(np.float32)
 
-    model = GradientBoostingRegressor(n_estimators=100,
+    # Observations
+    y = f(X).ravel()
+
+    dy = 1.5 + 1.0 * np.random.random(y.shape)
+    noise = np.random.normal(0, dy)
+    y += noise
+    y = y.astype(np.float32)
+
+    model = GradientBoostingRegressor(n_estimators=200,
                                       learning_rate=0.5,
                                       min_samples_split=2,
                                       min_impurity_split=1e-7,
@@ -25,12 +33,16 @@ def main():
 
     y_pred = model.predict(X)
 
-    mse = calculate_mean_squared_error(y, y_pred)
-    print("MSE: {0}".format(mse))
-    
+    xx = np.atleast_2d(np.linspace(0, 10, 1000)).T
+    xx = xx.astype(np.float32)
+
     fig = plt.figure()
-    plt.plot(365 * X, y, 'b.', label='Observations')
-    plt.plot(365 * X, y_pred, 'r-', label='Prediction')
+    plt.plot(xx, f(xx), 'g:', label=r'$f(x) = x\,\sin(x)$')
+    plt.plot(X, y_pred, 'r.', label=u'Prediction')
+    plt.plot(X, y, 'b.', label=u'Observations')
+    plt.xlabel('$x$')
+    plt.ylabel('$f(x)$')
+    plt.ylim(-10, 20)
     plt.legend(loc='upper left')
     plt.savefig("./examples/example_GradientBoostingRegressor.png")
 

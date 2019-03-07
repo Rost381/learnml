@@ -8,7 +8,7 @@ cvxopt.solvers.options['show_progress'] = False
 
 
 class svm():
-    """ Support Vector Machine.
+    """Support Vector Machine.
     Use cvxopt to solve the quadratic QP problem.
 
     Parameters:
@@ -74,7 +74,7 @@ class svm():
             for j in range(n_samples):
                 kernel_matrix[i, j] = self._kernel(X[i], X[j])
 
-        """ cvxopt.matrix
+        """Cvxopt.matrix
         'i', 'd', and 'z', for integer, real (double), and complex matrices, respectively.
         """
         P = cvxopt.matrix(np.outer(y, y) * kernel_matrix, tc='d')
@@ -86,15 +86,17 @@ class svm():
         else:
             G_max = np.identity(n_samples) * -1
             G_min = np.identity(n_samples)
-            G = cvxopt.matrix(np.vstack((G_max, G_min)))
+
             h_max = cvxopt.matrix(np.zeros(n_samples))
             h_min = cvxopt.matrix(np.ones(n_samples) * self._C)
+
+            G = cvxopt.matrix(np.vstack((G_max, G_min)))
             h = cvxopt.matrix(np.vstack((h_max, h_min)))
 
         A = cvxopt.matrix(y, (1, n_samples), tc='d')
         b = cvxopt.matrix(0, tc='d')
 
-        """ Solves a quadratic program
+        """Solves a quadratic program
         minimize    (1/2)*x'*P*x + q'*x
         subject to  G*x <= h
                     A*x = b.
@@ -117,23 +119,20 @@ class svm():
         lagr_mult = np.ravel(solution['x'])
         idx = lagr_mult > self._tol
 
-        """ Get the corresponding lagr. multipliers, support vectors
+        """Get the corresponding lagr. multipliers, support vectors
         """
         self._lagr_multipliers = lagr_mult[idx]
         self.support_vectors_ = X[idx]
         self.support_vector_labels_ = y[idx]
- 
 
-        """ Caculate intercept """
-        
+        """Caculate intercept"""
         self.intercept_ = self.support_vector_labels_[0]
 
-        
         for i in range(len(self._lagr_multipliers)):
             self.intercept_ -= self._lagr_multipliers[i] * self.support_vector_labels_[
                 i] * self._kernel(self.support_vectors_[i], self.support_vectors_[0])
 
-        """ Caculate weight """
+        """Caculate weight"""
         alphas = np.array(solution['x'])
         self.coef_ = np.array((np.sum(alphas * y[:, None] * X, axis=0)))
 

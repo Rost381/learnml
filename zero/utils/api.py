@@ -9,13 +9,12 @@ from .metrics import (
     calculate_accuracy_score,
     calculate_mean_squared_error,
 )
-from .tools import divide_on_feature
 
 from .plot import make_meshgrid, plot_contours
 
 from .preprocessing import PolynomialFeatures
 
-from .activation_functions import Sigmoid
+from .activation_functions import sigmoid, softmax
 
 from .loss_function import (
     l1_regularization,

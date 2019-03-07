@@ -12,7 +12,7 @@
 </div>
 
 ## Features
-- Friendly code and document.
+- Friendly.
 - Minimal implementation from Zero.
 - Designed for easily learning algorithms.
 
@@ -25,48 +25,48 @@ model.fit(X, y)
 ```
 
 ## Document
-[![image](https://img.shields.io/badge/Document-brightgreen.svg)](https://byzhi.github.io/zero/) here.
+[Here.](https://byzhi.github.io/zero/) 
 
 ## Algorithms
 
 ### Supervised Learning
-linear models
+- linear models
 
-- [**Regression**](./zero/supervised/regression.py)
-  | [linear example](./examples/example_LinearRegression.py)
-  | [lasso example](./examples/example_LassoRegression.py)
-  | [ridge example](./examples/example_RidgeRegression.py)
-  | [polynomial ridge example](./examples/example_PolynomialRidgeRegression.py)
-- [**Logistic Regression**](./zero/supervised/logistic_regression.py) | [example](./examples/example_LogisticRegression.py)
+  - [**Regression**](./zero/supervised/regression.py)
+   | examples: [linear](./examples/example_LinearRegression.py)
+  , [lasso](./examples/example_LassoRegression.py)
+  , [ridge](./examples/example_RidgeRegression.py)
+  , [polynomial ridge](./examples/example_PolynomialRidgeRegression.py)
+  - [**Logistic Regression**](./zero/supervised/logistic_regression.py) | [example](./examples/example_LogisticRegression.py)
 
-classification
+- classification
 
-- Perceptron
-- [**Support Vector Machine**](./zero/supervised/support_vector_machine.py) | [example_01](./examples/example_svm.py) | [example_02](./examples/example_svm_02.py)
-- k-nearest neighbor
-- [**Linear Discriminant Analysis**](./zero/supervised/linear_discriminant_analysis.py) | [example](./examples/example_PCA_LDA.py)
+  - Perceptron
+  - [**Support Vector Machine**](./zero/supervised/support_vector_machine.py) | examples: [01](./examples/example_svm.py), [02](./examples/example_svm_02.py)
+  - k-nearest neighbor
+  - [**Linear Discriminant Analysis**](./zero/supervised/linear_discriminant_analysis.py) | [example](./examples/example_PCA_LDA.py)
 
 
-tree-based and ensemble methods
+- tree-based and ensemble methods
 
-- [**Classification Tree**](./zero/supervised/decision_tree.py) | [example](./examples/example_ClassificationTree.py)
-- [**RegressionTree**](./zero/supervised/decision_tree.py) | [example](./examples/example_RegressionTree.py)
-- Random forests
-- [**Adaboost**](./zero/supervised/adaboost.py) | [example](./examples/example_Adaboost.py)
-- [**Gradient boosting**](./zero/supervised/gradient_boosting.py) | [example_classifier](./examples/example_GradientBoostingClassifier.py) | [example_regressor](./examples/example_GradientBoostingRegressor.py)
-- XGBoost
+  - [**Classification Tree**](./zero/supervised/decision_tree.py) | [example](./examples/example_ClassificationTree.py)
+  - [**RegressionTree**](./zero/supervised/decision_tree.py) | [example](./examples/example_RegressionTree.py)
+  - Random forests
+  - [**Adaboost**](./zero/supervised/adaboost.py) | [example](./examples/example_Adaboost.py)
+  - [**Gradient boosting**](./zero/supervised/gradient_boosting.py) | examples: [classifier](./examples/example_GradientBoostingClassifier.py), [regressor](./examples/example_GradientBoostingRegressor.py)
+  - XGBoost
 
-generative Learning
+- generative Learning
 
-- Naive Bayes
+  - Naive Bayes
 
 ### Unsupervised Learning
 
-dimension reduction
+- dimension reduction
 
--  [**Principal Component Analysis**](./zero/unsupervised/principal_component_analysis.py) | [example](./examples/example_PCA_LDA.py)
--  K-Means
--  FP-Growth
+  - [**Principal Component Analysis**](./zero/unsupervised/principal_component_analysis.py) | [example](./examples/example_PCA_LDA.py)
+  -  K-Means
+  -  FP-Growth
 
 ### Reinforcement Learning
 - Q-learning

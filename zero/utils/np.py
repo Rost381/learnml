@@ -2,7 +2,7 @@ import numpy as np
 
 
 def to_categorical(y, num_classes=None, dtype='float32'):
-    """ Converts a class vector (integers) to binary class matrix.
+    """Converts a class vector (integers) to binary class matrix.
     E.g. for use with categorical_crossentropy.
     # Arguments
         y: class vector to be converted into a matrix

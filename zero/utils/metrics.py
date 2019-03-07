@@ -2,7 +2,7 @@ import numpy as np
 
 
 def calculate_accuracy_score(y_true, y_pred):
-    """ Compare y_true to y_pred and return the accuracy
+    """Compare y_true to y_pred and return the accuracy
     y_true:numpy.ndarray
     y_pred:list
     """
@@ -14,7 +14,7 @@ def calculate_accuracy_score(y_true, y_pred):
 
 
 def calculate_mean_squared_error(y_true, y_pred):
-    """ Returns the mean squared error between y_true and y_pred
+    """Returns the mean squared error between y_true and y_pred
     y_true:numpy.ndarray
     y_pred:list
     """

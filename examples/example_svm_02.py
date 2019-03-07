@@ -23,7 +23,7 @@ titles = ('linear kernel',
 
 for clf, title, ax in zip(models, titles, sub.flatten()):
     clf.fit(X, y)
-    xx1, xx2 = make_meshgrid(X, y, h=0.04)
+    xx1, xx2 = make_meshgrid(X, y, h=0.02)
     plot_contours(ax, clf, xx1, xx2, alpha=0.8, cmap=plt.cm.coolwarm)
     ax.scatter(X[:, 0], X[:, 1], c=y,
                cmap=plt.cm.coolwarm, s=20, edgecolors='k')

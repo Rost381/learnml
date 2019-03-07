@@ -1,9 +1,9 @@
 import numpy as np
-from zero.utils.api import Sigmoid
+from zero.utils.api import sigmoid
 
 
 class LogisticRegression(object):
-    """ Logistic Regression
+    """Logistic Regression
 
     Parameters:
     -----------
@@ -20,7 +20,6 @@ class LogisticRegression(object):
         self.max_iter = max_iter
         self.learning_rate = learning_rate
         self.fit_intercept = fit_intercept
-        self.sigmoid = Sigmoid()
 
     def log_likelihood(self, features, target, weights):
         scores = np.dot(features, weights)
@@ -35,7 +34,7 @@ class LogisticRegression(object):
 
         for _ in range(self.max_iter):
             scores = np.dot(X, self.w)
-            y_pred = self.sigmoid(scores)
+            y_pred = sigmoid(scores)
 
             grad = np.dot(X.T, y - y_pred)
             self.w += self.learning_rate * grad
@@ -43,16 +42,16 @@ class LogisticRegression(object):
         return self.w
 
     def predict_proba(self, X):
-        """ predict_proba
+        """Predict_proba
         Probability estimates.
         The returned estimates for all classes are ordered by the label of classes.
         """
         y_proba = list()
         if self.fit_intercept:
             X = np.insert(X, 0, 1, axis=1)
-            y_pred = self.sigmoid(X.dot(self.w))
+            y_pred = sigmoid(X.dot(self.w))
         else:
-            y_pred = self.sigmoid(X.dot(self.w))
+            y_pred = sigmoid(X.dot(self.w))
 
         y_proba = y_pred.T
         if y_proba.ndim == 1:
@@ -62,7 +61,7 @@ class LogisticRegression(object):
     def predict(self, X):
         if self.fit_intercept:
             X = np.insert(X, 0, 1, axis=1)
-            y_pred = np.round(self.sigmoid(X.dot(self.w)))
+            y_pred = np.round(sigmoid(X.dot(self.w)))
         else:
-            y_pred = np.round(self.sigmoid(X.dot(self.w)))
+            y_pred = np.round(sigmoid(X.dot(self.w)))
         return y_pred

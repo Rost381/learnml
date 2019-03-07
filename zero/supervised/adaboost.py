@@ -12,7 +12,7 @@ class DecisionStump():
 
 
 class AdaBoostClassifier():
-    """ Discrete Adaboost
+    """Discrete Adaboost
     An AdaBoost classifier.
 
     Parameters:
@@ -25,9 +25,8 @@ class AdaBoostClassifier():
         self.n_estimators = n_estimators
         self.w = None
 
-    def H(self, X, y_init, stump):
-        """
-        The goal of the weak
+    def _H(self, X, y_init, stump):
+        """The goal of the weak
         learner is to obtain a classifier
         """
         negative_idx = (
@@ -39,14 +38,14 @@ class AdaBoostClassifier():
         n_samples, n_features = np.shape(X)
         self.stumps = []
 
-        """ Initialize the weights """
+        """Initialize the weights"""
         self.w = np.full(n_samples, (1 / n_samples))
 
         for _ in range(self.n_estimators):
             stump = DecisionStump()
             error_min = float('inf')
 
-            """ Calculate minimum error """
+            """Calculate minimum error"""
             for feature_i in range(n_features):
                 feature_values = np.expand_dims(X[:, feature_i], axis=1)
                 unique_values = np.unique(feature_values)
@@ -68,16 +67,16 @@ class AdaBoostClassifier():
                         stump.feature_index = feature_i
                         error_min = error
 
-            """ Caculate alpha """
+            """Caculate alpha"""
             stump.alpha = 0.5 * math.log((1 - error_min) / (error_min + 1e-6))
 
-            """ Update w """
+            """Update weight"""
             y_init = np.ones(np.shape(y))
 
-            self.w *= np.exp(-stump.alpha * y * self.H(X, y_init, stump))
+            self.w *= np.exp(-stump.alpha * y * self._H(X, y_init, stump))
             self.w /= np.sum(self.w)
 
-            """ Update stumps """
+            """Update stumps"""
             self.stumps.append(stump)
 
     def predict(self, X):
@@ -86,7 +85,7 @@ class AdaBoostClassifier():
 
         for stump in self.stumps:
             y_init = np.ones(np.shape(y_pred))
-            y_pred += stump.alpha * self.H(X, y_init, stump)
+            y_pred += stump.alpha * self._H(X, y_init, stump)
 
         y_pred = np.sign(y_pred).flatten()
 

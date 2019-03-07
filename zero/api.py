@@ -1,13 +1,11 @@
-from . import supervised
-from .supervised.decision_tree import ClassificationTree, RegressionTree
-from .supervised.linear_discriminant_analysis import LinearDiscriminantAnalysis
-from .supervised.regression import LinearRegression, RidgeRegression, LassoRegression, PolynomialRidgeRegression
-from .supervised.logistic_regression import LogisticRegression
-from .supervised.support_vector_machine import svm
+from . import deep, supervised, unsupervised
 from .supervised.adaboost import AdaBoostClassifier
-from .supervised.gradient_boosting import GradientBoostingClassifier, GradientBoostingRegressor
-
-from . import unsupervised
+from .supervised.decision_tree import ClassificationTree, RegressionTree
+from .supervised.gradient_boosting import (GradientBoostingClassifier,
+                                           GradientBoostingRegressor)
+from .supervised.linear_discriminant_analysis import LinearDiscriminantAnalysis
+from .supervised.logistic_regression import LogisticRegression
+from .supervised.regression import (LassoRegression, LinearRegression,
+                                    PolynomialRidgeRegression, RidgeRegression)
+from .supervised.support_vector_machine import svm
 from .unsupervised.principal_component_analysis import PCA
-
-from . import deep

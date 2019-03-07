@@ -114,7 +114,7 @@ class LinearRegression(Regression):
 
 
 class RidgeRegression(Regression):
-    """ Ridge Regression
+    """Ridge Regression
     Linear least squares with l2 regularization.
     Minimizes the objective function:
         ||y - Xw||^2_2 + alpha * ||w||^2_2
@@ -139,7 +139,7 @@ class RidgeRegression(Regression):
 
 
 class LassoRegression(Regression):
-    """ Lasso Regression
+    """Lasso Regression
 
     The algorithm used to fit the model is coordinate descent.
     Coordinate descent is an algorithm that considers each column of data
@@ -165,7 +165,7 @@ class LassoRegression(Regression):
         self.intercept_ = None
 
     def _S(self, z, gamma):
-        """ soft-thresholding operator
+        """Soft-thresholding operator
         coordinate descent algorithm for LASSO
         """
         if z > 0.0 and gamma < z:
@@ -179,7 +179,7 @@ class LassoRegression(Regression):
         if self.fit_intercept:
             X = np.insert(X, 0, 1, axis=1)
 
-        """ initial beta, which means coef_
+        """Initialize beta, which means coef_
         fit_intercept = false:
             beta = [0, 0, ...]
         fit_intercept = true:
@@ -195,15 +195,15 @@ class LassoRegression(Regression):
                 beta[j] = 0.0
                 z = (y - X.dot(beta)).dot(X[:, j].T)
                 gamma = self.alpha * X.shape[0]
-                """ update beta[1:] """
+                """Update beta[1:]"""
                 beta[j] = self._S(z, gamma) / X[:, j].dot(X[:, j].T)
 
                 if self.fit_intercept:
-                    """ update beta[0], which means intercept_ """
+                    """Update beta[0], which means intercept_"""
                     beta[0] = np.sum(
                         y - np.dot(X[:, 1:], beta[1:])) / (X.shape[0])
 
-        """ Caculate intercept_ and coef_ """
+        """Caculate intercept_ and coef_"""
         if self.fit_intercept:
             self.intercept_ = beta[0]
             self.coef_ = beta[1:]

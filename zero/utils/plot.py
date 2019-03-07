@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 
 def make_meshgrid(x, y, h=.02):
-    """ Create a mesh of points to plot in
+    """Create a mesh of points to plot in
 
     Parameters
     ----------
@@ -23,7 +23,7 @@ def make_meshgrid(x, y, h=.02):
 
 
 def plot_contours(ax, clf, xx, yy, **params):
-    """ Plot the decision boundaries for a classifier.
+    """Plot the decision boundaries for a classifier.
 
     Parameters
     ----------

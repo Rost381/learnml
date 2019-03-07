@@ -4,7 +4,7 @@ import pandas as pd
 
 
 def covariance_matrix(X, Y=None):
-    """ Caculate covariance matrix """
+    """Caculate covariance matrix """
     if Y is None:
         Y = X
     n_samples = np.shape(X)[0]
@@ -14,7 +14,7 @@ def covariance_matrix(X, Y=None):
 
 
 def calculate_variance(X):
-    """ Return the variance of the features in dataset X """
+    """Return the variance of the features in dataset X """
     mean = np.ones(np.shape(X)) * X.mean(0)
     n_samples = np.shape(X)[0]
     variance = (1 / n_samples) * np.diag((X - mean).T.dot(X - mean))
@@ -22,7 +22,7 @@ def calculate_variance(X):
 
 
 def standardize(X):
-    """ standardize X """
+    """Standardize X """
     X_std = X
     mean = X.mean(axis=0)
     std = X.std(axis=0)
@@ -33,7 +33,7 @@ def standardize(X):
 
 
 def normalize(x, axis=-1, order=2):
-    """ Normalizes a Numpy array.
+    """Normalizes a Numpy array.
     # Arguments
         x: Numpy array to normalize.
         axis: axis along which to normalize.
@@ -47,7 +47,7 @@ def normalize(x, axis=-1, order=2):
 
 
 def calculate_entropy(y):
-    """ Calculate the entropy of label array y """
+    """Calculate the entropy of label array y """
     def log2(x): return math.log(x) / math.log(2)
     unique_labels = np.unique(y)
     entropy = 0

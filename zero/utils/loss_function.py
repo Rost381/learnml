@@ -3,7 +3,7 @@ from .metrics import calculate_accuracy_score
 
 
 class l1_regularization():
-    """ L1 regularization
+    """L1 regularization
     For Lasso regression, also known as least absolute deviations, least absolute errors.
     *** but 'Zero' use Coordinate Descent to solve LassoRegression ***
     """
@@ -12,7 +12,7 @@ class l1_regularization():
         self.alpha = alpha
 
     def __call__(self, w):
-        """ np.linalg.norm """
+        """np.linalg.norm"""
         return self.alpha * np.linalg.norm(w)
 
     def grad(self, w):
@@ -20,7 +20,7 @@ class l1_regularization():
 
 
 class l2_regularization():
-    """  L2 regularization
+    """L2 regularization
     For Ridge regression, gives an estimate which minimise the sum of square error.
     """
 
@@ -35,7 +35,7 @@ class l2_regularization():
 
 
 class l1_loss():
-    """ L1 Loss function 
+    """L1 Loss function 
     minimizes the absolute differences between 
     the estimated values and the existing target values.
     """
@@ -47,7 +47,7 @@ class l1_loss():
 
 
 class l2_loss():
-    """ L2 loss function(Least squared error)
+    """L2 loss function(Least squared error)
     minimizes the squared differences between
     the estimated and existing target values.
 
@@ -64,7 +64,7 @@ class l2_loss():
 
 
 class cross_entropy_loss():
-    """ Define a Cross Entropy loss
+    """Define a Cross Entropy loss
     Used in GradientBoostingRegressor
 
     In binary classification, cross-entropy can be calculated as:

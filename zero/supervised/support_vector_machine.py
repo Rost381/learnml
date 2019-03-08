@@ -1,6 +1,5 @@
 import cvxopt
 import numpy as np
-import pandas as pd
 
 from zero.utils.kernels import linear, poly, rbf
 

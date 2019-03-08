@@ -3,9 +3,8 @@ import math
 import numpy as np
 import pandas as pd
 
-from zero.utils.loss_function import l1_regularization, l2_regularization
-from zero.utils.preprocessing import PolynomialFeatures
-from zero.utils.stats import normalize
+from zero.utils.api import (PolynomialFeatures, l1_regularization,
+                            l2_regularization, normalize)
 
 
 class Regression(object):

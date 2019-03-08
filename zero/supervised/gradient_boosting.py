@@ -1,7 +1,7 @@
 import numpy as np
+
 from zero.api import RegressionTree
-from zero.utils.api import softmax
-from zero.utils.api import l2_loss, cross_entropy_loss, to_categorical
+from zero.utils.api import cross_entropy_loss, l2_loss, softmax, to_categorical
 
 
 class GradientBoosting():

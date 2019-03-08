@@ -14,9 +14,9 @@ from .plot import make_meshgrid, plot_contours
 
 from .preprocessing import PolynomialFeatures
 
-from .activation_functions import sigmoid, softmax
+from .activations import sigmoid, softmax
 
-from .loss_function import (
+from .losses import (
     l1_regularization,
     l2_regularization,
     l1_loss,

@@ -120,20 +120,21 @@ class DecisionTree():
                     feature_i : column order
                     threshold : unique_values in this column order
 
-                    Xy1 : the value in row >= threshold in row
-                    Xy2 : the value in row < threshold in row
+                    Xy_left : the value in row >= threshold in row
+                    Xy_right : the value in row < threshold in row
                     """
-                    Xy1, Xy2 = self._divide_on_feature(
+                    Xy_left, Xy_right = self._divide_on_feature(
                         Xy, feature_i, threshold)
 
-                    if len(Xy1) > 0 and len(Xy2) > 0:
+                    if len(Xy_left) > 0 and len(Xy_right) > 0:
                         """Select the y values of the two sets """
-                        y1 = Xy1[:, n_features:]
-                        y2 = Xy2[:, n_features:]
+                        y1 = Xy_left[:, n_features:]
+                        y2 = Xy_right[:, n_features:]
 
                         """Calculate impurity
-                        classification tree : information gain
-                        regression tree : variance reduction
+                        | classification tree | information gain   |
+                        --------------------------------------------
+                        | regression tree     | variance reduction |
                         """
                         impurity = self._impurity_calculation(y, y1, y2)
 
@@ -146,13 +147,13 @@ class DecisionTree():
                                 "feature_i": feature_i, "threshold": threshold}
                             best_sets = {
                                 # X of left subtree
-                                "leftX": Xy1[:, :n_features],
+                                "leftX": Xy_left[:, :n_features],
                                 # y of left subtree
-                                "lefty": Xy1[:, n_features:],
+                                "lefty": Xy_left[:, n_features:],
                                 # X of right subtree
-                                "rightX": Xy2[:, :n_features],
+                                "rightX": Xy_right[:, :n_features],
                                 # y of right subtree
-                                "righty": Xy2[:, n_features:]
+                                "righty": Xy_right[:, n_features:]
                             }
         """When loop finished, continue to build tree"""
         if largest_impurity > self.min_impurity_split:
@@ -167,8 +168,9 @@ class DecisionTree():
                         false_branch=false_branch)
 
         """We're at leaf now
-        classification tree : majority vote
-        regression tree : mean(y)
+        | classification tree | majority vote |
+        ---------------------------------------
+        | regression tree     | mean(y)       |
         """
         leaf_value = self._leaf_value_calculation(y)
         return Node(value=leaf_value)

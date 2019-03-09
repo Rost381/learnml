@@ -34,15 +34,7 @@
 
     
         
-    
-        
-    
-        
-    
-        
-    
-        
-    
+        <link rel="stylesheet" href="../css/app.css">
         
     
 
@@ -57,10 +49,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../unsupervised/" />
+    <link rel="next" href="support_vector_machine.html" />
     
     
-    <link rel="prev" href="svm.html" />
+    <link rel="prev" href="../" />
     
 
     </head>
@@ -102,34 +94,14 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="./">
-            
-                <a href="./">
-            
-                    
-                    Supervised
-            
-                </a>
-            
 
-            
-            <ul class="articles">
-                
     
-        <li class="chapter " data-level="1.2.1" data-path="svm.html">
-            
-                <a href="svm.html">
-            
-                    
-                    svm
-            
-                </a>
-            
-
-            
-        </li>
+        
+        <li class="header">Supervised</li>
+        
+        
     
-        <li class="chapter active" data-level="1.2.2" data-path="adaboost.html">
+        <li class="chapter active" data-level="2.1" data-path="adaboost.html">
             
                 <a href="adaboost.html">
             
@@ -142,17 +114,32 @@
             
         </li>
     
+        <li class="chapter " data-level="2.2" data-path="support_vector_machine.html">
+            
+                <a href="support_vector_machine.html">
+            
+                    
+                    support vector machine
+            
+                </a>
+            
 
-            </ul>
             
         </li>
     
-        <li class="chapter " data-level="1.3" data-path="../unsupervised/">
+
+    
+        
+        <li class="header">Unsupervised</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../unsupervised/principal_component_analysis.html">
             
-                <a href="../unsupervised/">
+                <a href="../unsupervised/principal_component_analysis.html">
             
                     
-                    Unsupervised
+                    principal component analysis
             
                 </a>
             
@@ -205,7 +192,61 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="adaboost">adaboost</h1>
+                                <h1 id="adaboost">AdaBoost</h1>
+<p>An AdaBoost classifier is a meta-estimator that begins by fitting a classifier on the original dataset and then fits additional copies of the classifier on the same dataset but where the weights of incorrectly classified instances are adjusted such that subsequent classifiers focus more on difficult cases.</p>
+<h2 id="algorithms-discrete-adaboost">Algorithms (Discrete AdaBoost)</h2>
+<h3 id="initialize-the-weights-displaystyle-w11dots-wn1-set-to-displaystyle-frac-1n">Initialize the weights <script type="math/tex; ">{\displaystyle w_{1,1}\dots w_{n,1}}</script> set to <script type="math/tex; ">{\displaystyle {\frac {1}{n}}}</script></h3>
+<pre><code class="lang-python">w = np.full(n_samples, (<span class="hljs-number">1</span> / n_samples))
+</code></pre>
+<p><strong>while</strong> <script type="math/tex; ">m \leq M</script> <strong>do</strong></p>
+<h3 id="calculate-minimum-error">Calculate minimum error</h3>
+<p><script type="math/tex; mode=display">
+\operatorname { err } _ { m } = \sum _ { i = 1 } ^ { N } w _ { i } ^ { ( m ) } h \left( - y _ { i } H _ { m } \left( \mathbf { x } _ { \mathbf { i } } \right) \right)
+</script></p>
+<pre><code class="lang-python">error = sum(w[y != prediction])
+</code></pre>
+<h3 id="calcuate-alpha">Calcuate alpha</h3>
+<p>Minimize</p>
+<p><script type="math/tex; ">\sum_{i}w_{i}e^{-y_{i}h_{i}\alpha_{t}}</script></p>
+<p>Using the convexity of the exponential function</p>
+<p><script type="math/tex; mode=display">
+\sum _ { i } w _ { i } e ^ { - y _ { i } h _ { i } \alpha _ { t } } \leq \sum _ { i } \left( \frac { 1 - y _ { i } h _ { i } } { 2 } \right) w _ { i } e ^ { \alpha _ { t } } + \sum _ { i } \left( \frac { 1 + y _ { i } h _ { i } } { 2 } \right) w _ { i } e ^ { - \alpha _ { t } }
+</script></p>
+<p><script type="math/tex; mode=display">
+= \left( \frac { \epsilon _ { t } } { 2 } \right) e ^ { \alpha _ { t } } + \left( \frac { 1 - \epsilon _ { t } } { 2 } \right) e ^ { - \alpha _ { t } }
+</script></p>
+<p>Set it to zero to find the minimum</p>
+<p><script type="math/tex; mode=display">
+\left( \frac { \epsilon _ { t } } { 2 } \right) e ^ { \alpha _ { t } } - \left( \frac { 1 - \epsilon _ { t } } { 2 } \right) e ^ { - \alpha _ { t } } = 0
+</script></p>
+<p>So</p>
+<p><script type="math/tex; mode=display">
+\alpha _ { m } = \frac { 1 } { 2 } \log \left( \frac { 1 - \operatorname { err } _ { m } } { \operatorname { err } _ { m } } \right)
+</script></p>
+<pre><code class="lang-python">stump.alpha = <span class="hljs-number">0.5</span> * math.log((<span class="hljs-number">1</span> - error_min) / (error_min + <span class="hljs-number">1e-6</span>))
+</code></pre>
+<p>For each sample i = 1,...,N, update the weight</p>
+<p><script type="math/tex; mode=display">
+w _ { i } ^ { ( m ) } = w _ { i } ^ { ( m ) } \exp \left( - \alpha _ { m } y _ { i } H _ { m } \left( \mathbf { x } _ { \mathbf { i } } \right) \right)
+</script></p>
+<pre><code class="lang-python">w *= np.exp(-stump.alpha * y * predictions)
+</code></pre>
+<h3 id="renormalize-the-weights-s---m---sum---j--1----n--v---j--and-for-i--1--dots--n">Renormalize the weights: <script type="math/tex; ">S _ { m } = \sum _ { j = 1 } ^ { N } v _ { j }$ and, for $i = 1 , \dots , N</script></h3>
+<p><script type="math/tex; mode=display">
+w _ { i } ^ { ( m + 1 ) } = v _ { i } ^ { ( m ) } / S _ { m }</script></p>
+<pre><code class="lang-python">w /= np.sum(w)
+</code></pre>
+<p><script type="math/tex; mode=display">
+m \leftarrow m + 1
+</script></p>
+<p><strong>end while</strong></p>
+<h3 id="predict">Predict</h3>
+<p><script type="math/tex; mode=display">
+H ( \mathbf { x } ) = \operatorname { sign } \left( \sum _ { j = 1 } ^ { M } \alpha _ { j } H _ { j } ( \mathbf { x } ) \right)
+</script></p>
+<pre><code class="lang-python">y_pred += stump.alpha * self.H(X, stump, y_init)
+y_pred = np.sign(y_pred).flatten()
+</code></pre>
 
                                 
                                 </section>
@@ -233,12 +274,12 @@
 
             
                 
-                <a href="svm.html" class="navigation navigation-prev " aria-label="Previous page: svm">
+                <a href="../" class="navigation navigation-prev " aria-label="Previous page: Introduction">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../unsupervised/" class="navigation navigation-next " aria-label="Next page: Unsupervised">
+                <a href="support_vector_machine.html" class="navigation navigation-next " aria-label="Next page: support vector machine">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -249,7 +290,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"adaboost","level":"1.2.2","depth":2,"next":{"title":"Unsupervised","level":"1.3","depth":1,"path":"unsupervised/README.md","ref":"unsupervised/README.md","articles":[]},"previous":{"title":"svm","level":"1.2.1","depth":2,"path":"supervised/svm.md","ref":"supervised/svm.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"supervised/adaboost.md","mtime":"2019-03-08T19:59:37.000Z","type":"markdown"},"gitbook":{"version":"3.0.0","time":"2019-03-09T08:09:10.202Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"adaboost","level":"2.1","depth":1,"next":{"title":"support vector machine","level":"2.2","depth":1,"path":"supervised/support_vector_machine.md","ref":"supervised/support_vector_machine.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax","livereload"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"css/app.css"}},"file":{"path":"supervised/adaboost.md","mtime":"2019-03-09T08:49:06.000Z","type":"markdown"},"gitbook":{"version":"3.0.0","time":"2019-03-09T09:00:31.744Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -257,6 +298,18 @@
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>

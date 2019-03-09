@@ -100,7 +100,7 @@ venv.bak/
 # Rope project settings
 .ropeproject
 
-# mkdocs documentation
+# mkdocs docs
 /site
 
 # vscode settings
@@ -108,3 +108,7 @@ settings.json
 
 # temp folder
 temp/
+
+# gitbook
+gitbook/
+gitbook-build.command

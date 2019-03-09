@@ -1,15 +1,8 @@
-<div align="center">
-
-![](docs/images/logo.png)
-
 # zero
 **Write machine learning algorithms from Zero**
 
-![](https://img.shields.io/badge/python-3.5%20%7C%203.6%20%7C%203.7-blue.svg)
-![](https://img.shields.io/badge/machine%20learning-algorithms-brightgreen.svg)
-![](http://progressed.io/bar/20?)
-
-</div>
+![](https://img.shields.io/badge/python-3.5+-blue.svg)
+![](http://progressed.io/bar/18?)
 
 ## Features
 - Friendly.
@@ -25,7 +18,7 @@ model.fit(X, y)
 ```
 
 ## Document
-[Here.](https://byzhi.github.io/zero/) 
+[In progress..](https://byzhi.github.io/zero/) 
 
 ## Algorithms
 

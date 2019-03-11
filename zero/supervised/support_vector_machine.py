@@ -8,6 +8,7 @@ cvxopt.solvers.options['show_progress'] = False
 
 class svm():
     """Support Vector Machine.
+
     Use cvxopt to solve the quadratic QP problem.
 
     Parameters:
@@ -34,6 +35,10 @@ class svm():
         This is only available in the case of a linear kernel.
     intercept_ : array
         Constants in decision function.
+        Best hyperplane in Linear SVM:
+        y = ax + b
+        a = -coef_[0] / coef_[1]
+        b = -intercept_ / coef_[1]
     """
 
     def __init__(self, C=1, kernel='linear', degree=3, gamma=None, coef0=0.0, tol=1e-3):
@@ -118,8 +123,7 @@ class svm():
         lagr_mult = np.ravel(solution['x'])
         idx = lagr_mult > self._tol
 
-        """Get the corresponding lagr. multipliers, support vectors
-        """
+        """Get the corresponding lagr. multipliers, support vectors"""
         self._lagr_multipliers = lagr_mult[idx]
         self.support_vectors_ = X[idx]
         self.support_vector_labels_ = y[idx]

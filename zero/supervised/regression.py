@@ -34,10 +34,13 @@ class Regression(object):
         self.training_errors = []
         self._init_weights(n_features=X.shape[1])
         m = len(y)
-        for i in range(self.max_iter):
+        for _ in range(self.max_iter):
             y_pred = X.dot(self.w)
             mse = np.mean(0.5 * (y - y_pred)**2 + self.regularization(self.w))
             self.training_errors.append(mse)
+            """Gradient Descent is a general function for minimizing a function,
+            in this case the Mean Squared Error(MSE) cost function.
+            """
             grad_w = -(y - y_pred).dot(X) + self.regularization.grad(self.w)
             self.w -= self.learning_rate * grad_w
 
@@ -114,6 +117,7 @@ class LinearRegression(Regression):
 
 class RidgeRegression(Regression):
     """Ridge Regression
+
     Linear least squares with l2 regularization.
     Minimizes the objective function:
         ||y - Xw||^2_2 + alpha * ||w||^2_2
@@ -225,7 +229,19 @@ class LassoRegression(Regression):
 
 
 class PolynomialRidgeRegression(Regression):
-    """ """
+    """PolynomialRidgeRegression
+
+    Parameters:
+    -----------
+    degree : integer
+        The degree of the polynomial features.
+    reg_factor : float
+        The factor that will determine the amount of regularization and feature shrinkage. 
+    max_iter : int
+        The maximum number of iterations
+    learning_rate : float
+        The step length that will be used when updating the weights.
+    """
 
     def __init__(self, degree, reg_factor, max_iter=3000, learning_rate=0.001, gradient_descent=True):
         self.degree = degree

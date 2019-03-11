@@ -5,8 +5,8 @@
 ![](http://progressed.io/bar/18?)
 
 ## Features
-- Friendly.
-- Minimal implementation from Zero.
+- Friendly code.
+- Implementation from Zero.
 - Designed for easily learning algorithms.
 
 ## Getting started

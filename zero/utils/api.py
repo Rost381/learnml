@@ -10,6 +10,8 @@ from .metrics import (
     calculate_mean_squared_error,
 )
 
+from .pairwise import euclidean_distances
+
 from .plot import make_meshgrid, plot_contours
 
 from .preprocessing import PolynomialFeatures

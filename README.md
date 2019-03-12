@@ -36,7 +36,7 @@ model.fit(X, y)
 
   - Perceptron
   - [**Support Vector Machine**](./zero/supervised/support_vector_machine.py) | examples: [01](./examples/example_svm.py), [02](./examples/example_svm_02.py)
-  - k-nearest neighbor
+  - [k-Nearest Neighbors](./zero/supervised/k_nearest_neighbors.py) | [example](./examples/example_KNeighborsClassifier.py)
   - [**Linear Discriminant Analysis**](./zero/supervised/linear_discriminant_analysis.py) | [example](./examples/example_PCA_LDA.py)
 
 

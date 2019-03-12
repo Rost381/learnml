@@ -3,6 +3,7 @@ from .supervised.adaboost import AdaBoostClassifier
 from .supervised.decision_tree import ClassificationTree, RegressionTree
 from .supervised.gradient_boosting import (GradientBoostingClassifier,
                                            GradientBoostingRegressor)
+from .supervised.k_nearest_neighbors import KNeighborsClassifier
 from .supervised.linear_discriminant_analysis import LinearDiscriminantAnalysis
 from .supervised.logistic_regression import LogisticRegression
 from .supervised.regression import (LassoRegression, LinearRegression,

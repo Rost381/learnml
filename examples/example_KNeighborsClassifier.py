@@ -17,10 +17,11 @@ def main():
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4)
 
     model = KNeighborsClassifier(n_neighbors=5)
-    y_pred = model.predict(X_test, X_train, y_train)
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
     accuracy = calculate_accuracy_score(y_test, y_pred)
     print("Accuracy Score: {:.2%}".format(accuracy))
-
+    """
     h = .05  # step size in the mesh
 
     # Create color maps
@@ -41,6 +42,7 @@ def main():
     plt.xlim(xx.min(), xx.max())
     plt.ylim(yy.min(), yy.max())
     plt.savefig('./examples/example_KNeighborsClassifier.png')
+    """
 
 
 if __name__ == "__main__":

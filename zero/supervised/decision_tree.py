@@ -279,3 +279,16 @@ class RegressionTree(DecisionTree):
         self._impurity_calculation = self._variance_reduction
         self._leaf_value_calculation = self._mean
         super(RegressionTree, self).fit(X, y)
+
+
+class XGBoostRegressionTree(DecisionTree):
+    def _gain_by_taylor(self):
+        pass
+
+    def _approximate_update(self):
+        pass
+
+    def fit(self, X, y):
+        self._impurity_calculation = self._gain_by_taylor
+        self._leaf_value_calculation = self._approximate_update
+        super(XGBoostRegressionTree, self).fit(X, y)

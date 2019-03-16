@@ -37,7 +37,8 @@ class DecisionTree():
     def __init__(self,
                  min_samples_split=2,
                  min_impurity_split=1e-7,
-                 max_depth=float("inf")):
+                 max_depth=float("inf"),
+                 loss=None):
         self.root = None
         self.min_samples_split = min_samples_split
         self.min_impurity_split = min_impurity_split
@@ -61,6 +62,9 @@ class DecisionTree():
         RegressionTree : mean(y)
         """
         self._leaf_value_calculation = None
+
+        """If Gradient Boost"""
+        self.loss = loss
 
     def _divide_on_feature(self, X, feature_i, threshold):
         """Used for decision tree
@@ -132,9 +136,9 @@ class DecisionTree():
                         y2 = Xy_right[:, n_features:]
 
                         """Calculate impurity
-                        | classification tree | information gain   |
-                        --------------------------------------------
-                        | regression tree     | variance reduction |
+                        | classification tree | regression tree    | XGBoost |
+                        ------------------------------------------------------
+                        | information gain    | variance reduction | gain    |
                         """
                         impurity = self._impurity_calculation(y, y1, y2)
 
@@ -168,9 +172,9 @@ class DecisionTree():
                         false_branch=false_branch)
 
         """We're at leaf now
-        | classification tree | majority vote |
-        ---------------------------------------
-        | regression tree     | mean(y)       |
+        | classification tree | regression tree | XGBoost               |
+        -----------------------------------------------------------------
+        | majority vote       | mean(y)         | approximate update(y) |
         """
         leaf_value = self._leaf_value_calculation(y)
         return Node(value=leaf_value)
@@ -282,13 +286,47 @@ class RegressionTree(DecisionTree):
 
 
 class XGBoostRegressionTree(DecisionTree):
-    def _gain_by_taylor(self):
-        pass
+    """XGBoost Regression Tree
+    Reference:
+    https://www.kdd.org/kdd2016/papers/files/rfp0697-chenAemb.pdf
+    https://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf
+    https://xgboost.readthedocs.io/en/latest/tutorials/model.html
+    """
 
-    def _approximate_update(self):
-        pass
+    def _split(self, y):
+        col = int(np.shape(y)[1] / 2)
+        y, y_pred = y[:, :col], y[:, col:]
+        return y, y_pred
+
+    def _obj(self, y, y_pred):
+        """Calculate the structure score"""
+        G = (y * self.loss.gradient(y, y_pred)).sum()
+        H = self.loss.hess(y, y_pred).sum()
+        return np.power(G, 2) / H
+
+    def _gain(self, y, y1, y2):
+        """The score it gains
+        This formula can be decomposed as the score on
+        the new left leaf,new right leaf, original leaf
+        """
+        y1, y1_pred = self._split(y1)
+        y2, y2_pred = self._split(y2)
+        y, y_pred = self._split(y)
+
+        gain_left = self._obj(y1, y1_pred)
+        gain_right = self._obj(y2, y2_pred)
+        gain_original = self._obj(y, y_pred)
+
+        return 0.5 * (gain_left + gain_right - gain_original)
+
+    def _approximate_update(self, y):
+        y, y_pred = self._split(y)
+        G = np.sum(y * self.loss.gradient(y, y_pred), axis=0)
+        H = np.sum(self.loss.hess(y, y_pred), axis=0)
+        update_approximation = G / H
+        return update_approximation
 
     def fit(self, X, y):
-        self._impurity_calculation = self._gain_by_taylor
+        self._impurity_calculation = self._gain
         self._leaf_value_calculation = self._approximate_update
         super(XGBoostRegressionTree, self).fit(X, y)

@@ -1,5 +1,5 @@
 """Built-in activation functions.
-Reference: 
+Reference:
 https://github.com/keras-team/keras/blob/master/keras/activations.py
 https://en.wikipedia.org/wiki/Activation_function
 """

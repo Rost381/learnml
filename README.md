@@ -48,7 +48,7 @@ tree-based and ensemble methods
 - Random forests
 - [Adaboost](./zero/supervised/adaboost.py) | examples: [01](./examples/example_Adaboost.py)
 - [Gradient boosting](./zero/supervised/gradient_boosting.py) | examples: [classifier](./examples/example_GradientBoostingClassifier.py), [regressor](./examples/example_GradientBoostingRegressor.py)
-- XGBoost
+- [XGBoost](./zero/supervised/xgboost.py) | examples: [01](./examples/example_XGBoost.py)
 
 generative Learning
 

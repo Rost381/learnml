@@ -1,5 +1,6 @@
 import numpy as np
 from .metrics import calculate_accuracy_score
+from .activations import sigmoid
 
 
 class l1_regularization():
@@ -83,3 +84,20 @@ class cross_entropy_loss():
     def gradient(self, y, p):
         p = np.clip(p, 1e-7, 1 - 1e-7)
         return - (y / p) + (1 - y) / (1 - p)
+
+
+class logistic_loss():
+    def __init__(self): pass
+
+    def loss(self, y, y_pred):
+        y_pred = np.clip(y_pred, 1e-7, 1 - 1e-7)
+        p = sigmoid(y_pred)
+        return y * np.log(p) + (1 - y) * np.log(1 - p)
+
+    def gradient(self, y, y_pred):
+        p = sigmoid(y_pred)
+        return -(y - p)
+
+    def hess(self, y, y_pred):
+        p = sigmoid(y_pred)
+        return p * (1 - p)

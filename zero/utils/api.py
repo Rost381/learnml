@@ -23,7 +23,8 @@ from .losses import (
     l2_regularization,
     l1_loss,
     l2_loss,
-    cross_entropy_loss
+    cross_entropy_loss,
+    logistic_loss
 )
 
 from .np import to_categorical

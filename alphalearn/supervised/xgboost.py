@@ -1,23 +1,23 @@
 import numpy as np
 
-from zero.api import XGBoostRegressionTree
-from zero.utils.api import to_categorical, logistic_loss
+from alphalearn.api import XGBoostRegressionTree
+from alphalearn.utils.api import to_categorical, logistic_loss
 
 
 class XGBoost():
     """XGBoost"""
-    def __init__(self, max_iter=200, learning_rate=0.001, min_samples_split=2,
+
+    def __init__(self, n_estimators=100, learning_rate=0.1, min_samples_split=2,
                  min_impurity_split=1e-7, max_depth=2):
-        self.max_iter = max_iter
+        self.n_estimators = n_estimators
         self.learning_rate = learning_rate
         self.min_samples_split = min_samples_split
         self.min_impurity_split = min_impurity_split
         self.max_depth = max_depth
-
         self.loss = logistic_loss()
 
         self.trees = []
-        for _ in range(self.max_iter):
+        for _ in range(self.n_estimators):
             tree = XGBoostRegressionTree(
                 min_samples_split=self.min_samples_split,
                 min_impurity_split=self.min_impurity_split,
@@ -30,7 +30,7 @@ class XGBoost():
         y = to_categorical(y)
 
         y_pred = np.zeros(np.shape(y))
-        for i in range(self.max_iter):
+        for i in range(self.n_estimators):
             tree = self.trees[i]
             y_y_pred = np.concatenate((y, y_pred), axis=1)
             tree.fit(X, y_y_pred)

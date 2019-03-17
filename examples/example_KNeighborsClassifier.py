@@ -3,9 +3,9 @@ import numpy as np
 from matplotlib.colors import ListedColormap
 from sklearn.model_selection import train_test_split
 
-from zero.api import KNeighborsClassifier
-from zero.datasets.api import load_iris
-from zero.utils.api import calculate_accuracy_score, normalize
+from alphalearn.api import KNeighborsClassifier
+from alphalearn.datasets.api import load_iris
+from alphalearn.utils.api import calculate_accuracy_score, normalize
 
 
 def main():
@@ -21,10 +21,8 @@ def main():
     y_pred = model.predict(X_test)
     accuracy = calculate_accuracy_score(y_test, y_pred)
     print("Accuracy Score: {:.2%}".format(accuracy))
-    """
-    h = .05  # step size in the mesh
 
-    # Create color maps
+    h = .05  # step size in the mesh
     cmap_light = ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF'])
     cmap_bold = ListedColormap(['#FF0000', '#00FF00', '#0000FF'])
 
@@ -33,7 +31,7 @@ def main():
     xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
                          np.arange(y_min, y_max, h))
 
-    Z = model.predict(np.c_[xx.ravel(), yy.ravel()], X, y)
+    Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
     Z = Z.reshape(xx.shape)
     plt.pcolormesh(xx, yy, Z, cmap=cmap_light)
 
@@ -42,7 +40,6 @@ def main():
     plt.xlim(xx.min(), xx.max())
     plt.ylim(yy.min(), yy.max())
     plt.savefig('./examples/example_KNeighborsClassifier.png')
-    """
 
 
 if __name__ == "__main__":

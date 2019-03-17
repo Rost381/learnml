@@ -6,7 +6,7 @@ from .activations import sigmoid
 class l1_regularization():
     """L1 regularization
     For Lasso regression, also known as least absolute deviations, least absolute errors.
-    *** but 'Zero' use Coordinate Descent to solve LassoRegression ***
+    *** but here use Coordinate Descent to solve LassoRegression ***
     """
 
     def __init__(self, alpha):

@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from zero.api import PCA, LinearDiscriminantAnalysis
-from zero.datasets.api import load_iris
+from alphalearn.api import PCA, LinearDiscriminantAnalysis
+from alphalearn.datasets.api import load_iris
 
 
 def main():

@@ -1,5 +1,5 @@
 import numpy as np
-from zero.utils.api import sigmoid
+from alphalearn.utils.api import sigmoid
 
 
 class LogisticRegression(object):

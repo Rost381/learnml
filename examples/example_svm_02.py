@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from zero.api import svm
-from zero.utils.api import make_meshgrid, plot_contours
+from alphalearn.api import svm
+from alphalearn.utils.api import make_meshgrid, plot_contours
 
 np.random.seed(0)
 X = np.random.randn(150, 2)

@@ -1,5 +1,5 @@
 import numpy as np
-from zero.utils.api import euclidean_distances
+from alphalearn.utils.api import euclidean_distances
 
 
 class KNeighborsClassifier():
@@ -40,5 +40,5 @@ class KNeighborsClassifier():
 
             """Returns the indices of the maximum values of counts"""
             y_pred[i] = counts.argmax()
-            
+
         return y_pred

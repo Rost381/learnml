@@ -28,3 +28,5 @@ from .losses import (
 )
 
 from .np import to_categorical
+
+from .random import random_subsets

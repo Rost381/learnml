@@ -1,10 +1,9 @@
-import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-from zero.api import XGBoost
-from zero.datasets.api import load_iris
-from zero.utils.api import calculate_accuracy_score
+from alphalearn.api import XGBoost
+from alphalearn.datasets.api import load_iris
+from alphalearn.utils.api import calculate_accuracy_score
 
 
 def main():
@@ -14,7 +13,7 @@ def main():
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4)
 
-    model = XGBoost()
+    model = XGBoost(n_estimators=300, learning_rate=0.001)
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
 

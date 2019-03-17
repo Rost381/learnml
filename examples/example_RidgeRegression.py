@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.datasets import make_regression
 
-from zero.api import RidgeRegression
-from zero.utils.api import calculate_mean_squared_error, normalize
+from alphalearn.api import RidgeRegression
+from alphalearn.utils.api import calculate_mean_squared_error, normalize
 
 
 def main():

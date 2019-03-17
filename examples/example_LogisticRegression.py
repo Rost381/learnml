@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from zero.api import LogisticRegression
-from zero.datasets.api import load_iris
-from zero.utils.api import calculate_accuracy_score
+from alphalearn.api import LogisticRegression
+from alphalearn.datasets.api import load_iris
+from alphalearn.utils.api import calculate_accuracy_score
 
 
 def main():

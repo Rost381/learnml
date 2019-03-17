@@ -2,9 +2,9 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-from zero.api import ClassificationTree
-from zero.datasets.api import load_banknote
-from zero.utils.api import calculate_accuracy_score
+from alphalearn.api import ClassificationTree
+from alphalearn.datasets.api import load_banknote
+from alphalearn.utils.api import calculate_accuracy_score
 
 
 def main():

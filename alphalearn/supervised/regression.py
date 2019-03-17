@@ -3,12 +3,12 @@ import math
 import numpy as np
 import pandas as pd
 
-from zero.utils.api import (PolynomialFeatures, l1_regularization,
-                            l2_regularization, normalize)
+from alphalearn.utils.api import (PolynomialFeatures, l1_regularization,
+                                  l2_regularization, normalize)
 
 
 class Regression(object):
-    """ Base Regression model
+    """Base Regression model
 
     Parameters:
     -----------
@@ -23,7 +23,7 @@ class Regression(object):
         self.learning_rate = learning_rate
 
     def _init_weights(self, n_features):
-        """ Draw samples from a uniform distribution.
+        """Draw samples from a uniform distribution.
         n_features : Output shape. 
         """
         limit = 1 / math.sqrt(n_features)

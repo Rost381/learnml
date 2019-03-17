@@ -2,9 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
-from zero.api import RegressionTree
-from zero.utils.api import standardize, calculate_mean_squared_error
-from zero.datasets.api import load_temperature
+from alphalearn.api import RegressionTree
+from alphalearn.utils.api import standardize, calculate_mean_squared_error
+from alphalearn.datasets.api import load_temperature
 
 
 def main():

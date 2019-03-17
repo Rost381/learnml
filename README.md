@@ -1,19 +1,19 @@
-# zero
-**Write machine learning algorithms from Zero**
+# alphalearn
+**Write machine learning algorithms from zero**
 
 ![](https://img.shields.io/badge/python-3.5+-blue.svg)
 ![](http://progressed.io/bar/18?)
 
 ## Features
 - Friendly code.
-- Implementation from Zero.
-- Designed for easily learning algorithms.
+- Implementation from zero.
+- Designed for learning algorithms.
 
 ## Getting started
 Linear regression demo.
 
 ```python
-from zero.api import LinearRegression
+from alphalearn.api import LinearRegression
 model = LinearRegression()
 model.fit(X, y)
 ```

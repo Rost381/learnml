@@ -3,9 +3,9 @@ import pandas as pd
 from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
 
-from zero.api import LassoRegression
-from zero.datasets.api import load_boston
-from zero.utils.api import standardize
+from alphalearn.api import LassoRegression
+from alphalearn.datasets.api import load_boston
+from alphalearn.utils.api import standardize
 
 
 def main():

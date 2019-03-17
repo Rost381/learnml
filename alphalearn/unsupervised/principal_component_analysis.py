@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from zero.utils.stats import covariance_matrix
+from alphalearn.utils.stats import covariance_matrix
 
 
 class PCA():

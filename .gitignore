@@ -110,5 +110,5 @@ settings.json
 temp/
 
 # gitbook
-gitbook/
+docs_source/
 gitbook-build.command

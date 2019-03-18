@@ -2,7 +2,7 @@ import numpy as np
 from alphalearn.utils.api import sigmoid
 
 
-class LogisticRegression(object):
+class LogisticRegression():
     """Logistic Regression
 
     Parameters:
@@ -30,14 +30,18 @@ class LogisticRegression(object):
         if self.fit_intercept:
             X = np.insert(X, 0, 1, axis=1)
 
+        """Step 1 initialize the weight"""
         self.w = np.zeros(X.shape[1])
 
         for _ in range(self.max_iter):
+            """Step 2 caculate the y_pred"""
             scores = np.dot(X, self.w)
             y_pred = sigmoid(scores)
 
-            grad = np.dot(X.T, y - y_pred)
-            self.w += self.learning_rate * grad
+            """Step 3 update the weight
+            new weight = old weight - X . (y - y_pred) * learning rate"""
+            grad_w = (y_pred - y).dot(X)
+            self.w -= self.learning_rate * grad_w
 
         return self.w
 

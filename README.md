@@ -19,36 +19,36 @@ model.fit(X, y)
 ```
 
 ## Document
-[In progress..](https://byzhi.github.io/zero/) 
+[In progress..](https://byzhi.github.io/alphalearn/) 
 
 ## Algorithms
 
 ### Supervised Learning
 linear models
 
-- [Regression](./zero/supervised/regression.py)
+- [Regression](./alphalearn/supervised/regression.py)
  | examples: [linear](./examples/example_LinearRegression.py)
 , [lasso](./examples/example_LassoRegression.py)
 , [ridge](./examples/example_RidgeRegression.py)
 , [polynomial ridge](./examples/example_PolynomialRidgeRegression.py)
-- [Logistic Regression](./zero/supervised/logistic_regression.py) | examples: [01](./examples/example_LogisticRegression.py)
+- [Logistic Regression](./alphalearn/supervised/logistic_regression.py) | examples: [01](./examples/example_LogisticRegression.py)
 
 classification
 
 - Perceptron
-- [Support Vector Machine](./zero/supervised/support_vector_machine.py) | examples: [01](./examples/example_svm.py), [02](./examples/example_svm_02.py)
-- [k-Nearest Neighbors](./zero/supervised/k_nearest_neighbors.py) | examples: [01](./examples/example_KNeighborsClassifier.py)
-- [Linear Discriminant Analysis](./zero/supervised/linear_discriminant_analysis.py) | examples: [01](./examples/example_PCA_LDA.py)
+- [Support Vector Machine](./alphalearn/supervised/support_vector_machine.py) | examples: [01](./examples/example_svm.py), [02](./examples/example_svm_02.py)
+- [k-Nearest Neighbors](./alphalearn/supervised/k_nearest_neighbors.py) | examples: [01](./examples/example_KNeighborsClassifier.py)
+- [Linear Discriminant Analysis](./alphalearn/supervised/linear_discriminant_analysis.py) | examples: [01](./examples/example_PCA_LDA.py)
 
 
 tree-based and ensemble methods
 
-- [Classification Tree](./zero/supervised/decision_tree.py) | examples: [01](./examples/example_ClassificationTree.py)
-- [RegressionTree](./zero/supervised/decision_tree.py) | examples: [01](./examples/example_RegressionTree.py)
-- Random forests
-- [Adaboost](./zero/supervised/adaboost.py) | examples: [01](./examples/example_Adaboost.py)
-- [Gradient boosting](./zero/supervised/gradient_boosting.py) | examples: [classifier](./examples/example_GradientBoostingClassifier.py), [regressor](./examples/example_GradientBoostingRegressor.py)
-- [XGBoost](./zero/supervised/xgboost.py) | examples: [01](./examples/example_XGBoost.py)
+- [Classification Tree](./alphalearn/supervised/decision_tree.py) | examples: [01](./examples/example_ClassificationTree.py)
+- [RegressionTree](./alphalearn/supervised/decision_tree.py) | examples: [01](./examples/example_RegressionTree.py)
+- [Adaboost](./alphalearn/supervised/adaboost.py) | examples: [01](./examples/example_Adaboost.py)
+- [Gradient boosting](./alphalearn/supervised/gradient_boosting.py) | examples: [classifier](./examples/example_GradientBoostingClassifier.py), [regressor](./examples/example_GradientBoostingRegressor.py)
+- [Random forests](./alphalearn/supervised/random_forest.py) | examples: [01](./examples/example_RandomForestClassifier.py)
+- [XGBoost](./alphalearn/supervised/xgboost.py) | examples: [01](./examples/example_XGBoost.py)
 
 generative Learning
 
@@ -58,7 +58,7 @@ generative Learning
 
 dimension reduction
 
-- [Principal Component Analysis](./zero/unsupervised/principal_component_analysis.py) | examples: [01](./examples/example_PCA_LDA.py)
+- [Principal Component Analysis](./alphalearn/unsupervised/principal_component_analysis.py) | examples: [01](./examples/example_PCA_LDA.py)
 -  K-Means
 -  FP-Growth
 

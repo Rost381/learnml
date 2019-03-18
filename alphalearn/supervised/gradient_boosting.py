@@ -51,8 +51,9 @@ class GradientBoosting():
         self.trees = []
 
         """Loss function
-        Classifier: cross_entropy_loss
-        Regression: l2_loss
+        | Classifier         | Regression |
+        -----------------------------------
+        | cross_entropy_loss | l2_loss    |
         """
         if self._isClassifier:
             self.loss_function = cross_entropy_loss()

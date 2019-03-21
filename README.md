@@ -1,16 +1,11 @@
 # alphalearn
-**Write machine learning algorithms from zero**
+write machine learning algorithms from for self-learning
 
 ![](https://img.shields.io/badge/python-3.5+-blue.svg)
 ![](http://progressed.io/bar/18?)
 
-## Features
-- Friendly code.
-- Implementation from zero.
-- Designed for learning algorithms.
-
 ## Getting started
-Linear regression demo.
+Linear regression
 
 ```python
 from alphalearn.api import LinearRegression
@@ -19,12 +14,12 @@ model.fit(X, y)
 ```
 
 ## Document
-[In progress..](https://byzhi.github.io/alphalearn/) 
+[docs](https://byzhi.github.io/alphalearn/) 
 
-## Algorithms
+## Code
 
 ### Supervised Learning
-linear models
+**linear models**
 
 - [Regression](./alphalearn/supervised/regression.py)
  | examples: [linear](./examples/example_LinearRegression.py)
@@ -33,7 +28,7 @@ linear models
 , [polynomial ridge](./examples/example_PolynomialRidgeRegression.py)
 - [Logistic Regression](./alphalearn/supervised/logistic_regression.py) | examples: [01](./examples/example_LogisticRegression.py)
 
-classification
+**classification**
 
 - Perceptron
 - [Support Vector Machine](./alphalearn/supervised/support_vector_machine.py) | examples: [01](./examples/example_svm.py), [02](./examples/example_svm_02.py)
@@ -41,7 +36,7 @@ classification
 - [Linear Discriminant Analysis](./alphalearn/supervised/linear_discriminant_analysis.py) | examples: [01](./examples/example_PCA_LDA.py)
 
 
-tree-based and ensemble methods
+**tree-based and ensemble methods**
 
 - [Classification Tree](./alphalearn/supervised/decision_tree.py) | examples: [01](./examples/example_ClassificationTree.py)
 - [RegressionTree](./alphalearn/supervised/decision_tree.py) | examples: [01](./examples/example_RegressionTree.py)
@@ -50,13 +45,13 @@ tree-based and ensemble methods
 - [Random forests](./alphalearn/supervised/random_forest.py) | examples: [01](./examples/example_RandomForestClassifier.py)
 - [XGBoost](./alphalearn/supervised/xgboost.py) | examples: [01](./examples/example_XGBoost.py)
 
-generative Learning
+**generative Learning**
 
-- Naive Bayes
+- [Naive Bayes](./alphalearn/supervised/naive_bayes.py) | examples: [01](./examples/example_GaussianNB.py)
 
 ### Unsupervised Learning
 
-dimension reduction
+**dimension reduction**
 
 - [Principal Component Analysis](./alphalearn/unsupervised/principal_component_analysis.py) | examples: [01](./examples/example_PCA_LDA.py)
 -  K-Means
@@ -69,3 +64,10 @@ dimension reduction
 - DNN
 - RNN
 - CNN
+
+## Reference
+Code based on: 
+- [ML-From-Scratch](https://github.com/eriklindernoren/ML-From-Scratch)
+- [Lasso](https://github.com/satopirka/Lasso)
+- [Implementing a Principal Component Analysis (PCA) – in Python, step by step]([https://sebastianraschka.com](https://sebastianraschka.com/Articles/2014_pca_step_by_step.html))
+- [Linear Discriminant Analysis Bit by Bit](https://sebastianraschka.com/Articles/2014_python_lda.html)

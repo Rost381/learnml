@@ -7,8 +7,12 @@ from alphalearn.utils.api import to_categorical, logistic_loss
 class XGBoost():
     """XGBoost"""
 
-    def __init__(self, n_estimators=100, learning_rate=0.1, min_samples_split=2,
-                 min_impurity_split=1e-7, max_depth=2):
+    def __init__(self,
+                 n_estimators=100,
+                 learning_rate=0.1,
+                 min_samples_split=2,
+                 min_impurity_split=1e-7,
+                 max_depth=2):
         self.n_estimators = n_estimators
         self.learning_rate = learning_rate
         self.min_samples_split = min_samples_split

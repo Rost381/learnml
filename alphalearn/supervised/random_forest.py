@@ -23,8 +23,12 @@ class RandomForestClassifier():
         The maximum depth of the tree.
     """
 
-    def __init__(self, n_estimators=10, max_features=2,
-                 min_samples_split=2, min_impurity_split=1e-7, max_depth=2):
+    def __init__(self,
+                 n_estimators=10,
+                 max_features=2,
+                 min_samples_split=2,
+                 min_impurity_split=1e-7,
+                 max_depth=2):
         self.n_estimators = n_estimators
         self.max_features = max_features
         self.min_samples_split = min_samples_split

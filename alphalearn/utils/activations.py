@@ -23,7 +23,6 @@ def softmax(x, axis=-1):
         ValueError: In case `dim(x) == 1`.
     """
     ndim = np.ndim(x)
-    print(ndim)
     if ndim == 2:
         y = np.exp(x - np.max(x, axis, keepdims=True))
         return y / np.sum(y, axis, keepdims=True)

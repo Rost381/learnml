@@ -11,9 +11,9 @@ def main():
     X = np.array([[-1, -1], [-2, -1], [-3, -2], [1, 1], [2, 1], [3, 2]])
     Y = np.array([1, 1, 1, 2, 2, 2])
 
-    clf = GaussianNB()
-    clf.fit(X, Y)
-    print(clf.predict([[-0.8, -1]]))
+    model = GaussianNB()
+    model.fit(X, Y)
+    print(model.predict([[-0.8, -1]]))
 
     # Example 2
     iris = load_iris()

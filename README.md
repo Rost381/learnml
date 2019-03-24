@@ -30,17 +30,16 @@ model.fit(X, y)
 
 **classification**
 
+- [Linear Discriminant Analysis](./alphalearn/supervised/linear_discriminant_analysis.py) | examples: [01](./examples/example_PCA_LDA.py)
+- [k-Nearest Neighbors](./alphalearn/supervised/k_nearest_neighbors.py) | examples: [01](./examples/example_KNeighborsClassifier.py)
 - Perceptron
 - [Support Vector Machine](./alphalearn/supervised/support_vector_machine.py) | examples: [01](./examples/example_svm.py), [02](./examples/example_svm_02.py)
-- [k-Nearest Neighbors](./alphalearn/supervised/k_nearest_neighbors.py) | examples: [01](./examples/example_KNeighborsClassifier.py)
-- [Linear Discriminant Analysis](./alphalearn/supervised/linear_discriminant_analysis.py) | examples: [01](./examples/example_PCA_LDA.py)
 
 
 **tree-based and ensemble methods**
 
-- [Classification Tree](./alphalearn/supervised/decision_tree.py) | examples: [01](./examples/example_ClassificationTree.py)
-- [RegressionTree](./alphalearn/supervised/decision_tree.py) | examples: [01](./examples/example_RegressionTree.py)
 - [Adaboost](./alphalearn/supervised/adaboost.py) | examples: [01](./examples/example_Adaboost.py)
+- [Decision Tree](./alphalearn/supervised/decision_tree.py) | [classification](./examples/example_ClassificationTree.py), [regression](./examples/example_RegressionTree.py)
 - [Gradient boosting](./alphalearn/supervised/gradient_boosting.py) | examples: [classifier](./examples/example_GradientBoostingClassifier.py), [regressor](./examples/example_GradientBoostingRegressor.py)
 - [Random forests](./alphalearn/supervised/random_forest.py) | examples: [01](./examples/example_RandomForestClassifier.py)
 - [XGBoost](./alphalearn/supervised/xgboost.py) | examples: [01](./examples/example_XGBoost.py)
@@ -69,5 +68,5 @@ model.fit(X, y)
 Code based on: 
 - [ML-From-Scratch](https://github.com/eriklindernoren/ML-From-Scratch)
 - [Lasso](https://github.com/satopirka/Lasso)
-- [Implementing a Principal Component Analysis (PCA) – in Python, step by step]([https://sebastianraschka.com](https://sebastianraschka.com/Articles/2014_pca_step_by_step.html))
+- [Implementing a Principal Component Analysis (PCA)](https://sebastianraschka.com/Articles/2014_pca_step_by_step.html)
 - [Linear Discriminant Analysis Bit by Bit](https://sebastianraschka.com/Articles/2014_python_lda.html)

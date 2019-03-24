@@ -32,7 +32,7 @@ model.fit(X, y)
 
 - [Linear Discriminant Analysis](./alphalearn/supervised/linear_discriminant_analysis.py) | examples: [01](./examples/example_PCA_LDA.py)
 - [k-Nearest Neighbors](./alphalearn/supervised/k_nearest_neighbors.py) | examples: [01](./examples/example_KNeighborsClassifier.py)
-- Perceptron
+- [Perceptron](./alphalearn/supervised/perceptron.py) | examples: [01](./examples/example_Perceptron.py)
 - [Support Vector Machine](./alphalearn/supervised/support_vector_machine.py) | examples: [01](./examples/example_svm.py), [02](./examples/example_svm_02.py)
 
 

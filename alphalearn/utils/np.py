@@ -29,7 +29,6 @@ def to_categorical(y, num_classes=None, dtype='float32'):
            [ 1.,  0.,  0.]], dtype=float32)
     ```
     """
-
     y = np.array(y, dtype='int')
     input_shape = y.shape
     if input_shape and input_shape[-1] == 1 and len(input_shape) > 1:

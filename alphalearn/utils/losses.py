@@ -52,7 +52,7 @@ class l2_loss():
     minimizes the squared differences between
     the estimated and existing target values.
 
-    Used in GradientBoostingClassifier
+    Used in GradientBoostingClassifier, Perceptron
     """
 
     def __init__(self): pass

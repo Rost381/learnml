@@ -21,12 +21,12 @@ model.fit(X, y)
 ### Supervised Learning
 **linear models**
 
+- [Logistic Regression](./alphalearn/supervised/logistic_regression.py) | examples: [01](./examples/example_LogisticRegression.py)
 - [Regression](./alphalearn/supervised/regression.py)
  | examples: [linear](./examples/example_LinearRegression.py)
 , [lasso](./examples/example_LassoRegression.py)
 , [ridge](./examples/example_RidgeRegression.py)
 , [polynomial ridge](./examples/example_PolynomialRidgeRegression.py)
-- [Logistic Regression](./alphalearn/supervised/logistic_regression.py) | examples: [01](./examples/example_LogisticRegression.py)
 
 **classification**
 
@@ -34,7 +34,6 @@ model.fit(X, y)
 - [k-Nearest Neighbors](./alphalearn/supervised/k_nearest_neighbors.py) | examples: [01](./examples/example_KNeighborsClassifier.py)
 - [Perceptron](./alphalearn/supervised/perceptron.py) | examples: [01](./examples/example_Perceptron.py)
 - [Support Vector Machine](./alphalearn/supervised/support_vector_machine.py) | examples: [01](./examples/example_svm.py), [02](./examples/example_svm_02.py)
-
 
 **tree-based and ensemble methods**
 
@@ -65,7 +64,7 @@ model.fit(X, y)
 - CNN
 
 ## Reference
-Code based on: 
+Based on: 
 - [ML-From-Scratch](https://github.com/eriklindernoren/ML-From-Scratch)
 - [Lasso](https://github.com/satopirka/Lasso)
 - [Implementing a Principal Component Analysis (PCA)](https://sebastianraschka.com/Articles/2014_pca_step_by_step.html)

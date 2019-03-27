@@ -8,8 +8,7 @@ from alphalearn.datasets.api import load_temperature
 
 
 def main():
-    """ example 1
-    """
+    # Example 1
     temp = load_temperature()
 
     X = np.atleast_2d((temp.data)).T
@@ -27,7 +26,8 @@ def main():
     mse = calculate_mean_squared_error(y_test, y_pred)
     print("MSE: {0}".format(mse))
 
-    """ example 2
+    # Example 2
+    """
     The decision trees is used to fit a sine curve with addition noisy observation.
     As a result, it learns local linear regressions approximating the sine curve.
     """

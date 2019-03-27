@@ -51,8 +51,8 @@ model.fit(X, y)
 
 **dimension reduction**
 
+- [K-Means](./alphalearn/unsupervised/kmeans.py) | examples: [01](./examples/example_KMeans.py)
 - [Principal Component Analysis](./alphalearn/unsupervised/principal_component_analysis.py) | examples: [01](./examples/example_PCA_LDA.py)
--  K-Means
 -  FP-Growth
 
 ### Reinforcement Learning

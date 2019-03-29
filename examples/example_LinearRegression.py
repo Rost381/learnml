@@ -7,7 +7,7 @@ from alphalearn.utils.api import calculate_mean_squared_error
 
 
 def main():
-    """One-dimensional"""
+    # Example 1 One-dimensional
     X, y = make_regression(n_samples=10, n_features=1, noise=10)
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.4)
@@ -22,7 +22,8 @@ def main():
     mse = calculate_mean_squared_error(y_test, y_pred)
     print("MSE: {0}".format(mse))
 
-    """Two-dimensional
+    # Example 2 Two-dimensional
+    """
     y = 1 * x_0 + 2 * x_1 + 3
     1 * 3 + 2 * 5 + 3 = 16
     """

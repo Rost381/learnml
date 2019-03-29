@@ -43,7 +43,6 @@ def main():
     plt.xlabel('alpha')
     plt.ylabel('error')
     plt.title('Coefficient error as a function of the l2 regularization')
-    # plt.show()
     plt.savefig('./examples/example_RidgeRegression.png')
 
 

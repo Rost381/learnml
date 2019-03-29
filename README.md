@@ -2,7 +2,6 @@
 write machine learning algorithms from for self-learning
 
 ![](https://img.shields.io/badge/python-3.5+-blue.svg)
-![](http://progressed.io/bar/18?)
 
 ## Getting started
 Linear regression
@@ -64,7 +63,6 @@ model.fit(X, y)
 - CNN
 
 ## Reference
-Based on: 
 - [ML-From-Scratch](https://github.com/eriklindernoren/ML-From-Scratch)
 - [Lasso](https://github.com/satopirka/Lasso)
 - [Implementing a Principal Component Analysis (PCA)](https://sebastianraschka.com/Articles/2014_pca_step_by_step.html)

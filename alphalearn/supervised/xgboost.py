@@ -5,22 +5,36 @@ from alphalearn.utils.api import to_categorical, logistic_loss
 
 
 class XGBoost():
-    """XGBoost"""
+    """XGBoost
+
+    Parameters:
+    -----------
+    n_estimators : int
+        The number of boosting stages to perform.
+    learning_rate : float
+        learning rate shrinks the contribution of each tree by learning_rate.
+    min_samples_split : int
+        The minimum number of samples needed to make a split when building a tree.
+    min_impurity_split : float
+        The minimum impurity required to split tree.
+    max_depth : int
+        The maximum depth of a tree.
+    """
 
     def __init__(self,
                  n_estimators=100,
                  learning_rate=0.1,
                  min_samples_split=2,
                  min_impurity_split=1e-7,
-                 max_depth=2):
+                 max_depth=3):
         self.n_estimators = n_estimators
         self.learning_rate = learning_rate
         self.min_samples_split = min_samples_split
         self.min_impurity_split = min_impurity_split
         self.max_depth = max_depth
         self.loss = logistic_loss()
-
         self.trees = []
+
         for _ in range(self.n_estimators):
             tree = XGBoostRegressionTree(
                 min_samples_split=self.min_samples_split,

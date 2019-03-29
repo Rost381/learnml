@@ -1,4 +1,1 @@
-from .base import load_iris
-from .base import load_banknote
-from .base import load_boston
-from .base import load_temperature
+from .base import load_banknote, load_boston, load_iris, load_temperature

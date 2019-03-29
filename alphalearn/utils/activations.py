@@ -1,4 +1,4 @@
-"""Built-in activation functions.
+"""Activation functions.
 Reference:
 https://github.com/keras-team/keras/blob/master/keras/activations.py
 https://en.wikipedia.org/wiki/Activation_function
@@ -7,8 +7,7 @@ import numpy as np
 
 
 def sigmoid(x):
-    """Sigmoid activation function.
-    """
+    """Sigmoid activation function."""
     return 1. / (1. + np.exp(-x))
 
 

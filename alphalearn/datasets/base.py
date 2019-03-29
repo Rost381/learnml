@@ -10,7 +10,7 @@ from alphalearn.utils.bunch import Bunch
 
 
 def load_data(module_path, data_file_name):
-    """ Loads data from module_path/data/data_file_name. """
+    """Loads data from module_path/data/data_file_name."""
     with open(join(module_path, 'data', data_file_name)) as csv_file:
         data_file = csv.reader(csv_file)
         temp = next(data_file)
@@ -28,7 +28,7 @@ def load_data(module_path, data_file_name):
 
 
 def load_iris():
-    """ Load and return the iris dataset. """
+    """Load and return the iris dataset."""
     module_path = dirname(__file__)
     data, target, target_names = load_data(module_path, 'iris.csv')
 
@@ -38,7 +38,7 @@ def load_iris():
 
 
 def load_banknote():
-    """ Load and return the banknote dataset. """
+    """Load and return the banknote dataset."""
     module_path = dirname(__file__)
     data, target, target_names = load_data(module_path, 'banknote.csv')
 
@@ -47,7 +47,7 @@ def load_banknote():
 
 
 def load_boston():
-    """ Load and return the boston house-prices dataset. """
+    """Load and return the boston house-prices dataset."""
     module_path = dirname(__file__)
 
     data_file_name = join(module_path, 'data', 'boston_house_prices.csv')
@@ -70,7 +70,7 @@ def load_boston():
 
 
 def load_temperature():
-    """ Load and return the banknote dataset. """
+    """Load and return the temperature dataset."""
     module_path = dirname(__file__)
     data_file_name = join(module_path, 'data', 'temperature.csv')
     with open(data_file_name) as f:

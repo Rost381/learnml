@@ -68,7 +68,6 @@ def main():
     ax.set_zlabel('Petal length')
     ax.set_title('Ground Truth')
     ax.dist = 12
-    # plt.show()
     plt.savefig("./examples/example_KMeans.png")
 
 

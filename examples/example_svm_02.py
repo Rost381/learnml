@@ -36,7 +36,6 @@ def main():
         ax.set_xticks(())
         ax.set_yticks(())
         ax.set_title(title)
-        #plot_decision_regions(ax, title, X, y, classifier=clf, resolution=0.1)
 
     plt.savefig('./examples/example_svm_02.png')
 

@@ -58,7 +58,6 @@ def main():
     plt.ylabel("target")
     plt.title("Decision Tree Regression")
     plt.legend()
-    # plt.show()
     plt.savefig('./examples/example_RegressionTree.png')
 
 

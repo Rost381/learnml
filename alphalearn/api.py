@@ -1,4 +1,5 @@
-from . import deep, supervised, unsupervised
+from . import deep, reinforcement, supervised, unsupervised
+from .reinforcement.q_learning import QLearning
 from .supervised.adaboost import AdaBoostClassifier
 from .supervised.decision_tree import (ClassificationTree, RegressionTree,
                                        XGBoostRegressionTree)

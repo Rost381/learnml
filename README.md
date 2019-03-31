@@ -3,9 +3,13 @@ write machine learning algorithms from for self-learning
 
 ![](https://img.shields.io/badge/python-3.5+-blue.svg)
 
-## Getting started
-Linear regression
+## Installation
+```bash
+git clone https://github.com/byzhi/alphalearn
+python setup.py install -e .
+```
 
+## Usage
 ```python
 from alphalearn.api import LinearRegression
 model = LinearRegression()
@@ -15,7 +19,7 @@ model.fit(X, y)
 ## Document
 [docs](https://byzhi.github.io/alphalearn/) 
 
-## Code
+## Table of Contents
 
 ### Supervised Learning
 **linear models**
@@ -33,6 +37,7 @@ model.fit(X, y)
 - [k-Nearest Neighbors](./alphalearn/supervised/k_nearest_neighbors.py) | examples: [01](./examples/example_KNeighborsClassifier.py)
 - [Perceptron](./alphalearn/supervised/perceptron.py) | examples: [01](./examples/example_Perceptron.py)
 - [Support Vector Machine](./alphalearn/supervised/support_vector_machine.py) | examples: [01](./examples/example_svm.py), [02](./examples/example_svm_02.py)
+![](./examples/example_svm_02.png)
 
 **tree-based and ensemble methods**
 
@@ -51,11 +56,14 @@ model.fit(X, y)
 **dimension reduction**
 
 - [K-Means](./alphalearn/unsupervised/kmeans.py) | examples: [01](./examples/example_KMeans.py)
+![](./examples/example_KMeans.png)
 - [Principal Component Analysis](./alphalearn/unsupervised/principal_component_analysis.py) | examples: [01](./examples/example_PCA_LDA.py)
 -  FP-Growth
 
 ### Reinforcement Learning
-- Q-learning
+- [Q-learning](./alphalearn/reinforcement/q_learning.py)
+
+![](alphalearn/reinforcement/q_learning.png)
 
 ### Deep Learning
 - DNN
@@ -67,3 +75,4 @@ model.fit(X, y)
 - [Lasso](https://github.com/satopirka/Lasso)
 - [Implementing a Principal Component Analysis (PCA)](https://sebastianraschka.com/Articles/2014_pca_step_by_step.html)
 - [Linear Discriminant Analysis Bit by Bit](https://sebastianraschka.com/Articles/2014_python_lda.html)
+- [Reinforcement Learning](https://github.com/rlcode/reinforcement-learning)

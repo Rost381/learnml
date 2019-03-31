@@ -43,6 +43,9 @@ def main():
     ax.w_xaxis.set_ticklabels([])
     ax.w_yaxis.set_ticklabels([])
     ax.w_zaxis.set_ticklabels([])
+    ax.set_xlabel('Petal width')
+    ax.set_ylabel('Sepal length')
+    ax.set_zlabel('Petal length')
     ax.set_title('3 clusters')
     ax.dist = 12
 

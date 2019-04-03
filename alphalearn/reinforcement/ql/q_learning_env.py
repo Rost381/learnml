@@ -1,63 +1,65 @@
 import time
 import tkinter as tk
-
+import io
 import numpy as np
 from PIL import Image, ImageTk
 
-np.random.seed(1)
+np.random.seed(2)
 PhotoImage = ImageTk.PhotoImage
 TITLE = 'Q-Learning'
-UNIT = 100  # pixels
-HEIGHT = 4  # grid height
-WIDTH = 4  # grid width
+BG_COLOR = 'white'
+LINE_COLOR = '#D8D8D8'
+UNIT = 100
+HEIGHT = 4
+WIDTH = 4
 IMG_PATH = 'alphalearn/reinforcement/img/'
 
 
-class Env(tk.Tk):
+class QLearningEnv(tk.Tk):
     def __init__(self):
-        super(Env, self).__init__()
+        super(QLearningEnv, self).__init__()
         self.action_space = ['u', 'd', 'l', 'r']
         self.n_actions = len(self.action_space)
         self.title(TITLE)
         self.geometry('{0}x{1}'.format(HEIGHT * UNIT, HEIGHT * UNIT))
-        self.shapes = self.load_images()
+        self.shapes = self._load_images()
         self.canvas = self._build_canvas()
         self.texts = []
 
     def _build_canvas(self):
-        canvas = tk.Canvas(self, bg='white',
+        canvas = tk.Canvas(self,
+                           bg=BG_COLOR,
                            height=HEIGHT * UNIT,
                            width=WIDTH * UNIT)
-        # create grids
-        for c in range(0, WIDTH * UNIT, UNIT):  # 0~400 by 80
+        """grids"""
+        for c in range(0, WIDTH * UNIT, UNIT):
             x0, y0, x1, y1 = c, 0, c, HEIGHT * UNIT
-            canvas.create_line(x0, y0, x1, y1)
-        for r in range(0, HEIGHT * UNIT, UNIT):  # 0~400 by 80
+            canvas.create_line(x0, y0, x1, y1, fill=LINE_COLOR)
+        for r in range(0, HEIGHT * UNIT, UNIT):
             x0, y0, x1, y1 = 0, r, HEIGHT * UNIT, r
-            canvas.create_line(x0, y0, x1, y1)
+            canvas.create_line(x0, y0, x1, y1, fill=LINE_COLOR)
 
-        # add img to canvas
-        self.rectangle = canvas.create_image(50, 50, image=self.shapes[0])
-        self.triangle1 = canvas.create_image(250, 150, image=self.shapes[1])
-        self.triangle2 = canvas.create_image(150, 250, image=self.shapes[1])
-        self.circle = canvas.create_image(250, 250, image=self.shapes[2])
+        """add images to canvas"""
+        self.ball = canvas.create_image(50, 50, image=self.shapes[0])
+        self.wall1 = canvas.create_image(250, 150, image=self.shapes[1])
+        self.wall2 = canvas.create_image(150, 250, image=self.shapes[1])
+        self.goal = canvas.create_image(250, 250, image=self.shapes[2])
 
-        # pack all
         canvas.pack()
 
         return canvas
 
-    def load_images(self):
-        rectangle = PhotoImage(
+    def _load_images(self):
+        ball = PhotoImage(
             Image.open(IMG_PATH + "ball.png").resize((65, 65)))
-        triangle = PhotoImage(
+        wall = PhotoImage(
             Image.open(IMG_PATH + "wall.png").resize((65, 65)))
-        circle = PhotoImage(
+        goal = PhotoImage(
             Image.open(IMG_PATH + "goal.png").resize((65, 65)))
 
-        return rectangle, triangle, circle
+        return ball, wall, goal
 
-    def text_value(self, row, col, contents, action, font='Helvetica', size=10,
+    def text_value(self, row, col, contents, action, font='Helvetica', size=9,
                    style='normal', anchor="nw"):
 
         if action == 0:
@@ -100,14 +102,13 @@ class Env(tk.Tk):
     def reset(self):
         self.update()
         time.sleep(0.5)
-        x, y = self.canvas.coords(self.rectangle)
-        self.canvas.move(self.rectangle, UNIT / 2 - x, UNIT / 2 - y)
+        x, y = self.canvas.coords(self.ball)
+        self.canvas.move(self.ball, UNIT / 2 - x, UNIT / 2 - y)
         self.render()
-        # return observation
-        return self.coords_to_state(self.canvas.coords(self.rectangle))
+        return self.coords_to_state(self.canvas.coords(self.ball))
 
     def step(self, action):
-        state = self.canvas.coords(self.rectangle)
+        state = self.canvas.coords(self.ball)
         base_action = np.array([0, 0])
         self.render()
 
@@ -124,18 +125,22 @@ class Env(tk.Tk):
             if state[0] < (WIDTH - 1) * UNIT:
                 base_action[0] += UNIT
 
-        # move agent
-        self.canvas.move(self.rectangle, base_action[0], base_action[1])
-        # move rectangle to top level of canvas
-        self.canvas.tag_raise(self.rectangle)
-        next_state = self.canvas.coords(self.rectangle)
+        """move agent"""
+        self.canvas.move(self.ball, base_action[0], base_action[1])
+        """move ball to top level of canvas"""
+        self.canvas.tag_raise(self.ball)
+        next_state = self.canvas.coords(self.ball)
 
-        # reward function
-        if next_state == self.canvas.coords(self.circle):
+        """reward function
+        if goal: 100
+        if wall: -100
+        if blank: keep runing
+        """
+        if next_state == self.canvas.coords(self.goal):
             reward = 100
             done = True
-        elif next_state in [self.canvas.coords(self.triangle1),
-                            self.canvas.coords(self.triangle2)]:
+        elif next_state in [self.canvas.coords(self.wall1),
+                            self.canvas.coords(self.wall2)]:
             reward = -100
             done = True
         else:
@@ -148,3 +153,7 @@ class Env(tk.Tk):
     def render(self):
         time.sleep(0.03)
         self.update()
+
+    def saveimage(self):
+        ps = self.canvas.postscript(colormode='color')
+        return ps

@@ -4,8 +4,10 @@ from collections import defaultdict
 import numpy as np
 
 
-class QLearning():
-    """Q-learning is a model-free reinforcement learning algorithm.
+class SARSA():
+    """State–action–reward–state–action (SARSA) is an algorithm 
+    for learning a Markov decision process policy, used in the 
+    reinforcement learning area of machine learning.
 
     Parameters:
     -----------
@@ -17,8 +19,8 @@ class QLearning():
         0 = makes the agent learn nothing.
         1 = makes the agent consider only the most recent information
     discount factor : float
-        a number between 0 and 1 and has the effect of valuing rewards received earlier
-        higher than those received later. reflecting the value of a "good start".
+        A factor of 0 makes the agent "opportunistic" by only considering current rewards, 
+        while a factor approaching 1 will make it strive for a long-term high reward.
     epsilon : float
          epsilon greedy strategy
     """
@@ -61,15 +63,18 @@ class QLearning():
     def arg_max(self, state_action):
         return random.choice([index for index, value in enumerate(state_action) if value == max(state_action)])
 
-    def learn(self, state, action, reward, next_state):
-        """Steps 3: Update q table
+    def learn(self, state, action, reward, next_state, next_action):
+        """
+        The Q value for a state-action is updated by an error, adjusted by 
+        the learning rate alpha. 
+        Q values represent the possible reward received in the next time step 
+        for taking action a in state s, plus the discounted future reward 
+        received from the next state-action observation.
 
-        Bellman Optimality Equation
-        new_q : new Q value for that state and the action.
-        current_q : current Q value for that state and the action.
-        max(self.q_table[next_state]): maximum expected future reward.
-        reward : reward for taking that action at that state.
+        SARSA learns the Q values associated with taking the policy it follows itself
         """
         current_q = self.q_table[state][action]
-        new_q = reward + self.discount_factor * max(self.q_table[next_state])
-        self.q_table[state][action] += self.learning_rate * (new_q - current_q)
+        next_q = self.q_table[next_state][next_action]
+        new_q = (current_q + self.learning_rate *
+                 (reward + self.discount_factor * next_q - current_q))
+        self.q_table[state][action] = new_q

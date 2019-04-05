@@ -1,11 +1,12 @@
-# alphalearn
-write machine learning algorithms from for self-learning
+# Alphalearn
+Write machine learning algorithms from for self-learning. All algorithm codes are implemented in Python with friendly comments and easier to understand how they works.
 
 ![](https://img.shields.io/badge/python-3.7+-blue.svg)
 
 ## Installation
-```bash
+```shell
 git clone https://github.com/byzhi/alphalearn
+cd alphalearn
 pip install -e .
 ```
 
@@ -14,12 +15,6 @@ pip install -e .
 from alphalearn.api import LinearRegression
 model = LinearRegression()
 model.fit(X, y)
-
-X = np.array([[1, 1], [1, 2], [2, 2], [2, 3]])
-y = np.dot(X, np.array([1, 2])) + 3
-X_test = np.array([[3, 5]])
-
-y_pred = model.predict(X_test)
 ```
 
 ## Document
@@ -62,8 +57,8 @@ dimension reduction
 
 ### Reinforcement Learning
 - [Q-learning](./alphalearn/reinforcement/ql/q_learning.py)
+- [SARSA](./alphalearn/reinforcement/sarsa/sarsa.py)
 - DQN (Deep Q Network)
-- SARSA
 
 ### Deep Learning
 - DNN
@@ -73,14 +68,11 @@ dimension reduction
 ## Examples
 #### Supervised Learning
 
-linear models
 - [Logistic Regression](./examples/example_LogisticRegression.py)
 - [Linear regression](./examples/example_LinearRegression.py)
 , [Lasso](./examples/example_LassoRegression.py)
 , [Ridge](./examples/example_RidgeRegression.py)
 , [Polynomial ridge regression](./examples/example_PolynomialRidgeRegression.py)
-
-classification
 - [LDA](./examples/example_PCA_LDA.py)
 - [KNN](./examples/example_KNeighborsClassifier.py)
 - [Perceptron](./examples/example_Perceptron.py)
@@ -88,24 +80,23 @@ classification
 
 ![](examples/example_svm_02.png)
 
-tree-based and ensemble methods
 - [Adaboost](./examples/example_Adaboost.py)
 - [Classification tree](./examples/example_ClassificationTree.py), [Regression tree](./examples/example_RegressionTree.py)
-- [GradientBoostingclassifier](./examples/example_GradientBoostingClassifier.py), [GradientBoostingregressor](./examples/example_GradientBoostingRegressor.py)
+- [GradientBoosting classifier](./examples/example_GradientBoostingClassifier.py), [GradientBoosting regressor](./examples/example_GradientBoostingRegressor.py)
 - [Random Forest](./examples/example_RandomForestClassifier.py)
 - [XGBoost](./examples/example_XGBoost.py)
-
-generative Learning
 - [Naive Bayes](./examples/example_GaussianNB.py)
 
 
 #### Unsupervised Learning
 - [PCA](./examples/example_PCA_LDA.py)
 - [K-Means](./examples/example_KMeans.py)
+
 ![](./examples/example_KMeans.png)
 
 #### Reinforcement Learning
 - [Q-learning](./examples/example_QLearning.py)
+- [SARSA](./examples/examples_SARSA.py)
 
 ## Reference
 - [ML-From-Scratch](https://github.com/eriklindernoren/ML-From-Scratch)

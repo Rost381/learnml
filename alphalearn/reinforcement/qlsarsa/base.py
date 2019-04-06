@@ -4,10 +4,8 @@ from collections import defaultdict
 import numpy as np
 
 
-class SARSA():
-    """State–action–reward–state–action (SARSA) is an algorithm 
-    for learning a Markov decision process policy, used in the 
-    reinforcement learning area of machine learning.
+class base():
+    """Q-learning is a model-free reinforcement learning algorithm.
 
     Parameters:
     -----------
@@ -19,10 +17,10 @@ class SARSA():
         0 = makes the agent learn nothing.
         1 = makes the agent consider only the most recent information
     discount factor : float
-        A factor of 0 makes the agent "opportunistic" by only considering current rewards, 
-        while a factor approaching 1 will make it strive for a long-term high reward.
+        a number between 0 and 1 and has the effect of valuing rewards received earlier
+        higher than those received later. reflecting the value of a "good start".
     epsilon : float
-         epsilon greedy strategy
+        epsilon greedy strategy
     """
 
     def __init__(self, actions, learning_rate=0.01, discount_factor=0.9, epsilon=0.1):
@@ -63,8 +61,35 @@ class SARSA():
     def arg_max(self, state_action):
         return random.choice([index for index, value in enumerate(state_action) if value == max(state_action)])
 
-    def learn(self, state, action, reward, next_state, next_action):
+
+class QLearning(base):
+    def learn(self, state, action, reward, next_state):
+        """Steps 3: Update q table
+
+        Bellman Optimality Equation
+        new_q : new Q value for that state and the action.
+        current_q : current Q value for that state and the action.
+        max(self.q_table[next_state]): maximum expected future reward.
+        reward : reward for taking that action at that state.
         """
+        current_q = self.q_table[state][action]
+        new_q = reward + self.discount_factor * max(self.q_table[next_state])
+        self.q_table[state][action] += self.learning_rate * (new_q - current_q)
+
+
+class SARSA(base):
+    def __init__(self, actions, learning_rate=0.01, discount_factor=0.9, epsilon=0.1):
+        self.actions = actions
+        self.learning_rate = learning_rate
+        self.discount_factor = discount_factor
+        self.epsilon = epsilon
+        super(SARSA, self).__init__(actions=actions,
+                                    learning_rate=learning_rate,
+                                    discount_factor=discount_factor,
+                                    epsilon=epsilon)
+
+    def learn(self, state, action, reward, next_state, next_action):
+        """Steps 3: Update q table
         The Q value for a state-action is updated by an error, adjusted by 
         the learning rate alpha. 
         Q values represent the possible reward received in the next time step 
@@ -75,6 +100,5 @@ class SARSA():
         """
         current_q = self.q_table[state][action]
         next_q = self.q_table[next_state][next_action]
-        new_q = (current_q + self.learning_rate *
-                 (reward + self.discount_factor * next_q - current_q))
-        self.q_table[state][action] = new_q
+        new_q = reward + self.discount_factor * next_q
+        self.q_table[state][action] += self.learning_rate * (new_q - current_q)

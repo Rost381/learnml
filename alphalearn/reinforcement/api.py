@@ -1,3 +1,2 @@
-from .ql.q_learning import QLearning
-from .ql.q_learning_env import QLearningEnv
-from .sarsa.sarsa import SARSA
+from .qlsarsa.base import SARSA, QLearning
+from .qlsarsa.env import QLearningEnv

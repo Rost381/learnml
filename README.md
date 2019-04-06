@@ -1,10 +1,12 @@
 # Alphalearn
-Write machine learning algorithms from for self-learning. All algorithm codes are implemented in Python with friendly comments and easier to understand how they works.
-
 ![](https://img.shields.io/badge/python-3.7+-blue.svg)
 
+Write machine learning algorithms from zero for self-learning. 
+
+All algorithm codes are implemented in Python with friendly comments and easier to understand how they works.
+
 ## Installation
-```shell
+```
 git clone https://github.com/byzhi/alphalearn
 cd alphalearn
 pip install -e .
@@ -23,19 +25,19 @@ model.fit(X, y)
 ## Table of Contents
 
 ### Supervised Learning
-linear models
+Linear models
 
 - [Logistic Regression](./alphalearn/supervised/logistic_regression.py)
 - [Regression](./alphalearn/supervised/regression.py)
 
-classification
+Classification
 
 - [Linear Discriminant Analysis](./alphalearn/supervised/linear_discriminant_analysis.py)
 - [k-Nearest Neighbors](./alphalearn/supervised/k_nearest_neighbors.py)
 - [Perceptron](./alphalearn/supervised/perceptron.py)
 - [Support Vector Machine](./alphalearn/supervised/support_vector_machine.py)
 
-tree-based and ensemble methods
+Tree-based and ensemble methods
 
 - [Adaboost](./alphalearn/supervised/adaboost.py)
 - [Decision Tree](./alphalearn/supervised/decision_tree.py)
@@ -43,21 +45,21 @@ tree-based and ensemble methods
 - [Random forests](./alphalearn/supervised/random_forest.py)
 - [XGBoost](./alphalearn/supervised/xgboost.py)
 
-generative Learning
+Generative Learning
 
 - [Naive Bayes](./alphalearn/supervised/naive_bayes.py)
 
 ### Unsupervised Learning
 
-dimension reduction
+Dimension reduction
 
 - [K-Means](./alphalearn/unsupervised/kmeans.py)
 - [Principal Component Analysis](./alphalearn/unsupervised/principal_component_analysis.py)
 -  FP-Growth
 
 ### Reinforcement Learning
-- [Q-learning](./alphalearn/reinforcement/ql/q_learning.py)
-- [SARSA](./alphalearn/reinforcement/sarsa/sarsa.py)
+- [Q-learning](./alphalearn/reinforcement/qlsarsa/base.py)
+- [SARSA](./alphalearn/reinforcement/qlsarsa/base.py)
 - DQN (Deep Q Network)
 
 ### Deep Learning
@@ -73,13 +75,10 @@ dimension reduction
 , [Lasso](./examples/example_LassoRegression.py)
 , [Ridge](./examples/example_RidgeRegression.py)
 , [Polynomial ridge regression](./examples/example_PolynomialRidgeRegression.py)
-- [LDA](./examples/example_PCA_LDA.py)
-- [KNN](./examples/example_KNeighborsClassifier.py)
+- [Linear Discriminant Analysis](./examples/example_PCA_LDA.py)
+- [k-Nearest Neighbors](./examples/example_KNeighborsClassifier.py)
 - [Perceptron](./examples/example_Perceptron.py)
-- [SVM 01](./examples/example_svm.py), [02](./examples/example_svm_02.py)
-
-![](examples/example_svm_02.png)
-
+- [Support Vector Machine 01](./examples/example_svm.py), [02](./examples/example_svm_02.py)
 - [Adaboost](./examples/example_Adaboost.py)
 - [Classification tree](./examples/example_ClassificationTree.py), [Regression tree](./examples/example_RegressionTree.py)
 - [GradientBoosting classifier](./examples/example_GradientBoostingClassifier.py), [GradientBoosting regressor](./examples/example_GradientBoostingRegressor.py)
@@ -87,16 +86,13 @@ dimension reduction
 - [XGBoost](./examples/example_XGBoost.py)
 - [Naive Bayes](./examples/example_GaussianNB.py)
 
-
 #### Unsupervised Learning
 - [PCA](./examples/example_PCA_LDA.py)
 - [K-Means](./examples/example_KMeans.py)
 
-![](./examples/example_KMeans.png)
-
 #### Reinforcement Learning
 - [Q-learning](./examples/example_QLearning.py)
-- [SARSA](./examples/examples_SARSA.py)
+- [SARSA](./examples/example_SARSA.py)
 
 ## Reference
 - [ML-From-Scratch](https://github.com/eriklindernoren/ML-From-Scratch)

@@ -1,8 +1,8 @@
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-from alphalearn.api import GaussianNB
 from alphalearn.datasets.api import load_iris
+from alphalearn.supervised.api import GaussianNB
 from alphalearn.utils.api import calculate_accuracy_score, normalize
 
 

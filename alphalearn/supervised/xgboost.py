@@ -1,7 +1,7 @@
 import numpy as np
 
-from alphalearn.api import XGBoostRegressionTree
-from alphalearn.utils.api import to_categorical, logistic_loss
+from alphalearn.supervised.api import XGBoostRegressionTree
+from alphalearn.utils.api import logistic_loss, to_categorical
 
 
 class XGBoost():

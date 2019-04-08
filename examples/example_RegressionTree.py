@@ -1,10 +1,10 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from sklearn.model_selection import train_test_split
 
-from alphalearn.api import RegressionTree
-from alphalearn.utils.api import standardize, calculate_mean_squared_error
 from alphalearn.datasets.api import load_temperature
+from alphalearn.supervised.api import RegressionTree
+from alphalearn.utils.api import calculate_mean_squared_error, standardize
 
 
 def main():

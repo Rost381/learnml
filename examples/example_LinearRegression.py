@@ -2,7 +2,7 @@ import numpy as np
 from sklearn.datasets import make_regression
 from sklearn.model_selection import train_test_split
 
-from alphalearn.api import LinearRegression
+from alphalearn.supervised.api import LinearRegression
 from alphalearn.utils.api import calculate_mean_squared_error
 
 

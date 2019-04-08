@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from alphalearn.api import GradientBoostingRegressor
-from alphalearn.utils.api import calculate_mean_squared_error
 from alphalearn.datasets.api import load_temperature
+from alphalearn.supervised.api import GradientBoostingRegressor
+from alphalearn.utils.api import calculate_mean_squared_error
 
 
 def main():

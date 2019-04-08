@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-from alphalearn.api import PolynomialRidgeRegression
 from alphalearn.datasets.api import load_temperature
+from alphalearn.supervised.api import PolynomialRidgeRegression
 from alphalearn.utils.api import calculate_mean_squared_error
 
 

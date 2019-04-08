@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.datasets import make_regression
 
-from alphalearn.api import RidgeRegression
+from alphalearn.supervised.api import RidgeRegression
 from alphalearn.utils.api import calculate_mean_squared_error, normalize
 
 

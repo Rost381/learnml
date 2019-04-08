@@ -2,8 +2,8 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-from alphalearn.api import ClassificationTree
 from alphalearn.datasets.api import load_banknote
+from alphalearn.supervised.api import ClassificationTree
 from alphalearn.utils.api import calculate_accuracy_score
 
 

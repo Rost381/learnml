@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from alphalearn.api import LogisticRegression
 from alphalearn.datasets.api import load_iris
+from alphalearn.supervised.api import LogisticRegression
 from alphalearn.utils.api import calculate_accuracy_score
 
 

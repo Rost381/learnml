@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from alphalearn.api import svm
+from alphalearn.supervised.api import svm
 
 
 def main():
@@ -34,7 +34,7 @@ def main():
 
     plt.scatter(model.support_vectors_[:, 0], model.support_vectors_[:, 1], s=180,
                 facecolors='none', zorder=10, edgecolors='k')
-    plt.scatter(X[:, 0], X[:, 1], c=y, zorder=10, cmap = plt.get_cmap('viridis'),
+    plt.scatter(X[:, 0], X[:, 1], c=y, zorder=10, cmap=plt.get_cmap('viridis'),
                 edgecolors='k')
 
     plt.savefig('./examples/example_svm.png')

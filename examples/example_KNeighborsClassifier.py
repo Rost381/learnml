@@ -3,8 +3,8 @@ import numpy as np
 from matplotlib.colors import ListedColormap
 from sklearn.model_selection import train_test_split
 
-from alphalearn.api import KNeighborsClassifier
 from alphalearn.datasets.api import load_iris
+from alphalearn.supervised.api import KNeighborsClassifier
 from alphalearn.utils.api import calculate_accuracy_score, normalize
 
 

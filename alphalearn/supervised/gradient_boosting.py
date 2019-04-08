@@ -1,7 +1,8 @@
 import numpy as np
 
-from alphalearn.api import RegressionTree
-from alphalearn.utils.api import cross_entropy_loss, l2_loss, softmax, to_categorical
+from alphalearn.supervised.api import RegressionTree
+from alphalearn.utils.api import (cross_entropy_loss, l2_loss, softmax,
+                                  to_categorical)
 
 
 class GradientBoosting():

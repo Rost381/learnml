@@ -1,9 +1,9 @@
 import numpy as np
-from sklearn.datasets import make_gaussian_quantiles
 
-from alphalearn.api import AdaBoostClassifier
 from alphalearn.datasets.api import load_iris
+from alphalearn.supervised.api import AdaBoostClassifier
 from alphalearn.utils.api import calculate_accuracy_score
+from sklearn.datasets import make_gaussian_quantiles
 
 
 def main():

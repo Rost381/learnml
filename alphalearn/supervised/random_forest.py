@@ -1,6 +1,6 @@
 import numpy as np
 
-from alphalearn.api import ClassificationTree
+from alphalearn.supervised.api import ClassificationTree
 from alphalearn.utils.api import random_subsets
 
 

@@ -22,7 +22,7 @@ model.fit(X, y)
 ## Document
 [docs](https://byzhi.github.io/alphalearn/) 
 
-## Table of Contents
+## Algorithms
 
 ### Supervised Learning
 Linear models
@@ -60,7 +60,7 @@ Dimension reduction
 ### Reinforcement Learning
 - [Q-learning](./alphalearn/reinforcement/qlsarsa/base.py)
 - [SARSA](./alphalearn/reinforcement/qlsarsa/base.py)
-- DQN (Deep Q Network)
+- [DQN (Deep Q Network)](./alphalearn/reinforcement/dqn/DeepQNetwork.py)
 
 ### Deep Learning
 - DNN
@@ -89,6 +89,7 @@ Dimension reduction
 #### Unsupervised Learning
 - [PCA](./examples/example_PCA_LDA.py)
 - [K-Means](./examples/example_KMeans.py)
+- [Deep Q Network](./example_DeepQNetwork.py)
 
 #### Reinforcement Learning
 - [Q-learning](./examples/example_QLearning.py)

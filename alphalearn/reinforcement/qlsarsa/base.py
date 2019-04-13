@@ -55,10 +55,10 @@ class base():
             action = np.random.choice(self.actions)
         else:
             state_action = self.q_table[state]
-            action = self.arg_max(state_action)
+            action = self._arg_max(state_action)
         return action
 
-    def arg_max(self, state_action):
+    def _arg_max(self, state_action):
         return random.choice([index for index, value in enumerate(state_action) if value == max(state_action)])
 
 

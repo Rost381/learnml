@@ -1,10 +1,10 @@
-from terminaltables import AsciiTable
+#from terminaltables import AsciiTable
 import numpy as np
 
 
 class NeuralNetwork():
     """NeuralNetwork
-    
+
     Parameters:
     -----------
     optimizer : class
@@ -47,6 +47,27 @@ class NeuralNetwork():
 
         return loss, acc
 
+    def train_on_batch(self, X, y):
+        y_pred = self._forward_pass(X)
+        loss = np.mean(self.loss_function(y, y_pred))
+        acc = self.loss_function.acc(y, y_pred)
+
+        loss_grad = self.loss_function.gradient(y, y_pred)
+        # Backpropagate. Update weights
+        self._backward_pass(loss_grad=loss_grad)
+
+        return loss, acc
+
+    def batch_iterator(X, y=None, batch_size=64):
+        """Batch generator"""
+        n_samples = X.shape[0]
+        for i in np.arange(0, n_samples, batch_size):
+            begin, end = i, min(i + batch_size, n_samples)
+            if y is not None:
+                yield X[begin:end], y[begin:end]
+            else:
+                yield X[begin:end]
+
     def fit(self, X, y, n_epochs, batch_size):
         """Train the model"""
         for _ in range(n_epochs):
@@ -74,7 +95,7 @@ class NeuralNetwork():
             loss_grad = layer.backward_pass(loss_grad)
 
     def summary(self, name="Model Summary"):
-        print(AsciiTable([[name]]).table)
+        print(tabulate([[name]]).table)
         print("Input Shape: %s" % str(self.layers[0].input_shape))
         table_data = [["Layer Type", "Parameters", "Output Shape"]]
         tot_params = 0
@@ -84,7 +105,7 @@ class NeuralNetwork():
             out_shape = layer.output_shape()
             table_data.append([layer_name, str(params), str(out_shape)])
             tot_params += params
-        print(AsciiTable(table_data).table)
+        print(tabulate(table_data).table)
         print("Total Parameters: %d\n" % tot_params)
 
     def predict(self, X):

@@ -1,7 +1,7 @@
 import numpy as np
 
 from alphalearn.supervised.api import RegressionTree
-from alphalearn.utils.api import (cross_entropy_loss, l2_loss, softmax,
+from alphalearn.utils.api import (cross_entropy_loss, l2_loss, Softmax,
                                   to_categorical)
 
 
@@ -50,6 +50,7 @@ class GradientBoosting():
         self._isClassifier = _isClassifier
         self._isRegressor = _isRegressor
         self.trees = []
+        self.softmax = Softmax()
 
         """Loss function
         | Classifier         | Regression |
@@ -102,7 +103,7 @@ class GradientBoosting():
 
         if self._isClassifier:
             """Turn into probability distribution """
-            y_pred = softmax(y_pred)
+            y_pred = self.softmax(y_pred)
             """Select the label with maximum probability 
             y_pred = [[ 0.19578768  0.58784106  0.21637126]
             [ 0.5514167   0.22429165  0.22429165]

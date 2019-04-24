@@ -1,6 +1,6 @@
 import numpy as np
 
-from alphalearn.utils.api import l2_loss, sigmoid
+from alphalearn.utils.api import l2_loss, Sigmoid
 
 
 class Perceptron():
@@ -11,6 +11,7 @@ class Perceptron():
         self.fit_intercept = fit_intercept
         self.w0 = None
         self.w1 = None
+        self.sigmoid = Sigmoid()
 
     def fit(self, X, y):
         n_sample, n_features = np.shape(X)
@@ -26,9 +27,9 @@ class Perceptron():
                 linear_output = np.dot(X, self.w1) + self.w0
             else:
                 linear_output = np.dot(X, self.w1)
-            y_pred = sigmoid(linear_output)
+            y_pred = self.sigmoid(linear_output)
             grad = self.loss.gradient(
-                y, y_pred) * sigmoid(linear_output) * (1 - sigmoid(linear_output))
+                y, y_pred) * self.sigmoid(linear_output) * (1 - self.sigmoid(linear_output))
 
             """Update the weights"""
             if self.fit_intercept:
@@ -38,7 +39,7 @@ class Perceptron():
 
     def predict(self, X):
         if self.fit_intercept:
-            y_pred = sigmoid(np.dot(X, self.w1) + self.w0)
+            y_pred = self.sigmoid(np.dot(X, self.w1) + self.w0)
         else:
-            y_pred = sigmoid(np.dot(X, self.w1))
+            y_pred = self.sigmoid(np.dot(X, self.w1))
         return y_pred

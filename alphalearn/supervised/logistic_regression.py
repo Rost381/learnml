@@ -1,5 +1,5 @@
 import numpy as np
-from alphalearn.utils.api import sigmoid
+from alphalearn.utils.api import Sigmoid
 
 
 class LogisticRegression():
@@ -20,6 +20,7 @@ class LogisticRegression():
         self.max_iter = max_iter
         self.learning_rate = learning_rate
         self.fit_intercept = fit_intercept
+        self.sigmoid = Sigmoid()
 
     def log_likelihood(self, features, target, weights):
         scores = np.dot(features, weights)
@@ -36,7 +37,7 @@ class LogisticRegression():
         for _ in range(self.max_iter):
             """Step 2 caculate the y_pred"""
             scores = np.dot(X, self.w)
-            y_pred = sigmoid(scores)
+            y_pred = self.sigmoid(scores)
 
             """Step 3 update the weight
             new weight = old weight - X . (y - y_pred) * learning rate"""
@@ -53,9 +54,9 @@ class LogisticRegression():
         y_proba = list()
         if self.fit_intercept:
             X = np.insert(X, 0, 1, axis=1)
-            y_pred = sigmoid(X.dot(self.w))
+            y_pred = self.sigmoid(X.dot(self.w))
         else:
-            y_pred = sigmoid(X.dot(self.w))
+            y_pred = self.sigmoid(X.dot(self.w))
 
         y_proba = y_pred.T
         if y_proba.ndim == 1:
@@ -65,7 +66,7 @@ class LogisticRegression():
     def predict(self, X):
         if self.fit_intercept:
             X = np.insert(X, 0, 1, axis=1)
-            y_pred = np.round(sigmoid(X.dot(self.w)))
+            y_pred = np.round(self.sigmoid(X.dot(self.w)))
         else:
-            y_pred = np.round(sigmoid(X.dot(self.w)))
+            y_pred = np.round(self.sigmoid(X.dot(self.w)))
         return y_pred

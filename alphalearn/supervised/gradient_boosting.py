@@ -62,7 +62,7 @@ class GradientBoosting():
         if self._isRegressor:
             self.loss_function = l2_loss()
 
-        """Create many tress """
+        """Create many tress"""
         for _ in range(n_estimators):
             tree = RegressionTree(
                 min_samples_split=self.min_samples_split,
@@ -102,7 +102,7 @@ class GradientBoosting():
             y_pred = -update if not y_pred.any() else y_pred - update
 
         if self._isClassifier:
-            """Turn into probability distribution """
+            """Turn into probability distribution"""
             y_pred = self.softmax(y_pred)
             """Select the label with maximum probability 
             y_pred = [[ 0.19578768  0.58784106  0.21637126]

@@ -16,7 +16,9 @@ from .plot import make_meshgrid, plot_contours
 
 from .preprocessing import PolynomialFeatures
 
-from .activations import Softmax, Sigmoid
+from .activations import (
+    Sigmoid, ReLU, SoftPlus, LeakyReLU, TanH, ELU, SELU, Softmax
+)
 
 from .losses import (
     l1_regularization,
@@ -30,3 +32,10 @@ from .losses import (
 from .np import to_categorical
 
 from .random import random_subsets
+
+from .deep import (
+    determine_padding,
+    get_im2col_indices,
+    image_to_column,
+    column_to_image
+)

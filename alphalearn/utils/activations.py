@@ -61,7 +61,7 @@ class ReLU():
 
 
 class LeakyReLU():
-    def __init__(self, alpha=0.2):
+    def __init__(self, alpha=0.1):
         self.alpha = alpha
 
     def __call__(self, x):
@@ -89,8 +89,8 @@ class SELU():
     """
 
     def __init__(self):
-        self.alpha = 1.6732632423543772848170429916717
         self.scale = 1.0507009873554804934193349852946
+        self.alpha = 1.6732632423543772848170429916717
 
     def __call__(self, x):
         return self.scale * np.where(x >= 0.0, x, self.alpha * (np.exp(x) - 1))

@@ -45,6 +45,12 @@ class Softmax():
 
 
 class TanH():
+    """Hyperbolic tangent activation function.
+
+    The hyperbolic activation:
+        `tanh(x) = (exp(x) - exp(-x)) / (exp(x) + exp(-x))`
+    """
+
     def __call__(self, x):
         return 2 / (1 + np.exp(-2 * x)) - 1
 
@@ -53,6 +59,15 @@ class TanH():
 
 
 class ReLU():
+    """Rectified Linear Unit.
+    
+    With default values, it returns element-wise `max(x, 0)`.
+    Otherwise, it follows:
+    `f(x) = max_value` for `x >= max_value`,
+    `f(x) = x` for `threshold <= x < max_value`,
+    `f(x) = alpha * (x - threshold)` otherwise.
+    """
+
     def __call__(self, x):
         return np.where(x >= 0, x, 0)
 

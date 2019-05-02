@@ -171,7 +171,7 @@ class LassoRegression(Regression):
         """Soft-thresholding operator
         coordinate descent algorithm for LASSO
         """
-        if z > 0.0 and gamma < z:
+        if z > 0.0 and gamma < abs(z):
             return z - gamma
         elif z < 0.0 and gamma < abs(z):
             return z + gamma

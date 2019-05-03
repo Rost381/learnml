@@ -123,7 +123,7 @@
                 <a href="../supervised/lasso_regression.html">
             
                     
-                    LassoRegression
+                    Lasso Regression
             
                 </a>
             
@@ -276,6 +276,32 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="principal-component-analysis">Principal component analysis</h1>
+<p>Principal component analysis (PCA) is a statistical procedure that uses an orthogonal transformation to convert a set of observations of possibly correlated variables (entities each of which takes on various numerical values) into a set of values of linearly uncorrelated variables called principal components.</p>
+<h2 id="algorithm">Algorithm</h2>
+<ul>
+<li>Step 1</li>
+</ul>
+<p>Caculate eigenvalues and eigenvectors of covariance_matrix(X)</p>
+<pre><code class="lang-python">eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
+</code></pre>
+<ul>
+<li>Step 2</li>
+</ul>
+<p>Sort eigenvectors from largest to smallest &quot;&quot;&quot;</p>
+<pre><code class="lang-python">idx = eigenvalues.argsort()[::<span class="hljs-number">-1</span>]
+</code></pre>
+<ul>
+<li>Step 3</li>
+</ul>
+<p>Select the first n_components of eigenvalues</p>
+<pre><code class="lang-python">eigenvalues = eigenvalues[idx][:self.n_components]
+eigenvectors = eigenvectors[:, idx][:, :self.n_components]
+</code></pre>
+<ul>
+<li>Predict</li>
+</ul>
+<pre><code class="lang-python">X_transformed = X.dot(eigenvectors)
+</code></pre>
 
                                 
                                 </section>
@@ -319,7 +345,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Principal component analysis","level":"3.1","depth":1,"next":{"title":"Q-learning","level":"4.1","depth":1,"path":"reinforcement/q_learning.md","ref":"reinforcement/q_learning.md","articles":[]},"previous":{"title":"Support vector machine","level":"2.4","depth":1,"path":"supervised/support_vector_machine.md","ref":"supervised/support_vector_machine.md","articles":[]},"dir":"ltr"},"config":{"plugins":["katex-plus","livereload"],"styles":{"website":"css/app.css"},"pluginsConfig":{"katex-plus":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"scripts":{"files":["js/app.js"]},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"unsupervised/principal_component_analysis.md","mtime":"2019-03-14T16:43:20.000Z","type":"markdown"},"gitbook":{"version":"3.0.0","time":"2019-05-02T13:41:32.037Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Principal component analysis","level":"3.1","depth":1,"next":{"title":"Q-learning","level":"4.1","depth":1,"path":"reinforcement/q_learning.md","ref":"reinforcement/q_learning.md","articles":[]},"previous":{"title":"Support vector machine","level":"2.4","depth":1,"path":"supervised/support_vector_machine.md","ref":"supervised/support_vector_machine.md","articles":[]},"dir":"ltr"},"config":{"plugins":["katex-plus","livereload"],"styles":{"website":"css/app.css"},"pluginsConfig":{"katex-plus":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"scripts":{"files":["js/app.js"]},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"unsupervised/principal_component_analysis.md","mtime":"2019-05-03T15:25:58.000Z","type":"markdown"},"gitbook":{"version":"3.0.0","time":"2019-05-03T15:21:17.061Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

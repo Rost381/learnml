@@ -88,6 +88,14 @@ class svm():
             G = cvxopt.matrix(np.identity(n_samples) * -1)
             h = cvxopt.matrix(np.zeros(n_samples))
         else:
+            """numpy.identity
+            The identity array is a square array with ones on the main diagonal.
+
+            np.identity(3)
+            array([[ 1.,  0.,  0.],
+                [ 0.,  1.,  0.],
+                [ 0.,  0.,  1.]])
+            """
             G_max = np.identity(n_samples) * -1
             G_min = np.identity(n_samples)
 

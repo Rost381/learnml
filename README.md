@@ -18,7 +18,9 @@ model.fit(X, y)
 ```
 
 ## Document
-[docs](https://byzhi.github.io/alphalearn/) 
+[docs](https://byzhi.github.io/alphalearn/)
+
+![](images/docs.png)
 
 ## Algorithms
 

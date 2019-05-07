@@ -1,7 +1,7 @@
 import numpy as np
 
-from alphalearn.supervised.api import RegressionTree
-from alphalearn.utils.api import (cross_entropy_loss, l2_loss, Softmax,
+from learnml.supervised.api import RegressionTree
+from learnml.utils.api import (cross_entropy_loss, l2_loss, Softmax,
                                   to_categorical)
 
 

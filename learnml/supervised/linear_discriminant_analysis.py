@@ -1,6 +1,6 @@
 import numpy as np
 
-from alphalearn.utils.stats import covariance_matrix
+from learnml.utils.stats import covariance_matrix
 
 
 class LinearDiscriminantAnalysis():

@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from alphalearn.datasets.api import load_iris
-from alphalearn.supervised.api import LogisticRegression
-from alphalearn.utils.api import calculate_accuracy_score
+from learnml.datasets.api import load_iris
+from learnml.supervised.api import LogisticRegression
+from learnml.utils.api import calculate_accuracy_score
 
 
 def main():

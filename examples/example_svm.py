@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from alphalearn.supervised.api import svm
+from learnml.supervised.api import svm
 
 
 def main():

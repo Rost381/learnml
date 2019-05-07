@@ -12,7 +12,7 @@ LINE_COLOR = '#D8D8D8'
 UNIT = 100
 HEIGHT = 4
 WIDTH = 4
-IMG_PATH = 'alphalearn/reinforcement/img/'
+IMG_PATH = 'learnml/reinforcement/img/'
 
 
 class QLearningEnv(tk.Tk):

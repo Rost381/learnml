@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from alphalearn.supervised.api import svm
-from alphalearn.utils.api import make_meshgrid, plot_contours
+from learnml.supervised.api import svm
+from learnml.utils.api import make_meshgrid, plot_contours
 
 
 def main():

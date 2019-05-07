@@ -3,10 +3,10 @@ import numpy as np
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 
-from alphalearn.deep.api import (Activation, AdamOptimizer, BatchNormalization,
-                                 Conv2D, Dense, Dropout, Flatten,
-                                 NeuralNetwork)
-from alphalearn.utils.api import cross_entropy_loss, to_categorical
+from learnml.deep.api import (Activation, AdamOptimizer, BatchNormalization,
+                              Conv2D, Dense, Dropout, Flatten,
+                              NeuralNetwork)
+from learnml.utils.api import cross_entropy_loss, to_categorical
 
 
 def main():

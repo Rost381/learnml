@@ -6,7 +6,7 @@ from os.path import dirname, join
 import numpy as np
 import pandas as pd
 
-from alphalearn.utils.bunch import Bunch
+from learnml.utils.bunch import Bunch
 
 
 def load_data(module_path, data_file_name):

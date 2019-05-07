@@ -1,8 +1,8 @@
 import numpy as np
 
-from alphalearn.datasets.api import load_iris
-from alphalearn.supervised.api import AdaBoostClassifier
-from alphalearn.utils.api import calculate_accuracy_score
+from learnml.datasets.api import load_iris
+from learnml.supervised.api import AdaBoostClassifier
+from learnml.utils.api import calculate_accuracy_score
 from sklearn.datasets import make_gaussian_quantiles
 
 

@@ -4,7 +4,7 @@ import gym
 import numpy as np
 import pylab
 
-from alphalearn.reinforcement.api import DeepQNetwork
+from learnml.reinforcement.api import DeepQNetwork
 
 
 def main():

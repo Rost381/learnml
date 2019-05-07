@@ -2,9 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-from alphalearn.datasets.api import load_temperature
-from alphalearn.supervised.api import PolynomialRidgeRegression
-from alphalearn.utils.api import calculate_mean_squared_error
+from learnml.datasets.api import load_temperature
+from learnml.supervised.api import PolynomialRidgeRegression
+from learnml.utils.api import calculate_mean_squared_error
 
 
 def main():

@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 
-from alphalearn.datasets.api import load_iris
-from alphalearn.unsupervised.api import KMeans
+from learnml.datasets.api import load_iris
+from learnml.unsupervised.api import KMeans
 
 
 def main():

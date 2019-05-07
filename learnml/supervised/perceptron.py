@@ -1,6 +1,6 @@
 import numpy as np
 
-from alphalearn.utils.api import l2_loss, Sigmoid
+from learnml.utils.api import l2_loss, Sigmoid
 
 
 class Perceptron():

@@ -1,5 +1,5 @@
 import numpy as np
-from alphalearn.utils.api import euclidean_distances
+from learnml.utils.api import euclidean_distances
 
 
 class KNeighborsClassifier():

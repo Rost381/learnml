@@ -3,9 +3,9 @@ import pandas as pd
 from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
 
-from alphalearn.datasets.api import load_boston
-from alphalearn.supervised.api import LassoRegression
-from alphalearn.utils.api import standardize
+from learnml.datasets.api import load_boston
+from learnml.supervised.api import LassoRegression
+from learnml.utils.api import standardize
 
 
 def main():

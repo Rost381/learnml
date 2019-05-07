@@ -1,9 +1,9 @@
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-from alphalearn.datasets.api import load_iris
-from alphalearn.supervised.api import XGBoost
-from alphalearn.utils.api import calculate_accuracy_score
+from learnml.datasets.api import load_iris
+from learnml.supervised.api import XGBoost
+from learnml.utils.api import calculate_accuracy_score
 
 
 def main():

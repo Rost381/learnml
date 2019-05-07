@@ -3,7 +3,7 @@ import math
 import numpy as np
 import pandas as pd
 
-from alphalearn.utils.api import (PolynomialFeatures, l1_regularization,
+from learnml.utils.api import (PolynomialFeatures, l1_regularization,
                                   l2_regularization, normalize)
 
 

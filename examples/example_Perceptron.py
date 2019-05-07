@@ -2,9 +2,9 @@ import numpy as np
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 
-from alphalearn.supervised.api import Perceptron
-from alphalearn.utils.api import (calculate_accuracy_score, cross_entropy_loss,
-                                  l2_loss, normalize, to_categorical)
+from learnml.supervised.api import Perceptron
+from learnml.utils.api import (calculate_accuracy_score, cross_entropy_loss,
+                               l2_loss, normalize, to_categorical)
 
 
 def main():

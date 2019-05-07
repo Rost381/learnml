@@ -3,7 +3,7 @@ import pandas as pd
 import random
 
 import math
-from alphalearn.utils.stats import calculate_entropy, calculate_variance
+from learnml.utils.stats import calculate_entropy, calculate_variance
 
 
 class Node():

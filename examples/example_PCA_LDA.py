@@ -2,9 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from alphalearn.datasets.api import load_iris
-from alphalearn.supervised.api import LinearDiscriminantAnalysis
-from alphalearn.unsupervised.api import PCA
+from learnml.datasets.api import load_iris
+from learnml.supervised.api import LinearDiscriminantAnalysis
+from learnml.unsupervised.api import PCA
 
 
 def main():

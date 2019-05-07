@@ -1,7 +1,7 @@
 import numpy as np
 
-from alphalearn.supervised.api import ClassificationTree
-from alphalearn.utils.api import random_subsets
+from learnml.supervised.api import ClassificationTree
+from learnml.utils.api import random_subsets
 
 
 class RandomForestClassifier():

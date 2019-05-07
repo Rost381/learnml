@@ -2,7 +2,7 @@ import io
 
 from PIL import Image, ImageTk
 
-from alphalearn.reinforcement.api import QLearning, QLearningEnv
+from learnml.reinforcement.api import QLearning, QLearningEnv
 
 
 def main():

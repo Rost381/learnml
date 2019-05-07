@@ -2,10 +2,10 @@ import copy
 
 import numpy as np
 
-from alphalearn.utils.api import (ELU, SELU, LeakyReLU, ReLU, Sigmoid, Softmax,
-                                  SoftPlus, TanH, column_to_image,
-                                  determine_padding, get_im2col_indices,
-                                  image_to_column)
+from learnml.utils.api import (ELU, SELU, LeakyReLU, ReLU, Sigmoid, Softmax,
+                               SoftPlus, TanH, column_to_image,
+                               determine_padding, get_im2col_indices,
+                               image_to_column)
 
 
 class Layer():
@@ -249,10 +249,10 @@ class Conv2D(Layer):
         channels, height, width = self.input_shape
         pad_h, pad_w = determine_padding(
             self.filter_shape, output_shape=self.padding)
-        output_height = (height + np.sum(pad_h)
-                         - self.filter_shape[0]) / self.stride + 1
-        output_width = (width + np.sum(pad_w)
-                        - self.filter_shape[1]) / self.stride + 1
+        output_height = (height + np.sum(pad_h) -
+                         self.filter_shape[0]) / self.stride + 1
+        output_width = (width + np.sum(pad_w) -
+                        self.filter_shape[1]) / self.stride + 1
         return self.n_filters, int(output_height), int(output_width)
 
 
@@ -394,10 +394,10 @@ class BatchNormalization(Layer):
 
         # The gradient of the loss with respect to the layer inputs (use weights and statistics from forward pass)
         accum_grad = (1 / batch_size) * gamma * self.stddev_inv * (
-            batch_size * accum_grad -
-            np.sum(accum_grad, axis=0) -
-            self.X_centered * self.stddev_inv**2 *
-            np.sum(accum_grad * self.X_centered, axis=0)
+            batch_size * accum_grad
+            - np.sum(accum_grad, axis=0)
+            - self.X_centered * self.stddev_inv**2
+            * np.sum(accum_grad * self.X_centered, axis=0)
         )
 
         return accum_grad

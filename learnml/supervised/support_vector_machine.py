@@ -1,7 +1,7 @@
 import cvxopt
 import numpy as np
 
-from alphalearn.utils.kernels import linear, poly, rbf
+from learnml.utils.kernels import linear, poly, rbf
 
 cvxopt.solvers.options['show_progress'] = False
 

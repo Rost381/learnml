@@ -1,3 +1,15 @@
+@import url(https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css);
+
+body {
+    font-family: "Fira Code", "Helvetica Neue", Helvetica, Arial;
+}
+
+.book.font-family-0,
+.book.font-family-1,
+.book-summary {
+    font-family: "Fira Code", "Helvetica Neue", Helvetica, Arial
+}
+
 .gitbook-link {
     display: none !important;
 }
@@ -12,7 +24,15 @@
     color: #939da3;
 }
 
-.markdown-section a,
+.markdown-section a {
+    color: #3498DB;
+}
+
 .markdown-section h3 {
-    color: #008cff;
+    color: #3498DB;
+}
+
+.markdown-section b,
+.markdown-section strong {
+    color: #E74C3C;
 }

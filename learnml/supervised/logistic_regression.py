@@ -35,12 +35,12 @@ class LogisticRegression():
         self.w = np.zeros(X.shape[1])
 
         for _ in range(self.max_iter):
-            """Step 2 caculate the y_pred"""
+            """Step 2 update the weight
+            new weight = old weight - learning rate * (y - y_pred) * X
+            """
             scores = np.dot(X, self.w)
             y_pred = self.sigmoid(scores)
 
-            """Step 3 update the weight
-            new weight = old weight - X . (y - y_pred) * learning rate"""
             grad_w = (y_pred - y).dot(X)
             self.w -= self.learning_rate * grad_w
 

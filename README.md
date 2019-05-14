@@ -15,12 +15,15 @@ Linear models
 
 | codes | examples | docs |
 | --- | --- | --- |
-| [Logistic Regression](./learnml/supervised/logistic_regression.py) | [example](./examples/example_LogisticRegression.py) | [docs](https://byzhi.github.io/learnml/supervised/logistic_regression.html) |
-| [Regression](./learnml/supervised/regression.py) | [Linear](./examples/example_LinearRegression.py), [Lasso](./examples/example_LassoRegression.py), [Ridge](./examples/example_RidgeRegression.py), [Polynomial ridge](./examples/example_PolynomialRidgeRegression.py) | [docs](https://byzhi.github.io/learnml/supervised/linear_regression.html) |
+| [Logistic Regression](./learnml/supervised/logistic_regression.py) | [example](./examples/example_LogisticRegression.py) | [doc](https://byzhi.github.io/learnml/supervised/logistic_regression.html) |
+| [Regression](./learnml/supervised/regression.py) | [Linear](./examples/example_LinearRegression.py), [Lasso](./examples/example_LassoRegression.py), [Ridge](./examples/example_RidgeRegression.py), [Polynomial ridge](./examples/example_PolynomialRidgeRegression.py) | [doc](https://byzhi.github.io/learnml/supervised/linear_regression.html) |
 
 Classification
 
-- Linear Discriminant Analysis | [code](./learnml/supervised/linear_discriminant_analysis.py), [example](./examples/example_PCA_LDA.py)
+| codes | examples | docs |
+| --- | --- | --- |
+| [Linear Discriminant Analysis](./learnml/supervised/linear_discriminant_analysis.py) | [example](./examples/example_PCA_LDA.py) | [doc](https://byzhi.github.io/learnml/supervised/linear_discriminant_analysis.html) |
+
 - k-Nearest Neighbors | [code](./learnml/supervised/k_nearest_neighbors.py), [example](./examples/example_KNeighborsClassifier.py)
 - Perceptron | [code](./learnml/supervised/perceptron.py), [example](./examples/example_Perceptron.py)
 - Support Vector Machine | [code](./learnml/supervised/support_vector_machine.py), examples: [01](./examples/example_svm.py), [02](./examples/example_svm_02.py)

@@ -101,14 +101,14 @@ class LinearRegression(Regression):
             S[:A.shape[1], :A.shape[1]] = np.diag(d)
 
             """ Calculate weights by least squares
-            *** Actually, we can just use this formula: ***
-                w = np.linalg.pinv(A).dot(X.T).dot(y)
+            Actually, we can also use this formula:
+            w = np.linalg.pinv(X).dot(y)
             
             because:
-                np.linalg.pinv(A) = V_T.T.dot(S.T).dot(U.T)
+            np.linalg.pinv(A) = V_T.T.dot(S.T).dot(U.T)
             """
             w = V_T.T.dot(S.T).dot(U.T).dot(X.T).dot(y)
-            # w = np.linalg.pinv(A).dot(X.T).dot(y)
+            # w = np.linalg.pinv(X).dot(y)
             self.w = w
 
         else:

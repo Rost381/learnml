@@ -24,15 +24,19 @@ body {
     color: #939da3;
 }
 
-.markdown-section a {
-    color: #247BA0;
-}
-
-.markdown-section h3 {
-    color: #247BA0;
-}
-
+.markdown-section a,
 .markdown-section b,
 .markdown-section strong {
     color: #FF1654;
+}
+
+.markdown-section pre {
+    background-color: rgb(242, 249, 255);
+    border-left: 5px solid;
+    border-color: #FF1654;
+    border-radius: 4px;
+}
+
+.katex-display {
+    padding: .85em 1em;
 }

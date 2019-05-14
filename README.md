@@ -13,7 +13,7 @@ Friendly documentation is available at [https://byzhi.github.io/learnml/](https:
 ### Supervised Learning
 Linear models
 
-| Linear models | examples | docs |
+| codes | examples | docs |
 | --- | --- | --- |
 | [Logistic Regression](./learnml/supervised/logistic_regression.py) | [example](./examples/example_LogisticRegression.py) | [docs](https://byzhi.github.io/learnml/supervised/logistic_regression.html) |
 | [Regression](./learnml/supervised/regression.py) | [Linear](./examples/example_LinearRegression.py), [Lasso](./examples/example_LassoRegression.py), [Ridge](./examples/example_RidgeRegression.py), [Polynomial ridge](./examples/example_PolynomialRidgeRegression.py) | [docs](https://byzhi.github.io/learnml/supervised/linear_regression.html) |

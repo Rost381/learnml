@@ -23,10 +23,10 @@ Classification
 | codes | examples | docs |
 | --- | --- | --- |
 | [Linear Discriminant Analysis](./learnml/supervised/linear_discriminant_analysis.py) | [example](./examples/example_PCA_LDA.py) | [doc](https://byzhi.github.io/learnml/supervised/linear_discriminant_analysis.html) |
+| [Support Vector Machine](./learnml/supervised/support_vector_machine.py) | [01](./examples/example_svm.py), [02](./examples/example_svm_02.py) | [doc](https://byzhi.github.io/learnml/supervised/support_vector_machine.html) |
 
 - k-Nearest Neighbors | [code](./learnml/supervised/k_nearest_neighbors.py), [example](./examples/example_KNeighborsClassifier.py)
 - Perceptron | [code](./learnml/supervised/perceptron.py), [example](./examples/example_Perceptron.py)
-- Support Vector Machine | [code](./learnml/supervised/support_vector_machine.py), examples: [01](./examples/example_svm.py), [02](./examples/example_svm_02.py)
 
 Tree-based and ensemble methods
 

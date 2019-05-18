@@ -49,9 +49,12 @@ Dimension reduction
 
 
 ### Reinforcement Learning
-- Q-learning | [code](./learnml/reinforcement/qlsarsa/base.py), [example](./examples/example_QLearning.py)
-- SARSA | [code](./learnml/reinforcement/qlsarsa/base.py), [example](./examples/example_SARSA.py)
-- DQN (Deep Q Network) | [code](./learnml/reinforcement/dqn/DeepQNetwork.py), [example](./examples/example_DeepQNetwork.py)
+
+| codes | examples | docs |
+| --- | --- | --- |
+| [Q-learning](./learnml/reinforcement/qlsarsa/base.py) | [example](./examples/example_QLearning.py) | [doc](https://byzhi.github.io/learnml/reinforcement/q_learning.html)
+| [SARSA](./learnml/reinforcement/qlsarsa/base.py) | [example](./examples/example_SARSA.py) | |
+| [DQN (Deep Q Network)](./learnml/reinforcement/dqn/DeepQNetwork.py) | [example](./examples/example_DeepQNetwork.py) | |
 
 ### Deep Learning
 - DNN

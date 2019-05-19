@@ -23,29 +23,34 @@ Classification
 | codes | examples | docs |
 | --- | --- | --- |
 | [Linear Discriminant Analysis](./learnml/supervised/linear_discriminant_analysis.py) | [example](./examples/example_PCA_LDA.py) | [doc](https://byzhi.github.io/learnml/supervised/linear_discriminant_analysis.html) |
+| [k-Nearest Neighbors](./learnml/supervised/k_nearest_neighbors.py) | [example](./examples/example_KNeighborsClassifier.py) | |
+| [Perceptron](./learnml/supervised/perceptron.py) | [example](./examples/example_Perceptron.py) | |
 | [Support Vector Machine](./learnml/supervised/support_vector_machine.py) | [01](./examples/example_svm.py), [02](./examples/example_svm_02.py) | [doc](https://byzhi.github.io/learnml/supervised/support_vector_machine.html) |
-
-- k-Nearest Neighbors | [code](./learnml/supervised/k_nearest_neighbors.py), [example](./examples/example_KNeighborsClassifier.py)
-- Perceptron | [code](./learnml/supervised/perceptron.py), [example](./examples/example_Perceptron.py)
 
 Tree-based and ensemble methods
 
-- Adaboost | [code](./learnml/supervised/adaboost.py), [example](./examples/example_Adaboost.py)
-- Decision Tree | [code](./learnml/supervised/decision_tree.py), examples: [Classification tree](./examples/example_ClassificationTree.py), [Regression tree](./examples/example_RegressionTree.py)
-- Gradient boosting | [code](./learnml/supervised/gradient_boosting.py), examples: [GradientBoosting classifier](./examples/example_GradientBoostingClassifier.py), [GradientBoosting regressor](./examples/example_GradientBoostingRegressor.py)
-- Random forests | [code](./learnml/supervised/random_forest.py), [example](./examples/example_RandomForestClassifier.py)
-- XGBoost | [code](./learnml/supervised/xgboost.py), [example](./examples/example_XGBoost.py)
+| codes | examples | docs |
+| --- | --- | --- |
+| [Adaboost](./learnml/supervised/adaboost.py) | [example](./examples/example_Adaboost.py) | |
+| [Decision Tree](./learnml/supervised/decision_tree.py) | [Classification tree](./examples/example_ClassificationTree.py), [Regression tree](./examples/example_RegressionTree.py) | |
+| [Gradient boosting](./learnml/supervised/gradient_boosting.py) | [GradientBoosting classifier](./examples/example_GradientBoostingClassifier.py), [GradientBoosting regressor](./examples/example_GradientBoostingRegressor.py) | |
+| [Random forests](./learnml/supervised/random_forest.py) | [example](./examples/example_RandomForestClassifier.py) | |
+| [XGBoost](./learnml/supervised/xgboost.py) | [example](./examples/example_XGBoost.py) | |
 
 Generative Learning
 
-- Naive Bayes | [code](./learnml/supervised/naive_bayes.py), [example](./examples/example_GaussianNB.py)
+| codes | examples | docs |
+| --- | --- | --- |
+| [Naive Bayes](./learnml/supervised/naive_bayes.py) | [example](./examples/example_GaussianNB.py)
 
 ### Unsupervised Learning
 
 Dimension reduction
 
-- K-Means | [code](./learnml/unsupervised/kmeans.py), [example](./examples/example_KMeans.py)
-- Principal Component Analysis | [code](./learnml/unsupervised/principal_component_analysis.py), [example](./examples/example_PCA_LDA.py)
+| codes | examples | docs |
+| --- | --- | --- |
+| [K-Means](./learnml/unsupervised/kmeans.py) | [example](./examples/example_KMeans.py) | |
+| [Principal Component Analysis](./learnml/unsupervised/principal_component_analysis.py) | [example](./examples/example_PCA_LDA.py) | |
 
 
 ### Reinforcement Learning

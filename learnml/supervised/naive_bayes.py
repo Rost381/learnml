@@ -54,7 +54,7 @@ class GaussianNB():
         for i, c in enumerate(self.classes):
             p = self._prior_probability(c)
             """independence
-            P(x1,x2,x3|Y) = P(x1|Y)*P(x2|Y)*P(x3|Y)
+            P(X_1,X_2,X_3|Y) = P(X_1|Y)*P(X_2|Y)*P(X_3|Y)
             """
             for feature_value, params in zip(sample, self.parameters[i]):
                 likelihood = self._likelihood(

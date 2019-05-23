@@ -21,3 +21,9 @@ def random_subsets(X, y, n_subsets, replacements=True):
         y = X_y[idx][:, -1]
         subsets.append([X, y])
     return subsets
+
+
+def random_arr(a, b, *args):
+    """createst uniform random array w/ values in [a,b) and shape args"""
+    np.random.seed(0)
+    return np.random.rand(*args) * (b - a) + a

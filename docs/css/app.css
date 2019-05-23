@@ -24,6 +24,12 @@ body {
     color: #939da3;
 }
 
+.markdown-section {
+    color: #000;
+    font-weight: 500;
+    font: 14px/1.5em "Fira Code";
+}
+
 .markdown-section a,
 .markdown-section b,
 .markdown-section strong {
@@ -35,6 +41,11 @@ body {
     border-left: 5px solid;
     border-color: #FF1654;
     border-radius: 4px;
+}
+
+.katex {
+    color: #000;
+    font: 500 1.21em KaTeX_Main, Times New Roman, serif;
 }
 
 .katex-display {

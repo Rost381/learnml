@@ -31,7 +31,7 @@ from .losses import (
 
 from .np import to_categorical
 
-from .random import random_subsets
+from .random import random_subsets, random_arr
 
 from .deep import (
     determine_padding,

@@ -6,11 +6,13 @@ Write machine learning algorithms from zero for self-learning.
 All algorithm codes are implemented in Python with friendly comments and easier to understand how they works.
 
 ## Documentation
-Friendly documentation is available at [https://byzhi.github.io/learnml/](https://byzhi.github.io/learnml/). 
+
+Friendly documentation is available at [https://byzhi.github.io/learnml](https://byzhi.github.io/learnml/). 
 
 ## Algorithms
 
 ### Supervised Learning
+
 Linear models
 
 | codes | examples | docs |
@@ -62,9 +64,13 @@ Dimension reduction
 | [DQN (Deep Q Network)](./learnml/reinforcement/dqn/DeepQNetwork.py) | [example](./examples/example_DeepQNetwork.py) | |
 
 ### Deep Learning
-- DNN
-- RNN
-- CNN [example](./examples/example_CNN.py)
+
+| codes | examples | docs |
+| --- | --- | --- |
+| CNN | [example](./examples/example_CNN.py) | |
+| RNN | | |
+| [LSTM](./learnml/deep/lstm.py) | [example](./examples/example_Lstm.py) | |
+
 
 ## Installation
 ```
@@ -83,6 +89,7 @@ model.fit(X, y)
 ## Reference
 - [ML-From-Scratch](https://github.com/eriklindernoren/ML-From-Scratch)
 - [Lasso](https://github.com/satopirka/Lasso)
+- [Reinforcement Learning](https://github.com/rlcode/reinforcement-learning)
+- [lstm](https://github.com/nicodjimenez/lstm)
 - [Implementing a Principal Component Analysis (PCA)](https://sebastianraschka.com/Articles/2014_pca_step_by_step.html)
 - [Linear Discriminant Analysis Bit by Bit](https://sebastianraschka.com/Articles/2014_python_lda.html)
-- [Reinforcement Learning](https://github.com/rlcode/reinforcement-learning)

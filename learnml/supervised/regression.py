@@ -186,7 +186,7 @@ class LassoRegression(Regression):
         fit_intercept = false:
             beta = [0, 0, ...]
         fit_intercept = true:
-            beta = [x, 0, ...]
+            beta = [X, 0, ...]
         """
         beta = np.zeros(X.shape[1])
         if self.fit_intercept:

@@ -1,15 +1,20 @@
 # learnml
 ![](https://img.shields.io/badge/python-3.6+-blue.svg)
 
-Write machine learning algorithms from zero for self-learning.
-
-All algorithm codes are implemented in Python with friendly comments and easier to understand how they works.
+- Write machine learning algorithms from zero for self-learning
+- All algorithm codes are implemented in Python with friendly comments and easier to understand how they works.
 
 ## Documentation
 
 Friendly documentation is available at [https://byzhi.github.io/learnml](https://byzhi.github.io/learnml/). 
 
-## Algorithms
+## Contents
+
+### Statistics
+
+- [Covariance matrix](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L6)
+- [Variance](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L16)
+
 
 ### Supervised Learning
 

@@ -21,7 +21,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
                 
             
                 
@@ -319,19 +319,19 @@
 <h2 id="solution">Solution</h2>
 <h3 id="step-1">Step 1</h3>
 <p>Caculate eigenvalues and eigenvectors of covariance_matrix(X)</p>
-<pre><code class="lang-python">eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
+<pre class="language-"><code class="lang-python">eigenvalues<span class="token punctuation">,</span> eigenvectors <span class="token operator">=</span> np<span class="token punctuation">.</span>linalg<span class="token punctuation">.</span>eig<span class="token punctuation">(</span>cov_matrix<span class="token punctuation">)</span>
 </code></pre>
 <h3 id="step-2">Step 2</h3>
 <p>Sort eigenvectors from largest to smallest</p>
-<pre><code class="lang-python">idx = eigenvalues.argsort()[::<span class="hljs-number">-1</span>]
+<pre class="language-"><code class="lang-python">idx <span class="token operator">=</span> eigenvalues<span class="token punctuation">.</span>argsort<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
 </code></pre>
 <h3 id="step-3">Step 3</h3>
 <p>Select the first n_components of eigenvalues</p>
-<pre><code class="lang-python">eigenvalues = eigenvalues[idx][:self.n_components]
-eigenvectors = eigenvectors[:, idx][:, :self.n_components]
+<pre class="language-"><code class="lang-python">eigenvalues <span class="token operator">=</span> eigenvalues<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">:</span>self<span class="token punctuation">.</span>n_components<span class="token punctuation">]</span>
+eigenvectors <span class="token operator">=</span> eigenvectors<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> idx<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token punctuation">:</span>self<span class="token punctuation">.</span>n_components<span class="token punctuation">]</span>
 </code></pre>
 <h3 id="predict">Predict</h3>
-<pre><code class="lang-python">X_transformed = X.dot(eigenvectors)
+<pre class="language-"><code class="lang-python">X_transformed <span class="token operator">=</span> X<span class="token punctuation">.</span>dot<span class="token punctuation">(</span>eigenvectors<span class="token punctuation">)</span>
 </code></pre>
 
                                 
@@ -376,7 +376,7 @@ eigenvectors = eigenvectors[:, idx][:, :self.n_components]
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Principal Component Analysis","level":"3.1","depth":1,"next":{"title":"Q-learning","level":"4.1","depth":1,"path":"reinforcement/q_learning.md","ref":"reinforcement/q_learning.md","articles":[]},"previous":{"title":"Naive Bayes","level":"2.7","depth":1,"path":"supervised/naive_bayes.md","ref":"supervised/naive_bayes.md","articles":[]},"dir":"ltr"},"config":{"plugins":["katex-plus","livereload"],"styles":{"website":"css/app.css"},"pluginsConfig":{"katex-plus":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"scripts":{"files":["js/app.js"]},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"unsupervised/principal_component_analysis.md","mtime":"2019-05-15T16:18:02.000Z","type":"markdown"},"gitbook":{"version":"3.0.0","time":"2019-05-27T15:34:32.128Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Principal Component Analysis","level":"3.1","depth":1,"next":{"title":"Q-learning","level":"4.1","depth":1,"path":"reinforcement/q_learning.md","ref":"reinforcement/q_learning.md","articles":[]},"previous":{"title":"Naive Bayes","level":"2.7","depth":1,"path":"supervised/naive_bayes.md","ref":"supervised/naive_bayes.md","articles":[]},"dir":"ltr"},"config":{"plugins":["katex-plus","prism","-highlight","livereload"],"styles":{"website":"css/app.css"},"pluginsConfig":{"katex-plus":{},"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"scripts":{"files":["js/app.js"]},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"unsupervised/principal_component_analysis.md","mtime":"2019-05-15T16:18:02.000Z","type":"markdown"},"gitbook":{"version":"3.0.0","time":"2019-05-31T16:12:36.391Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

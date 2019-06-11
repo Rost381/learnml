@@ -4,10 +4,24 @@ from learnml.utils.api import l2_loss, Sigmoid
 
 
 class Perceptron():
-    def __init__(self, n_iter=1000, loss=l2_loss, learning_rate=0.01, fit_intercept=True):
+    """Perceptron
+
+    Parameters:
+    -----------
+    n_iter : int
+        The maximum number of passes over the training data (aka epochs).
+    penalty : 'l2_loss’
+        The penalty (aka regularization term) to be used. 
+    learning_rate : float
+        The step length that will be used when updating the weights.
+    fit_intercept : boolean
+        Whether to calculate the intercept for this model.
+    """
+    def __init__(self, n_iter=1000, penalty=l2_loss, learning_rate=0.01, fit_intercept=True):
+
         self.n_iter = n_iter
         self.learning_rate = learning_rate
-        self.loss = loss()
+        self.penalty = loss()
         self.fit_intercept = fit_intercept
         self.w0 = None
         self.w1 = None
@@ -28,7 +42,7 @@ class Perceptron():
             else:
                 linear_output = np.dot(X, self.w1)
             y_pred = self.sigmoid(linear_output)
-            grad = self.loss.gradient(
+            grad = self.penalty.gradient(
                 y, y_pred) * self.sigmoid(linear_output) * (1 - self.sigmoid(linear_output))
 
             """Update the weights"""

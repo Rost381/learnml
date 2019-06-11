@@ -17,9 +17,9 @@ def main():
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.4)
 
-    model = Perceptron(n_iter=5000,
+    model = Perceptron(max_iter=5000,
                        learning_rate=0.001,
-                       loss=l2_loss)
+                       penalty=l2_loss)
     model.fit(X_train, y_train)
 
     y_pred = np.argmax(model.predict(X_test), axis=1)

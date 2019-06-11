@@ -17,11 +17,12 @@ class Perceptron():
     fit_intercept : boolean
         Whether to calculate the intercept for this model.
     """
-    def __init__(self, n_iter=1000, penalty=l2_loss, learning_rate=0.01, fit_intercept=True):
 
-        self.n_iter = n_iter
+    def __init__(self, max_iter=1000, penalty=l2_loss, learning_rate=0.01, fit_intercept=True):
+
+        self.max_iter = max_iter
         self.learning_rate = learning_rate
-        self.penalty = loss()
+        self.loss = penalty()
         self.fit_intercept = fit_intercept
         self.w0 = None
         self.w1 = None
@@ -35,14 +36,14 @@ class Perceptron():
             self.w0 = np.zeros((1, n_outputs))
         self.w1 = np.random.uniform(-limit, limit, (n_features, n_outputs))
 
-        for i in range(self.n_iter):
+        for i in range(self.max_iter):
             """Calculate the actual output"""
             if self.fit_intercept:
                 linear_output = np.dot(X, self.w1) + self.w0
             else:
                 linear_output = np.dot(X, self.w1)
             y_pred = self.sigmoid(linear_output)
-            grad = self.penalty.gradient(
+            grad = self.loss.gradient(
                 y, y_pred) * self.sigmoid(linear_output) * (1 - self.sigmoid(linear_output))
 
             """Update the weights"""

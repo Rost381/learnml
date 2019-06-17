@@ -14,6 +14,8 @@ Friendly documentation is available at [https://byzhi.github.io/learnml](https:/
 
 - [Covariance matrix](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L6)
 - [Variance](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L16)
+- [Standardize](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L24)
+- [Normalize](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L35)
 
 
 ### Supervised Learning

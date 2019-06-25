@@ -4,7 +4,7 @@ import pandas as pd
 
 
 def covariance_matrix(X, Y=None):
-    """Caculate covariance matrix """
+    """Caculate covariance matrix"""
     if Y is None:
         Y = X
     n_samples = np.shape(X)[0]
@@ -14,7 +14,7 @@ def covariance_matrix(X, Y=None):
 
 
 def calculate_variance(X):
-    """Return the variance of the features in dataset X """
+    """Return the variance of the features in dataset X"""
     mean = np.ones(np.shape(X)) * X.mean(0)
     n_samples = np.shape(X)[0]
     variance = (1 / n_samples) * np.diag((X - mean).T.dot(X - mean))
@@ -22,7 +22,7 @@ def calculate_variance(X):
 
 
 def standardize(X):
-    """Standardize X """
+    """Standardize X"""
     X_std = X
     mean = X.mean(axis=0)
     std = X.std(axis=0)

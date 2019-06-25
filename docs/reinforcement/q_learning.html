@@ -101,11 +101,31 @@
 
     
         
+        <li class="header">Statistics</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../statistics/covariance_matrix.html">
+            
+                <a href="../statistics/covariance_matrix.html">
+            
+                    
+                    Covariance Matrix
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
         <li class="header">Supervised Learning</li>
         
         
     
-        <li class="chapter " data-level="2.1" data-path="../supervised/logistic_regression.html">
+        <li class="chapter " data-level="3.1" data-path="../supervised/logistic_regression.html">
             
                 <a href="../supervised/logistic_regression.html">
             
@@ -118,7 +138,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2" data-path="../supervised/linear_regression.html">
+        <li class="chapter " data-level="3.2" data-path="../supervised/linear_regression.html">
             
                 <a href="../supervised/linear_regression.html">
             
@@ -131,7 +151,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3" data-path="../supervised/lasso_regression.html">
+        <li class="chapter " data-level="3.3" data-path="../supervised/lasso_regression.html">
             
                 <a href="../supervised/lasso_regression.html">
             
@@ -144,7 +164,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.4" data-path="../supervised/linear_discriminant_analysis.html">
+        <li class="chapter " data-level="3.4" data-path="../supervised/linear_discriminant_analysis.html">
             
                 <a href="../supervised/linear_discriminant_analysis.html">
             
@@ -157,7 +177,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.5" data-path="../supervised/adaboost.html">
+        <li class="chapter " data-level="3.5" data-path="../supervised/adaboost.html">
             
                 <a href="../supervised/adaboost.html">
             
@@ -170,7 +190,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.6" data-path="../supervised/support_vector_machine.html">
+        <li class="chapter " data-level="3.6" data-path="../supervised/support_vector_machine.html">
             
                 <a href="../supervised/support_vector_machine.html">
             
@@ -183,7 +203,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../supervised/naive_bayes.html">
+        <li class="chapter " data-level="3.7" data-path="../supervised/naive_bayes.html">
             
                 <a href="../supervised/naive_bayes.html">
             
@@ -203,7 +223,7 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="../unsupervised/principal_component_analysis.html">
+        <li class="chapter " data-level="4.1" data-path="../unsupervised/principal_component_analysis.html">
             
                 <a href="../unsupervised/principal_component_analysis.html">
             
@@ -223,7 +243,7 @@
         
         
     
-        <li class="chapter active" data-level="4.1" data-path="q_learning.html">
+        <li class="chapter active" data-level="5.1" data-path="q_learning.html">
             
                 <a href="q_learning.html">
             
@@ -243,7 +263,7 @@
         
         
     
-        <li class="chapter " data-level="5.1" data-path="../deep/activations.html">
+        <li class="chapter " data-level="6.1" data-path="../deep/activations.html">
             
                 <a href="../deep/activations.html">
             
@@ -256,7 +276,7 @@
             
         </li>
     
-        <li class="chapter " data-level="5.2" data-path="../deep/optimizer.html">
+        <li class="chapter " data-level="6.2" data-path="../deep/optimizer.html">
             
                 <a href="../deep/optimizer.html">
             
@@ -315,6 +335,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="q-learning">Q-learning</h1>
+<h2 id="objective">Objective</h2>
 <p>Q-learning is a model-free reinforcement learning algorithm. The goal of Q-learning is to learn a policy, which tells an agent what action to take under what circumstances</p>
 <h2 id="algorithm">Algorithm</h2>
 <p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>Q</mi><mrow><mi>n</mi><mi>e</mi><mi>w</mi></mrow></msup><mrow><mo fence="true">(</mo><msub><mi>s</mi><mi>t</mi></msub><mo separator="true">,</mo><msub><mi>a</mi><mi>t</mi></msub><mo fence="true">)</mo></mrow><mo>&#x2190;</mo><mo>(</mo><mn>1</mn><mo>&#x2212;</mo><mi>&#x3B1;</mi><mo>)</mo><mo>&#x22C5;</mo><mi>Q</mi><mrow><mo fence="true">(</mo><msub><mi>s</mi><mi>t</mi></msub><mo separator="true">,</mo><msub><mi>a</mi><mi>t</mi></msub><mo fence="true">)</mo></mrow><mo>+</mo><mi>l</mi><mi>r</mi><mo>&#x22C5;</mo><mrow><mo fence="true">(</mo><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>r</mi><mi>e</mi><mi>w</mi><mi>a</mi><mi>r</mi><mi>d</mi><mo>+</mo><mrow><mi>&#x3B3;</mi></mrow><mrow><mo>&#x22C5;</mo></mrow><mrow><mi>max</mi><mo>&#x2061;</mo><mi>Q</mi><mrow><mo fence="true">(</mo><msub><mi>s</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo separator="true">,</mo><mi>a</mi><mo fence="true">)</mo></mrow></mrow></mrow></mstyle></mtd></mtr></mtable><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">
@@ -369,7 +390,7 @@ self<span class="token punctuation">.</span>q_table<span class="token punctuatio
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Q-learning","level":"4.1","depth":1,"next":{"title":"Activation Function","level":"5.1","depth":1,"path":"deep/activations.md","ref":"deep/activations.md","articles":[]},"previous":{"title":"Principal Component Analysis","level":"3.1","depth":1,"path":"unsupervised/principal_component_analysis.md","ref":"unsupervised/principal_component_analysis.md","articles":[]},"dir":"ltr"},"config":{"plugins":["katex-plus","prism","-highlight","livereload"],"styles":{"website":"css/app.css"},"pluginsConfig":{"katex-plus":{},"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"scripts":{"files":["js/app.js"]},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"reinforcement/q_learning.md","mtime":"2019-04-25T17:15:51.000Z","type":"markdown"},"gitbook":{"version":"3.0.0","time":"2019-05-31T16:12:36.391Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Q-learning","level":"5.1","depth":1,"next":{"title":"Activation Function","level":"6.1","depth":1,"path":"deep/activations.md","ref":"deep/activations.md","articles":[]},"previous":{"title":"Principal Component Analysis","level":"4.1","depth":1,"path":"unsupervised/principal_component_analysis.md","ref":"unsupervised/principal_component_analysis.md","articles":[]},"dir":"ltr"},"config":{"plugins":["katex-plus","prism","-highlight","livereload"],"styles":{"website":"css/app.css"},"pluginsConfig":{"katex-plus":{},"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"scripts":{"files":["js/app.js"]},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"reinforcement/q_learning.md","mtime":"2019-06-25T15:02:00.000Z","type":"markdown"},"gitbook":{"version":"3.0.0","time":"2019-06-25T14:52:22.916Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

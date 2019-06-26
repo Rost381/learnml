@@ -1,21 +1,27 @@
-# learnml
-![](https://img.shields.io/badge/python-3.6+-blue.svg)
+# Learnml
 
-- Write machine learning algorithms from zero for self-learning
-- All algorithm codes are implemented in Python with friendly comments and easier to understand how they works.
+A very friendly Python project for learning meachine learning. ![](https://img.shields.io/badge/python-3.6+-blue.svg)
+
+## Features
+
+- Statistics, machine learning including deep learning.
+- Implementing algorithms from scratch, code with comments and easier to understand how they works
+- Friendly Docs
 
 ## Documentation
 
-Friendly documentation is available at [https://byzhi.github.io/learnml](https://byzhi.github.io/learnml/). 
+[https://byzhi.github.io/learnml](https://byzhi.github.io/learnml/). 
 
 ## Contents
 
 ### Statistics
 
-- [Covariance matrix](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L6)
-- [Variance](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L16)
-- [Standardize](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L24)
-- [Normalize](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L35)
+| codes | docs |
+--- | --- |
+| [Variance](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L16) | [doc](https://byzhi.github.io/learnml/statistics/variance.html) |
+| [Covariance matrix](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L6) | [doc](https://byzhi.github.io/learnml/statistics/covariance_matrix.html) |
+| [Standardize](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L24) | |
+| [Normalize](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L35) | |
 
 
 ### Supervised Learning

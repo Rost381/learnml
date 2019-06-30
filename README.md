@@ -6,7 +6,7 @@ A very friendly Python project for learning meachine learning. ![](https://img.s
 
 - Statistics, machine learning including deep learning.
 - Implementing algorithms from scratch, code with comments and easier to understand how they works
-- Friendly Docs
+- Friendly docs
 
 ## Documentation
 
@@ -20,9 +20,8 @@ A very friendly Python project for learning meachine learning. ![](https://img.s
 --- | --- |
 | [Variance](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L16) | [doc](https://byzhi.github.io/learnml/statistics/variance.html) |
 | [Covariance matrix](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L6) | [doc](https://byzhi.github.io/learnml/statistics/covariance_matrix.html) |
-| [Standardize](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L24) | |
-| [Normalize](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L35) | |
-
+| [Standardize](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L24) | [doc](https://byzhi.github.io/learnml/statistics/standardize.html) |
+| [Normalize](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L35) | [doc](https://byzhi.github.io/learnml/statistics/normalize.html) |
 
 ### Supervised Learning
 

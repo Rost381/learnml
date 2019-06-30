@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Principal Component Analysis · GitBook</title>
+        <title>Standardize · GitBook</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -53,10 +53,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../reinforcement/q_learning.html" />
+    <link rel="next" href="normalize.html" />
     
     
-    <link rel="prev" href="../supervised/naive_bayes.html" />
+    <link rel="prev" href="covariance_matrix.html" />
     
 
     </head>
@@ -105,9 +105,9 @@
         
         
     
-        <li class="chapter " data-level="2.1" data-path="../statistics/variance.html">
+        <li class="chapter " data-level="2.1" data-path="variance.html">
             
-                <a href="../statistics/variance.html">
+                <a href="variance.html">
             
                     
                     Variance
@@ -118,9 +118,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2" data-path="../statistics/covariance_matrix.html">
+        <li class="chapter " data-level="2.2" data-path="covariance_matrix.html">
             
-                <a href="../statistics/covariance_matrix.html">
+                <a href="covariance_matrix.html">
             
                     
                     Covariance Matrix
@@ -131,9 +131,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3" data-path="../statistics/standardize.html">
+        <li class="chapter active" data-level="2.3" data-path="standardize.html">
             
-                <a href="../statistics/standardize.html">
+                <a href="standardize.html">
             
                     
                     Standardize
@@ -144,9 +144,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.4" data-path="../statistics/normalize.html">
+        <li class="chapter " data-level="2.4" data-path="normalize.html">
             
-                <a href="../statistics/normalize.html">
+                <a href="normalize.html">
             
                     
                     Normalize
@@ -262,9 +262,9 @@
         
         
     
-        <li class="chapter active" data-level="4.1" data-path="principal_component_analysis.html">
+        <li class="chapter " data-level="4.1" data-path="../unsupervised/principal_component_analysis.html">
             
-                <a href="principal_component_analysis.html">
+                <a href="../unsupervised/principal_component_analysis.html">
             
                     
                     Principal Component Analysis
@@ -358,7 +358,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Principal Component Analysis</a>
+        <a href=".." >Standardize</a>
     </h1>
 </div>
 
@@ -373,25 +373,24 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="principal-component-analysis">Principal component analysis</h1>
-<h2 id="objective">Objective</h2>
-<p>Principal component analysis (PCA) is a statistical procedure that uses an orthogonal transformation to convert a set of observations of possibly correlated variables (entities each of which takes on various numerical values) into a set of values of linearly uncorrelated variables called principal components.</p>
-<h2 id="solution">Solution</h2>
-<h3 id="step-1">Step 1</h3>
-<p>Caculate eigenvalues and eigenvectors of covariance_matrix(X)</p>
-<pre class="language-"><code class="lang-python">eigenvalues<span class="token punctuation">,</span> eigenvectors <span class="token operator">=</span> np<span class="token punctuation">.</span>linalg<span class="token punctuation">.</span>eig<span class="token punctuation">(</span>cov_matrix<span class="token punctuation">)</span>
-</code></pre>
-<h3 id="step-2">Step 2</h3>
-<p>Sort eigenvectors from largest to smallest</p>
-<pre class="language-"><code class="lang-python">idx <span class="token operator">=</span> eigenvalues<span class="token punctuation">.</span>argsort<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
-</code></pre>
-<h3 id="step-3">Step 3</h3>
-<p>Select the first n_components of eigenvalues</p>
-<pre class="language-"><code class="lang-python">eigenvalues <span class="token operator">=</span> eigenvalues<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">:</span>self<span class="token punctuation">.</span>n_components<span class="token punctuation">]</span>
-eigenvectors <span class="token operator">=</span> eigenvectors<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> idx<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token punctuation">:</span>self<span class="token punctuation">.</span>n_components<span class="token punctuation">]</span>
-</code></pre>
-<h3 id="predict">Predict</h3>
-<pre class="language-"><code class="lang-python">X_transformed <span class="token operator">=</span> X<span class="token punctuation">.</span>dot<span class="token punctuation">(</span>eigenvectors<span class="token punctuation">)</span>
+                                <h1 id="standardize">Standardize</h1>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://maristie.com/blog/differences-between-normalization-standardization-and-regularization/" _target="blank">https://maristie.com/blog/differences-between-normalization-standardization-and-regularization/</a></li>
+</ul>
+<h2 id="definition">Definition</h2>
+<p>Standardization rescales data to have a mean (&#x1D707;) of 0 and standard deviation (&#x1D70E;) of 1 (unit variance).</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>X</mi><mo mathvariant="normal">&#x2032;</mo></msup><mo>=</mo><mfrac><mrow><mi>X</mi><mo>&#x2212;</mo><mi>&#x3BC;</mi></mrow><mrow><mi>&#x3C3;</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+X&apos; = \frac{X - \mu}{\sigma}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.36033em;"></span><span class="strut bottom" style="height:2.04633em;vertical-align:-0.686em;"></span><span class="base"><span class="mord"><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.801892em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">&#x2032;</span></span></span></span></span></span></span></span></span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">&#x3C3;</span></span></span><span style="top:-3.15em;"><span class="pstrut" style="height:3em;"></span><span class="stretchy" style="height:0.2em;"><svg width="400em" height="0.2em" viewbox="0 0 400000 200" preserveaspectratio="xMinYMin slice"><path d="M0 80H400000 v40H0z M0 80H400000 v40H0z"/></svg></span></span><span style="top:-3.6770000000000005em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x2212;</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord mathit">&#x3BC;</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<pre class="language-"><code class="lang-python"><span class="token keyword">def</span> <span class="token function">standardize</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    X_std <span class="token operator">=</span> X
+    mean <span class="token operator">=</span> X<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>axis<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+    std <span class="token operator">=</span> X<span class="token punctuation">.</span>std<span class="token punctuation">(</span>axis<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> col <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>np<span class="token punctuation">.</span>shape<span class="token punctuation">(</span>X<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> std<span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">:</span>
+            X_std<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> col<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>X_std<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> col<span class="token punctuation">]</span> <span class="token operator">-</span> mean<span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> std<span class="token punctuation">[</span>col<span class="token punctuation">]</span>
+    <span class="token keyword">return</span> X_std
 </code></pre>
 
                                 
@@ -420,12 +419,12 @@ eigenvectors <span class="token operator">=</span> eigenvectors<span class="toke
 
             
                 
-                <a href="../supervised/naive_bayes.html" class="navigation navigation-prev " aria-label="Previous page: Naive Bayes">
+                <a href="covariance_matrix.html" class="navigation navigation-prev " aria-label="Previous page: Covariance Matrix">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../reinforcement/q_learning.html" class="navigation navigation-next " aria-label="Next page: Q-learning">
+                <a href="normalize.html" class="navigation navigation-next " aria-label="Next page: Normalize">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -436,7 +435,7 @@ eigenvectors <span class="token operator">=</span> eigenvectors<span class="toke
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Principal Component Analysis","level":"4.1","depth":1,"next":{"title":"Q-learning","level":"5.1","depth":1,"path":"reinforcement/q_learning.md","ref":"reinforcement/q_learning.md","articles":[]},"previous":{"title":"Naive Bayes","level":"3.7","depth":1,"path":"supervised/naive_bayes.md","ref":"supervised/naive_bayes.md","articles":[]},"dir":"ltr"},"config":{"plugins":["katex-plus","prism","-highlight","livereload"],"styles":{"website":"css/app.css"},"pluginsConfig":{"katex-plus":{},"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"scripts":{"files":["js/app.js"]},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"unsupervised/principal_component_analysis.md","mtime":"2019-06-25T15:02:03.000Z","type":"markdown"},"gitbook":{"version":"3.0.0","time":"2019-06-30T14:18:34.984Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Standardize","level":"2.3","depth":1,"next":{"title":"Normalize","level":"2.4","depth":1,"path":"statistics/normalize.md","ref":"statistics/normalize.md","articles":[]},"previous":{"title":"Covariance Matrix","level":"2.2","depth":1,"path":"statistics/covariance_matrix.md","ref":"statistics/covariance_matrix.md","articles":[]},"dir":"ltr"},"config":{"plugins":["katex-plus","prism","-highlight","livereload"],"styles":{"website":"css/app.css"},"pluginsConfig":{"katex-plus":{},"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"scripts":{"files":["js/app.js"]},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"statistics/standardize.md","mtime":"2019-06-29T18:33:14.000Z","type":"markdown"},"gitbook":{"version":"3.0.0","time":"2019-06-30T14:18:34.984Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

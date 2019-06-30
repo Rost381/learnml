@@ -17,7 +17,7 @@ A very friendly Python project for learning meachine learning. ![](https://img.s
 ### Statistics
 
 | codes | docs |
---- | --- |
+| :--- | :--- |
 | [Variance](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L16) | [doc](https://byzhi.github.io/learnml/statistics/variance.html) |
 | [Covariance matrix](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L6) | [doc](https://byzhi.github.io/learnml/statistics/covariance_matrix.html) |
 | [Standardize](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L24) | [doc](https://byzhi.github.io/learnml/statistics/standardize.html) |
@@ -28,7 +28,7 @@ A very friendly Python project for learning meachine learning. ![](https://img.s
 Linear models
 
 | codes | examples | docs |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | [Logistic Regression](./learnml/supervised/logistic_regression.py) | [example](./examples/example_LogisticRegression.py) | [doc](https://byzhi.github.io/learnml/supervised/logistic_regression.html) |
 | [Regression](./learnml/supervised/regression.py) | [Linear](./examples/example_LinearRegression.py), [Lasso](./examples/example_LassoRegression.py), [Ridge](./examples/example_RidgeRegression.py), [Polynomial ridge](./examples/example_PolynomialRidgeRegression.py) | [doc](https://byzhi.github.io/learnml/supervised/linear_regression.html) |
 

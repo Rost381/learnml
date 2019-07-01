@@ -35,7 +35,7 @@ Linear models
 Classification
 
 | codes | examples | docs |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | [Linear Discriminant Analysis](./learnml/supervised/linear_discriminant_analysis.py) | [example](./examples/example_PCA_LDA.py) | [doc](https://byzhi.github.io/learnml/supervised/linear_discriminant_analysis.html) |
 | [k-Nearest Neighbors](./learnml/supervised/k_nearest_neighbors.py) | [example](./examples/example_KNeighborsClassifier.py) | |
 | [Perceptron](./learnml/supervised/perceptron.py) | [example](./examples/example_Perceptron.py) | |
@@ -44,7 +44,7 @@ Classification
 Tree-based and ensemble methods
 
 | codes | examples | docs |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | [Adaboost](./learnml/supervised/adaboost.py) | [example](./examples/example_Adaboost.py) | |
 | [Decision Tree](./learnml/supervised/decision_tree.py) | [Classification tree](./examples/example_ClassificationTree.py), [Regression tree](./examples/example_RegressionTree.py) | |
 | [Gradient boosting](./learnml/supervised/gradient_boosting.py) | [GradientBoosting classifier](./examples/example_GradientBoostingClassifier.py), [GradientBoosting regressor](./examples/example_GradientBoostingRegressor.py) | |
@@ -54,7 +54,7 @@ Tree-based and ensemble methods
 Generative Learning
 
 | codes | examples | docs |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | [Naive Bayes](./learnml/supervised/naive_bayes.py) | [example](./examples/example_GaussianNB.py)
 
 ### Unsupervised Learning
@@ -70,7 +70,7 @@ Dimension reduction
 ### Reinforcement Learning
 
 | codes | examples | docs |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | [Q-learning](./learnml/reinforcement/qlsarsa/base.py) | [example](./examples/example_QLearning.py) | [doc](https://byzhi.github.io/learnml/reinforcement/q_learning.html)
 | [SARSA](./learnml/reinforcement/qlsarsa/base.py) | [example](./examples/example_SARSA.py) | |
 | [DQN (Deep Q Network)](./learnml/reinforcement/dqn/DeepQNetwork.py) | [example](./examples/example_DeepQNetwork.py) | |
@@ -78,7 +78,7 @@ Dimension reduction
 ### Deep Learning
 
 | codes | examples | docs |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | CNN | [example](./examples/example_CNN.py) | |
 | RNN | | |
 | [LSTM](./learnml/deep/lstm.py) | [example](./examples/example_Lstm.py) | |

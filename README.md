@@ -62,7 +62,7 @@ Generative Learning
 Dimension reduction
 
 | codes | examples | docs |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | [K-Means](./learnml/unsupervised/kmeans.py) | [example](./examples/example_KMeans.py) | |
 | [Principal Component Analysis](./learnml/unsupervised/principal_component_analysis.py) | [example](./examples/example_PCA_LDA.py) | |
 

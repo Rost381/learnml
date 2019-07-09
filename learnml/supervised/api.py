@@ -10,6 +10,6 @@ from .naive_bayes import GaussianNB
 from .perceptron import Perceptron
 from .random_forest import RandomForestClassifier
 from .regression import (LassoRegression, LinearRegression,
-                         PolynomialRidgeRegression, RidgeRegression)
+                         PolynomialRidgeRegression, RidgeRegression, ElasticNet)
 from .support_vector_machine import svm
 from .xgboost import XGBoost

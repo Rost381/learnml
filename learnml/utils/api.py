@@ -23,6 +23,7 @@ from .activations import (
 from .losses import (
     l1_regularization,
     l2_regularization,
+    l1_l2_regularization,
     l1_loss,
     l2_loss,
     cross_entropy_loss,

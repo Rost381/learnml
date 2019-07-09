@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 from learnml.utils.api import (PolynomialFeatures, l1_regularization,
-                                  l2_regularization, normalize)
+                               l2_regularization, l1_l2_regularization, normalize)
 
 
 class Regression(object):
@@ -257,3 +257,20 @@ class PolynomialRidgeRegression(Regression):
     def predict(self, X):
         X = normalize(PolynomialFeatures(X, degree=self.degree))
         return super(PolynomialRidgeRegression, self).predict(X)
+
+
+class ElasticNet(Regression):
+
+    def __init__(self, degree=1, reg_factor=0.05, l1_ratio=0.5, max_iter=3000, learning_rate=0.01):
+        self.degree = degree
+        self.regularization = l1_l2_regularization(
+            alpha=reg_factor, l1_ratio=l1_ratio)
+        super(ElasticNet, self).__init__(max_iter, learning_rate)
+
+    def fit(self, X, y):
+        X = normalize(PolynomialFeatures(X, degree=self.degree))
+        super(ElasticNet, self).fit(X, y)
+
+    def predict(self, X):
+        X = normalize(PolynomialFeatures(X, degree=self.degree))
+        return super(ElasticNet, self).predict(X)

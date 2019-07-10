@@ -131,7 +131,7 @@ class RidgeRegression(Regression):
         So, the alpha parameter need not be small.
         But, for a larger alpha, the flexibility of the fit would be very strict.
     max_iter : int
-        The maximum number of iterations
+        The maximum number of iterations.
     learning_rate : float
         The step length that will be used when updating the weights.
     """
@@ -155,7 +155,7 @@ class LassoRegression(Regression):
         Constant that multiplies the L1 term.
         alpha = 0 is equivalent to an ordinary least square.
     max_iter : int
-        The maximum number of iterations
+        The maximum number of iterations.
     fit_intercept : boolean
         Whether to calculate the intercept for this model.
     """
@@ -238,7 +238,7 @@ class PolynomialRidgeRegression(Regression):
     reg_factor : float
         The factor that will determine the amount of regularization and feature shrinkage. 
     max_iter : int
-        The maximum number of iterations
+        The maximum number of iterations.
     learning_rate : float
         The step length that will be used when updating the weights.
     """
@@ -260,11 +260,32 @@ class PolynomialRidgeRegression(Regression):
 
 
 class ElasticNet(Regression):
+    """ElasticNet
 
-    def __init__(self, degree=1, reg_factor=0.05, l1_ratio=0.5, max_iter=3000, learning_rate=0.01):
+    Minimizes the objective function:
+    1 / (2 * n_samples) * ||y - Xw||^2_2
+    + alpha * l1_ratio * ||w||_1
+    + 0.5 * alpha * (1 - l1_ratio) * ||w||^2_2
+
+    Parameters:
+    -----------
+    degree : integer
+        The degree of the polynomial features.
+    alpha : float
+        Constant that multiplies the penalty terms. Defaults to 1.0. 
+    l1_ratio : float
+        The ElasticNet mixing parameter, with 0 <= l1_ratio <= 1.
+        l1_ratio = 0 the penalty is an L2 penalty.
+        l1_ratio = 1 the penalty is an L1 penalty.
+        0 < l1_ratio < 1, the penalty is a combination of L1 and L2.
+    max_iter : int
+        The maximum number of iterations.
+    """
+
+    def __init__(self, degree=1, alpha=0.05, l1_ratio=0.5, max_iter=3000, learning_rate=0.01):
         self.degree = degree
         self.regularization = l1_l2_regularization(
-            alpha=reg_factor, l1_ratio=l1_ratio)
+            alpha=alpha, l1_ratio=l1_ratio)
         super(ElasticNet, self).__init__(max_iter, learning_rate)
 
     def fit(self, X, y):

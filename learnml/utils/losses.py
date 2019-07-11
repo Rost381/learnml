@@ -45,14 +45,14 @@ class l1_l2_regularization():
         self.l1_ratio = l1_ratio
 
     def __call__(self, w):
-        l1_contr = self.l1_ratio * np.linalg.norm(w)
-        l2_contr = (1 - self.l1_ratio) * 0.5 * w.T.dot(w)
-        return self.alpha * (l1_contr + l2_contr)
+        _l1 = self.alpha * self.l1_ratio * np.linalg.norm(w)
+        _l2 = self.alpha * (1 - self.l1_ratio) * 0.5 * w.T.dot(w)
+        return _l1 + _l2
 
     def grad(self, w):
-        l1_contr = self.l1_ratio * np.sign(w)
-        l2_contr = (1 - self.l1_ratio) * w
-        return self.alpha * (l1_contr + l2_contr)
+        _l1 = self.alpha * self.l1_ratio * np.sign(w)
+        _l2 = self.alpha * (1 - self.l1_ratio) * w
+        return _l1 + _l2
 
 
 class l1_loss():

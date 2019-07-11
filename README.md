@@ -4,8 +4,8 @@ Friendly Python Guide to Machine Learning for Humans. ![](https://img.shields.io
 
 ## Features
 
-- Statistics, machine learning including deep learning.
-- Implementing algorithms from scratch
+- Statistics, Machine learning including deep learning
+- Implementing algorithms from scratch on Python
 - Friendly docs
 
 ## Documentation
@@ -92,6 +92,7 @@ pip install -e .
 ## Usage
 ```python
 from learnml.api import LinearRegression
+
 model = LinearRegression()
 model.fit(X, y)
 ```

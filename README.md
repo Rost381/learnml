@@ -1,6 +1,10 @@
 # Learnml
 
-Python Machine Learning Algorithms Guide for Humans ![](https://img.shields.io/badge/python-3.6+-blue.svg)
+Python Machine Learning Algorithms Guide for Humans. ![](https://img.shields.io/badge/python-3.6+-blue.svg)
+
+## For whom?
+
+Someone want to learn Machine Learning based on Algorithms, Simple explanation and Python code.
 
 ## Features
 
@@ -14,40 +18,44 @@ Python Machine Learning Algorithms Guide for Humans ![](https://img.shields.io/b
 
 ## Contents
 
+- Math
+  - Notation, [doc](https://byzhi.github.io/learnml/math/notation.md)
 - Statistics
-  - [Variance](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L16) / [doc](https://byzhi.github.io/learnml/statistics/variance.html)
-  - [Covariance matrix](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L6) / [doc](https://byzhi.github.io/learnml/statistics/covariance_matrix.html)
-  - [Standardize](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L24) / [doc](https://byzhi.github.io/learnml/statistics/standardize.html)
-  - [Normalize](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L35) / [doc](https://byzhi.github.io/learnml/statistics/normalize.html)
+  - [Variance](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L16), [doc](https://byzhi.github.io/learnml/statistics/variance.html)
+  - [Covariance matrix](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L6), [doc](https://byzhi.github.io/learnml/statistics/covariance_matrix.html)
+  - [Standardize](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L24), [doc](https://byzhi.github.io/learnml/statistics/standardize.html)
+  - [Normalize](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L35), [doc](https://byzhi.github.io/learnml/statistics/normalize.html)
 - Supervised Learning
   - Linear models
-    - [Logistic Regression](./learnml/supervised/logistic_regression.py) / [example](./examples/example_LogisticRegression.py) / [doc](https://byzhi.github.io/learnml/supervised/logistic_regression.html)
-    - [Regression](./learnml/supervised/regression.py) / examples: [Linear](./examples/example_LinearRegression.py), [Lasso](./examples/example_LassoRegression.py), [Ridge](./examples/example_RidgeRegression.py), [Polynomial ridge](./examples/example_PolynomialRidgeRegression.py), [Elastic Net](./examples/example_ElasticNet.py) / [doc](https://byzhi.github.io/learnml/supervised/linear_regression.html)
+    - [Logistic Regression](./learnml/supervised/logistic_regression.py), [example](./examples/example_LogisticRegression.py), [doc](https://byzhi.github.io/learnml/supervised/logistic_regression.html)
+    - [Regression](./learnml/supervised/regression.py), examples: [Linear](./examples/example_LinearRegression.py), [Lasso](./examples/example_LassoRegression.py), [Ridge](./examples/example_RidgeRegression.py), [Polynomial ridge](./examples/example_PolynomialRidgeRegression.py), [Elastic Net](./examples/example_ElasticNet.py), [doc](https://byzhi.github.io/learnml/supervised/linear_regression.html)
   - Classification
-    - [Linear Discriminant Analysis](./learnml/supervised/linear_discriminant_analysis.py) / [example](./examples/example_PCA_LDA.py) / [doc](https://byzhi.github.io/learnml/supervised/linear_discriminant_analysis.html)
-    - [k-Nearest Neighbors](./learnml/supervised/k_nearest_neighbors.py) / [example](./examples/example_KNeighborsClassifier.py)
-    - [Perceptron](./learnml/supervised/perceptron.py) / [example](./examples/example_Perceptron.py)
-    - [Support Vector Machine](./learnml/supervised/support_vector_machine.py) / examples: [01](./examples/example_svm.py), [02](./examples/example_svm_02.py) / [doc](https://byzhi.github.io/learnml/supervised/support_vector_machine.html)
+    - [Linear Discriminant Analysis](./learnml/supervised/linear_discriminant_analysis.py), [example](./examples/example_PCA_LDA.py), [doc](https://byzhi.github.io/learnml/supervised/linear_discriminant_analysis.html)
+    - [k-Nearest Neighbors](./learnml/supervised/k_nearest_neighbors.py), [example](./examples/example_KNeighborsClassifier.py)
+    - [Perceptron](./learnml/supervised/perceptron.py), [example](./examples/example_Perceptron.py)
+    - [Support Vector Machine](./learnml/supervised/support_vector_machine.py), examples: [01](./examples/example_svm.py), [02](./examples/example_svm_02.py), [doc](https://byzhi.github.io/learnml/supervised/support_vector_machine.html)
   - Tree-based and ensemble methods
-    - [Adaboost](./learnml/supervised/adaboost.py) / [example](./examples/example_Adaboost.py)
-    - [Decision Tree](./learnml/supervised/decision_tree.py) / [Classification tree](./examples/example_ClassificationTree.py), [Regression tree](./examples/example_RegressionTree.py)
-    - [Gradient boosting](./learnml/supervised/gradient_boosting.py) / examples: [classifier](./examples/example_GradientBoostingClassifier.py), [regressor](./examples/example_GradientBoostingRegressor.py)
-    - [Random forests](./learnml/supervised/random_forest.py) / [example](./examples/example_RandomForestClassifier.py)
-    - [XGBoost](./learnml/supervised/xgboost.py) / [example](./examples/example_XGBoost.py)
+    - [Adaboost](./learnml/supervised/adaboost.py), [example](./examples/example_Adaboost.py)
+    - [Decision Tree](./learnml/supervised/decision_tree.py), [Classification tree](./examples/example_ClassificationTree.py), [Regression tree](./examples/example_RegressionTree.py)
+    - [Gradient boosting](./learnml/supervised/gradient_boosting.py), examples: [classifier](./examples/example_GradientBoostingClassifier.py), [regressor](./examples/example_GradientBoostingRegressor.py)
+    - [Random forests](./learnml/supervised/random_forest.py), [example](./examples/example_RandomForestClassifier.py)
+    - [XGBoost](./learnml/supervised/xgboost.py), [example](./examples/example_XGBoost.py)
   - Generative Learning
-    - [Naive Bayes](./learnml/supervised/naive_bayes.py) / [example](./examples/example_GaussianNB.py)
+    - [Naive Bayes](./learnml/supervised/naive_bayes.py), [example](./examples/example_GaussianNB.py)
 - Unsupervised Learning
   - Dimension reduction
-    - [K-Means](./learnml/unsupervised/kmeans.py) / [example](./examples/example_KMeans.py)
-    - [Principal Component Analysis](./learnml/unsupervised/principal_component_analysis.py) / [example](./examples/example_PCA_LDA.py)
+    - [K-Means](./learnml/unsupervised/kmeans.py), [example](./examples/example_KMeans.py)
+    - [Principal Component Analysis](./learnml/unsupervised/principal_component_analysis.py), [example](./examples/example_PCA_LDA.py)
 - Reinforcement Learning
-  - [Q-learning](./learnml/reinforcement/qlsarsa/base.py) / [example](./examples/example_QLearning.py) / [doc](https://byzhi.github.io/learnml/reinforcement/q_learning.html)
-  - [SARSA](./learnml/reinforcement/qlsarsa/base.py) / [example](./examples/example_SARSA.py)
-  - [DQN (Deep Q Network)](./learnml/reinforcement/dqn/DeepQNetwork.py) / [example](./examples/example_DeepQNetwork.py)
+  - On-policy
+    - [SARSA](./learnml/reinforcement/qlsarsa/base.py), [example](./examples/example_SARSA.py)
+  - Off-policy
+    - [Q-learning](./learnml/reinforcement/qlsarsa/base.py), [example](./examples/example_QLearning.py), [doc](https://byzhi.github.io/learnml/reinforcement/q_learning.html)
+    - [DQN (Deep Q Network)](./learnml/reinforcement/dqn/DeepQNetwork.py), [example](./examples/example_DeepQNetwork.py)
 - Deep Learning
-  - CNN / [example](./examples/example_CNN.py)
-  - RNN
-  - [LSTM](./learnml/deep/lstm.py) / [example](./examples/example_Lstm.py)
+  - CNN (Convolutional neural network), [example](./examples/example_CNN.py)
+  - RNN (Recurrent neural network)
+  - [LSTM](./learnml/deep/lstm.py), [example](./examples/example_Lstm.py)
 
 
 ## Installation
@@ -66,6 +74,7 @@ model.fit(X, y)
 ```
 
 ## Reference
+
 - [ML-From-Scratch](https://github.com/eriklindernoren/ML-From-Scratch)
 - [Lasso](https://github.com/satopirka/Lasso)
 - [Reinforcement Learning](https://github.com/rlcode/reinforcement-learning)

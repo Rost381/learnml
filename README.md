@@ -2,7 +2,7 @@
 
 Python Machine Learning Algorithms Guide for Humans. ![](https://img.shields.io/badge/python-3.6+-blue.svg)
 
-## For whom?
+#### For whom?
 
 Someone want to learn Machine Learning based on Algorithms, Simple explanation and Python code.
 
@@ -19,7 +19,7 @@ Someone want to learn Machine Learning based on Algorithms, Simple explanation a
 ## Contents
 
 - Math
-  - Notation, [doc](https://byzhi.github.io/learnml/math/notation.md)
+  - Notation, [doc](https://byzhi.github.io/learnml/math/notation.html)
 - Statistics
   - [Variance](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L16), [doc](https://byzhi.github.io/learnml/statistics/variance.html)
   - [Covariance matrix](https://github.com/byzhi/learnml/blob/master/learnml/utils/stats.py#L6), [doc](https://byzhi.github.io/learnml/statistics/covariance_matrix.html)
@@ -28,7 +28,12 @@ Someone want to learn Machine Learning based on Algorithms, Simple explanation a
 - Supervised Learning
   - Linear models
     - [Logistic Regression](./learnml/supervised/logistic_regression.py), [example](./examples/example_LogisticRegression.py), [doc](https://byzhi.github.io/learnml/supervised/logistic_regression.html)
-    - [Regression](./learnml/supervised/regression.py), examples: [Linear](./examples/example_LinearRegression.py), [Lasso](./examples/example_LassoRegression.py), [Ridge](./examples/example_RidgeRegression.py), [Polynomial ridge](./examples/example_PolynomialRidgeRegression.py), [Elastic Net](./examples/example_ElasticNet.py), [doc](https://byzhi.github.io/learnml/supervised/linear_regression.html)
+    - [Regression](./learnml/supervised/regression.py)
+      - [Linear](./examples/example_LinearRegression.py), [doc](https://byzhi.github.io/learnml/supervised/linear_regression.html)
+      - [Lasso](./examples/example_LassoRegression.py)
+      - [Ridge](./examples/example_RidgeRegression.py),
+      - [Polynomial ridge](./examples/example_PolynomialRidgeRegression.py)
+      - [Elastic Net](./examples/example_ElasticNet.py), [doc](https://byzhi.github.io/learnml/supervised/elastic_net.html)
   - Classification
     - [Linear Discriminant Analysis](./learnml/supervised/linear_discriminant_analysis.py), [example](./examples/example_PCA_LDA.py), [doc](https://byzhi.github.io/learnml/supervised/linear_discriminant_analysis.html)
     - [k-Nearest Neighbors](./learnml/supervised/k_nearest_neighbors.py), [example](./examples/example_KNeighborsClassifier.py)
@@ -36,8 +41,12 @@ Someone want to learn Machine Learning based on Algorithms, Simple explanation a
     - [Support Vector Machine](./learnml/supervised/support_vector_machine.py), examples: [01](./examples/example_svm.py), [02](./examples/example_svm_02.py), [doc](https://byzhi.github.io/learnml/supervised/support_vector_machine.html)
   - Tree-based and ensemble methods
     - [Adaboost](./learnml/supervised/adaboost.py), [example](./examples/example_Adaboost.py)
-    - [Decision Tree](./learnml/supervised/decision_tree.py), [Classification tree](./examples/example_ClassificationTree.py), [Regression tree](./examples/example_RegressionTree.py)
-    - [Gradient boosting](./learnml/supervised/gradient_boosting.py), examples: [classifier](./examples/example_GradientBoostingClassifier.py), [regressor](./examples/example_GradientBoostingRegressor.py)
+    - [Decision Tree](./learnml/supervised/decision_tree.py)
+      - [Classification tree example](./examples/example_ClassificationTree.py)
+      - [Regression tree example](./examples/example_RegressionTree.py)
+    - [Gradient boosting](./learnml/supervised/gradient_boosting.py)
+      - [Classifier example](./examples/example_GradientBoostingClassifier.py)
+      - [Regressor example](./examples/example_GradientBoostingRegressor.py)
     - [Random forests](./learnml/supervised/random_forest.py), [example](./examples/example_RandomForestClassifier.py)
     - [XGBoost](./learnml/supervised/xgboost.py), [example](./examples/example_XGBoost.py)
   - Generative Learning

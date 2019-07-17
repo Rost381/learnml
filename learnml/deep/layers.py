@@ -328,8 +328,7 @@ class Activation(Layer):
 
 
 class BatchNormalization(Layer):
-    """Batch normalization.
-    """
+    """Batch normalization"""
 
     def __init__(self, momentum=0.99):
         self.momentum = momentum
@@ -407,7 +406,7 @@ class BatchNormalization(Layer):
 
 
 class Flatten(Layer):
-    """ Turns a multidimensional matrix into two-dimensional """
+    """Turns a multidimensional matrix into two-dimensional"""
 
     def __init__(self, input_shape=None):
         self.prev_shape = None
@@ -426,9 +425,7 @@ class Flatten(Layer):
 
 
 class SimpleLstmLoss():
-    """
-    Computes square loss with first element of hidden layer array.
-    """
+    """Computes square loss with first element of hidden layer array"""
     @classmethod
     def loss(self, pred, label):
         return (pred[0] - label) ** 2

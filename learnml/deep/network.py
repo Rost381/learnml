@@ -28,7 +28,7 @@ class NeuralNetwork():
             self.val_set = {"X": X, "y": y}
 
     def batch_iterator(self, X, y=None, batch_size=64):
-        """ Simple batch generator """
+        """Simple batch generator"""
         n_samples = X.shape[0]
         for i in np.arange(0, n_samples, batch_size):
             begin, end = i, min(i + batch_size, n_samples)
@@ -38,12 +38,12 @@ class NeuralNetwork():
                 yield X[begin:end]
 
     def set_trainable(self, trainable):
-        """ Method which enables freezing of the weights of the network's layers. """
+        """Method which enables freezing of the weights of the network's layers"""
         for layer in self.layers:
             layer.trainable = trainable
 
     def add(self, layer):
-        """ Method which adds a layer to the neural network """
+        """Method which adds a layer to the neural network"""
         # If this is not the first layer added then set the input shape
         # to the output shape of the last added layer
         if self.layers:
@@ -57,7 +57,7 @@ class NeuralNetwork():
         self.layers.append(layer)
 
     def test_on_batch(self, X, y):
-        """ Evaluates the model over a single batch of samples """
+        """Evaluates the model over a single batch of samples"""
         y_pred = self._forward_pass(X, training=False)
         loss = np.mean(self.loss_function.loss(y, y_pred))
         acc = self.loss_function.acc(y, y_pred)
@@ -65,7 +65,7 @@ class NeuralNetwork():
         return loss, acc
 
     def train_on_batch(self, X, y):
-        """ Single gradient update over one batch of samples """
+        """Single gradient update over one batch of samples"""
         y_pred = self._forward_pass(X)
         loss = np.mean(self.loss_function.loss(y, y_pred))
         acc = self.loss_function.acc(y, y_pred)
@@ -77,7 +77,7 @@ class NeuralNetwork():
         return loss, acc
 
     def fit(self, X, y, n_epochs, batch_size):
-        """ Trains the model for a fixed number of epochs """
+        """Trains the model for a fixed number of epochs"""
         for _ in tqdm(range(n_epochs)):
 
             batch_error = []
@@ -95,7 +95,7 @@ class NeuralNetwork():
         return self.errors["training"], self.errors["validation"]
 
     def _forward_pass(self, X, training=True):
-        """ Calculate the output of the NN """
+        """Calculate the output of the NN"""
         layer_output = X
         for layer in self.layers:
             layer_output = layer.forward_pass(layer_output, training)
@@ -103,13 +103,13 @@ class NeuralNetwork():
         return layer_output
 
     def _backward_pass(self, loss_grad):
-        """ Propagate the gradient 'backwards' and update the weights in each layer """
+        """Propagate the gradient 'backwards' and update the weights in each layer"""
         for layer in reversed(self.layers):
             loss_grad = layer.backward_pass(loss_grad)
 
     def summary(self, name="Model Summary"):
         # Print model name
-        #print (AsciiTable([[name]]).table)
+        # print (AsciiTable([[name]]).table)
         # Network input shape (first layer's input shape)
         print("Input Shape: %s" % str(self.layers[0].input_shape))
         # Iterate through network and get each layer's configuration
@@ -122,9 +122,9 @@ class NeuralNetwork():
             table_data.append([layer_name, str(params), str(out_shape)])
             tot_params += params
         # Print network configuration table
-        #print (AsciiTable(table_data).table)
+        # print (AsciiTable(table_data).table)
         print("Total Parameters: %d\n" % tot_params)
 
     def predict(self, X):
-        """ Use the trained model to predict labels of X """
+        """Use the trained model to predict labels of X"""
         return self._forward_pass(X, training=False)

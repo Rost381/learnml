@@ -18,14 +18,14 @@ class NeuralNetwork():
 
     def __init__(self, optimizer, loss, validation_data=None):
         self.optimizer = optimizer
-        self.layers = []
-        self.errors = {"training": [], "validation": []}
         self.loss_function = loss()
-
         self.val_set = None
         if validation_data:
             X, y = validation_data
             self.val_set = {"X": X, "y": y}
+            
+        self.errors = {"training": [], "validation": []}
+        self.layers = []
 
     def batch_iterator(self, X, y=None, batch_size=64):
         """Simple batch generator"""

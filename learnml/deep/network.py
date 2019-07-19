@@ -8,11 +8,11 @@ class NeuralNetwork():
     Parameters:
     -----------
     optimizer : class
-        chang the weights in order of minimizing the loss.
+        change the weights in order of minimizing the loss.
     loss : class
         Loss function used to measure the model's performance.
         SquareLoss or CrossEntropy.
-    validation : tuple
+    validation_data : tuple
         A tuple containing validation data and labels (X, y)
     """
 
@@ -23,7 +23,7 @@ class NeuralNetwork():
         if validation_data:
             X, y = validation_data
             self.val_set = {"X": X, "y": y}
-            
+
         self.errors = {"training": [], "validation": []}
         self.layers = []
 

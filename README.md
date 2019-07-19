@@ -2,9 +2,10 @@
 
 Python Machine Learning Algorithms Guide for Humans. ![](https://img.shields.io/badge/python-3.6+-blue.svg)
 
-#### For whom?
-
+```
+For whom?
 Someone want to learn Machine Learning based on Algorithms, Simple explanation and Python code.
+```
 
 ## Features
 

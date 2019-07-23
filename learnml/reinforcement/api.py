@@ -1,3 +1,5 @@
-from .dqn.DeepQNetwork import DeepQNetwork
-from .qlsarsa.base import SARSA, QLearning
-from .qlsarsa.env import QLearningEnv
+from .deepqnetwork import DeepQNetwork
+from .qlearning_sarsa_base import SARSA, QLearning
+from .qlearning_sarsa_env import QLearningEnv
+from .montecarlo_env import MonteCarloEnv
+from .montecarlo import MonteCarlo

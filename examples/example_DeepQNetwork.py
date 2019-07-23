@@ -8,8 +8,6 @@ from learnml.reinforcement.api import DeepQNetwork
 
 
 def main():
-    M = 20
-
     # In case of CartPole-v1, maximum length of episode is 500
     env = gym.make('CartPole-v1')
     # get size of state and action from environment
@@ -20,7 +18,8 @@ def main():
 
     scores, episodes = [], []
 
-    for episode in range(M):
+    E = 20
+    for episode in range(E):
         done = False
         score = 0
         state = env.reset()

@@ -6,10 +6,10 @@ Python Machine Learning Algorithms Guide for Humans. ![](https://img.shields.io/
 
 ## Features
 
-![](https://img.shields.io/badge/-Simple_Explanation-red.svg), ![](https://img.shields.io/badge/-Mathematics-green.svg) and ![](https://img.shields.io/badge/-Python-blue.svg)
-- Simple Explanation from Statistics, Machine learning including deep learning
+![](https://img.shields.io/badge/-Simple_Explanation-red.svg) ![](https://img.shields.io/badge/-Mathematics-green.svg) ![](https://img.shields.io/badge/-Python-blue.svg)
+- Simple Explanation on Statistics, Machine learning including deep learning
 - Implementing algorithms from scratch on Python
-- Friendly docs with simple explanation and code
+- Friendly docs with Simple Explanation and Python Code
 
 ## Documentation
 
@@ -19,7 +19,7 @@ Python Machine Learning Algorithms Guide for Humans. ![](https://img.shields.io/
 
 - Math
   - Notation - [doc](https://byzhi.github.io/learnml/math/notation.html)
-  - Linear algebra
+  - Linear algebra - [doc](https://byzhi.github.io/learnml/math/linear_algebra.html)
   - Calculus
   - Probability and Distributions
   - Optimization
@@ -44,12 +44,8 @@ Python Machine Learning Algorithms Guide for Humans. ![](https://img.shields.io/
     - [Support Vector Machine](./learnml/supervised/support_vector_machine.py) - examples: [01](./examples/example_svm.py) - [02](./examples/example_svm_02.py) - [doc](https://byzhi.github.io/learnml/supervised/support_vector_machine.html)
   - Tree-based and ensemble methods
     - [Adaboost](./learnml/supervised/adaboost.py) - [example](./examples/example_Adaboost.py)
-    - [Decision Tree](./learnml/supervised/decision_tree.py)
-      - [Classification example](./examples/example_ClassificationTree.py)
-      - [Regression example](./examples/example_RegressionTree.py)
-    - [Gradient boosting](./learnml/supervised/gradient_boosting.py)
-      - [Classifier example](./examples/example_GradientBoostingClassifier.py)
-      - [Regressor example](./examples/example_GradientBoostingRegressor.py)
+    - [Decision Tree](./learnml/supervised/decision_tree.py) - examples: [Classification](./examples/example_ClassificationTree.py), [Regression](./examples/example_RegressionTree.py)
+    - [Gradient boosting](./learnml/supervised/gradient_boosting.py) - examples: [Classifier](./examples/example_GradientBoostingClassifier.py), [Regressor](./examples/example_GradientBoostingRegressor.py)
     - [Random forests](./learnml/supervised/random_forest.py) - [example](./examples/example_RandomForestClassifier.py)
     - [XGBoost](./learnml/supervised/xgboost.py) - [example](./examples/example_XGBoost.py)
   - Generative Learning
@@ -60,10 +56,11 @@ Python Machine Learning Algorithms Guide for Humans. ![](https://img.shields.io/
     - [Principal Component Analysis](./learnml/unsupervised/principal_component_analysis.py) - [example](./examples/example_PCA_LDA.py)
 - Reinforcement Learning
   - On-policy
-    - [SARSA](./learnml/reinforcement/qlsarsa/base.py) - [example](./examples/example_SARSA.py)
+    - [SARSA](./learnml/reinforcement/qlearning_sarsa_base.py) - [example](./examples/example_SARSA.py)
   - Off-policy
-    - [Q-learning](./learnml/reinforcement/qlsarsa/base.py) - [example](./examples/example_QLearning.py) - [doc](https://byzhi.github.io/learnml/reinforcement/q_learning.html)
-    - [DQN (Deep Q Network)](./learnml/reinforcement/dqn/DeepQNetwork.py) - [example](./examples/example_DeepQNetwork.py)
+    - [Monte Carlo](./learnml/reinforcement/montecarlo.py)
+    - [Q-learning](./learnml/reinforcement/qlearning_sarsa_base.py) - [example](./examples/example_QLearning.py) - [doc](https://byzhi.github.io/learnml/reinforcement/q_learning.html)
+    - [DQN (Deep Q Network)](./learnml/reinforcement/deepqnetwork.py) - [example](./examples/example_DeepQNetwork.py)
 - Deep Learning
   - CNN (Convolutional neural network) - [example](./examples/example_CNN.py)
   - RNN (Recurrent neural network)

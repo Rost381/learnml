@@ -58,7 +58,7 @@ Python Machine Learning Algorithms Guide for Humans. ![](https://img.shields.io/
   - On-policy
     - [SARSA](./learnml/reinforcement/qlearning_sarsa_base.py) - [example](./examples/example_SARSA.py)
   - Off-policy
-    - [Monte Carlo](./learnml/reinforcement/montecarlo.py)
+    - [Monte Carlo](./learnml/reinforcement/montecarlo.py) - [example](./examples/example_MonteCarlo.py) - doc
     - [Q-learning](./learnml/reinforcement/qlearning_sarsa_base.py) - [example](./examples/example_QLearning.py) - [doc](https://byzhi.github.io/learnml/reinforcement/q_learning.html)
     - [DQN (Deep Q Network)](./learnml/reinforcement/deepqnetwork.py) - [example](./examples/example_DeepQNetwork.py)
 - Deep Learning

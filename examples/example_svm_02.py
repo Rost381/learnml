@@ -37,7 +37,7 @@ def main():
         ax.set_yticks(())
         ax.set_title(title)
 
-    plt.savefig('./examples/example_svm_02.png')
+    plt.savefig('./examples/example_SVM_02.png')
 
 
 if __name__ == "__main__":

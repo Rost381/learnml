@@ -64,7 +64,7 @@ class base():
 
 class QLearning(base):
     def learn(self, state, action, reward, next_state):
-        """Steps 3: Update q table
+        """QLearning: Steps 3: Update q table
 
         Bellman Optimality Equation
         new_q : new Q value for that state and the action.
@@ -89,7 +89,8 @@ class SARSA(base):
                                     epsilon=epsilon)
 
     def learn(self, state, action, reward, next_state, next_action):
-        """Steps 3: Update q table
+        """SARSA: Steps 3: Update q table
+        
         The Q value for a state-action is updated by an error, adjusted by 
         the learning rate alpha. 
         Q values represent the possible reward received in the next time step 

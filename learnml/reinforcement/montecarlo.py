@@ -29,12 +29,14 @@ class MonteCarlo:
                 visit_state.append(state)
                 G_t = self.discount_factor * (reward[1] + G_t)
                 value = self.value_table[state]
-                self.value_table[state] = (value
-                                           + self.learning_rate * (G_t - value))
+                self.value_table[state] = (value +
+                                           self.learning_rate * (G_t - value))
+        # print(self.value_table)
 
-    def get_action(self, state):
-        """get action for the state according to the q function table
-    agent pick action of epsilon-greedy policy"""
+    def choose_action(self, state):
+        """choose action for the state according to the q function table
+           agent pick action of epsilon-greedy policy
+        """
         if np.random.rand() < self.epsilon:
             """take random action"""
             action = np.random.choice(self.actions)
@@ -43,20 +45,6 @@ class MonteCarlo:
             next_state = self.possible_next_state(state)
             action = self.arg_max(next_state)
         return int(action)
-
-    @staticmethod
-    def arg_max(next_state):
-        """compute arg_max if multiple candidates exit, pick one randomly"""
-        max_index_list = []
-        max_value = next_state[0]
-        for index, value in enumerate(next_state):
-            if value > max_value:
-                max_index_list.clear()
-                max_value = value
-                max_index_list.append(index)
-            elif value == max_value:
-                max_index_list.append(index)
-        return random.choice(max_index_list)
 
     def possible_next_state(self, state):
         """get the possible next states"""
@@ -81,3 +69,17 @@ class MonteCarlo:
             next_state[3] = self.value_table[str(state)]
 
         return next_state
+
+    @staticmethod
+    def arg_max(next_state):
+        """compute arg_max if multiple candidates exit, pick one randomly"""
+        max_index_list = []
+        max_value = next_state[0]
+        for index, value in enumerate(next_state):
+            if value > max_value:
+                max_index_list.clear()
+                max_value = value
+                max_index_list.append(index)
+            elif value == max_value:
+                max_index_list.append(index)
+        return random.choice(max_index_list)

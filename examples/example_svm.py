@@ -37,7 +37,7 @@ def main():
     plt.scatter(X[:, 0], X[:, 1], c=y, zorder=10, cmap=plt.get_cmap('viridis'),
                 edgecolors='k')
 
-    plt.savefig('./examples/example_svm.png')
+    plt.savefig('./examples/example_SVM.png')
 
 
 if __name__ == "__main__":

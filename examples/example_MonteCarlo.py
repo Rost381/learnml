@@ -14,7 +14,7 @@ def main():
     episodes = 10
     for episode in range(episodes):
         state = env.reset()
-        action = model.get_action(state)
+        action = model.choose_action(state)
 
         while True:
             env.render()
@@ -23,8 +23,8 @@ def main():
             next_state, reward, done = env.step(action)
             model.save_sample(next_state, reward, done)
 
-            """get next action"""
-            action = model.get_action(next_state)
+            """choose next action"""
+            action = model.choose_action(next_state)
 
             if episode == episodes - 1:
                 ps = env.saveimage()

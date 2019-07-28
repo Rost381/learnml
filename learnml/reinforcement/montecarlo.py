@@ -43,7 +43,7 @@ class MonteCarlo:
         else:
             """take action according to the q function table"""
             next_state = self.possible_next_state(state)
-            action = self.arg_max(next_state)
+            action = self._arg_max(next_state)
         return int(action)
 
     def possible_next_state(self, state):
@@ -71,7 +71,7 @@ class MonteCarlo:
         return next_state
 
     @staticmethod
-    def arg_max(next_state):
+    def _arg_max(next_state):
         """compute arg_max if multiple candidates exit, pick one randomly"""
         max_index_list = []
         max_value = next_state[0]

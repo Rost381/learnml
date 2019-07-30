@@ -4,14 +4,14 @@ from collections import defaultdict
 import numpy as np
 
 
-class MonteCarlo:
-    def __init__(self, actions):
+class MonteCarlo():
+    def __init__(self, actions, learning_rate=0.01, discount_factor=0.9, epsilon=0.1):
         self.width = 5
         self.height = 5
         self.actions = actions
-        self.learning_rate = 0.01
-        self.discount_factor = 0.9
-        self.epsilon = 0.1
+        self.learning_rate = learning_rate
+        self.discount_factor = discount_factor
+        self.epsilon = epsilon
         self.samples = []
         self.value_table = defaultdict(float)
 
@@ -29,8 +29,8 @@ class MonteCarlo:
                 visit_state.append(state)
                 G_t = self.discount_factor * (reward[1] + G_t)
                 value = self.value_table[state]
-                self.value_table[state] = (value +
-                                           self.learning_rate * (G_t - value))
+                self.value_table[state] = (value
+                                           + self.learning_rate * (G_t - value))
         # print(self.value_table)
 
     def choose_action(self, state):

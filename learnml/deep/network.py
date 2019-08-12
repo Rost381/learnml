@@ -43,17 +43,19 @@ class NeuralNetwork():
             layer.trainable = trainable
 
     def add(self, layer):
-        """Method which adds a layer to the neural network"""
-        # If this is not the first layer added then set the input shape
-        # to the output shape of the last added layer
+        """Method which adds a layer to the neural network
+        If not the first layer added
+            set the input shape to the output shape of the last added layer
+        """
         if self.layers:
             layer.set_input_shape(shape=self.layers[-1].output_shape())
 
-        # If the layer has weights that needs to be initialized
+        """If the layer has weights
+            then that needs to be initialized"""
         if hasattr(layer, 'initialize'):
             layer.initialize(optimizer=self.optimizer)
 
-        # Add layer to the network
+        """Add layer to the network"""
         self.layers.append(layer)
 
     def test_on_batch(self, X, y):

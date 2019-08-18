@@ -62,9 +62,14 @@ Python Machine Learning Algorithms Guide for Humans. ![](https://img.shields.io/
     - [Q-learning](./learnml/reinforcement/qlearning_sarsa_base.py) - [example](./examples/example_QLearning.py) - [doc](https://byzhi.github.io/learnml/reinforcement/q_learning.html)
     - [DQN (Deep Q Network)](./learnml/reinforcement/deepqnetwork.py) - [example](./examples/example_DeepQNetwork.py)
 - Deep Learning
-  - CNN (Convolutional neural network) - [example](./examples/example_CNN.py)
+  - CNN (Convolutional neural network)
+    - [example](./examples/example_CNN.py)
+    - TextCNN - Binary Sentiment Classification
   - RNN (Recurrent neural network)
-  - [LSTM](./learnml/deep/lstm.py) - [example](./examples/example_Lstm.py)
+    - TextRNN - Predict Next Step 
+  - [LSTM](./learnml/deep/lstm.py)
+    - [example](./examples/example_Lstm.py)
+    - TextLSTM - Autocomplete
 
 
 ## Installation

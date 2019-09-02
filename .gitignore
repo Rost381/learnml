@@ -103,8 +103,8 @@ venv.bak/
 # mkdocs docs
 /site
 
-# vscode settings
-settings.json
+# vscode
+/.vscode
 
 # temp folder
 temp/

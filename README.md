@@ -1,15 +1,10 @@
 # Learnml
 
-Python Machine Learning Algorithms Guide for Humans. ![](https://img.shields.io/badge/Python-3.6+-blue.svg)
-
-> Someone want to learn Machine Learning based on Algorithms with Simple explanation, Mathematics Knowledge and Python code.
+For someone who want to learn Machine Learning based on Simple explanation, Mathematics Knowledge and Python code. 
 
 ## Features
 
-![](https://img.shields.io/badge/-Simple_Explanation-red.svg) ![](https://img.shields.io/badge/-Mathematics-green.svg) ![](https://img.shields.io/badge/-Python-blue.svg)
-- Simple Explanation on Statistics, Machine learning including deep learning
-- Implementing algorithms from scratch on Python
-- Friendly docs with Simple Explanation and Python Code
+![](https://img.shields.io/badge/-Simple_Explanation-red.svg) ![](https://img.shields.io/badge/-Math-green.svg) ![](https://img.shields.io/badge/Python-3.6+-blue.svg)
 
 ## Documentation
 
